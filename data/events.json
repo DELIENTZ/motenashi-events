@@ -1,0 +1,63 @@
+{
+  "site": {
+    "name": "もてなし広場 イベントナビ",
+    "tagline": "高崎・もてなし広場のイベントをまるごとまとめ",
+    "updated": "2026-06-15"
+  },
+  "events": [
+    {
+      "id": "ninjyoichi-2026-06",
+      "title": "高崎人情市（6月）",
+      "start": "2026-06-28",
+      "end": "2026-06-28",
+      "time": "05:00〜12:00頃",
+      "venue": "もてなし広場",
+      "category": "マルシェ・市",
+      "summary": "毎月第4日曜の早朝に開かれる高崎名物の朝市。地場野菜・骨董・手づくり品などの露店がずらりと並びます。",
+      "image": "",
+      "fee": "入場無料",
+      "official_url": "https://www.takasaki-kankoukyoukai.or.jp/",
+      "source": "高崎観光協会",
+      "source_url": "https://www.takasaki-kankoukyoukai.or.jp/",
+      "tags": ["朝市", "ファミリー", "毎月開催"],
+      "status": "published",
+      "isSample": true
+    },
+    {
+      "id": "freemarket-2026-07",
+      "title": "もてなし広場フリーマーケット",
+      "start": "2026-07-19",
+      "end": "2026-07-19",
+      "time": "09:00〜15:00",
+      "venue": "もてなし広場",
+      "category": "マルシェ・市",
+      "summary": "出店者が持ち寄る掘り出し物いっぱいのフリマ。お宝探し感覚で楽しめます。出店募集あり。",
+      "image": "",
+      "fee": "入場無料",
+      "official_url": "",
+      "source": "fmfm.jp",
+      "source_url": "https://fmfm.jp/event/detail/8354",
+      "tags": ["フリマ", "出店募集"],
+      "status": "published",
+      "isSample": true
+    },
+    {
+      "id": "oniku-saiten-2026",
+      "title": "群馬お肉の祭典 in TAKASAKI",
+      "start": "2026-08-22",
+      "end": "2026-08-23",
+      "time": "10:00〜16:00",
+      "venue": "もてなし広場",
+      "category": "グルメ",
+      "summary": "県内外の肉グルメが集結する食の祭典。ステージイベントやキッチンカーも出店予定。",
+      "image": "",
+      "fee": "入場無料（飲食は有料）",
+      "official_url": "",
+      "source": "ぐんラボ！",
+      "source_url": "https://www.gunlabo.net/event/event.shtml?id=2119",
+      "tags": ["グルメ", "ファミリー", "キッチンカー"],
+      "status": "published",
+      "isSample": true
+    }
+  ]
+}

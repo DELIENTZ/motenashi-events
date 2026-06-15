@@ -1,0 +1,40 @@
+name: イベント自動収集
+
+# 毎週月曜の朝6時（日本時間）に自動実行。手動実行も可。
+on:
+  schedule:
+    - cron: "0 21 * * 0" # UTC 21:00 = JST 月曜 06:00
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: 依存インストール
+        working-directory: scraper
+        run: npm install
+
+      - name: 収集実行
+        working-directory: scraper
+        run: node scrape.mjs
+
+      - name: 候補ファイルをコミット
+        run: |
+          git config user.name "motenashi-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add data/candidates.json
+          if git diff --staged --quiet; then
+            echo "変更なし"
+          else
+            git commit -m "chore: イベント候補を自動更新 ($(date +%F))"
+            git push
+          fi

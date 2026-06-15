@@ -1,0 +1,106 @@
+:root{
+  --bg:#fbf7f0;
+  --ink:#2b2620;
+  --muted:#7a7167;
+  --brand:#e8632a;
+  --brand-dark:#c64d18;
+  --accent:#2e8b6f;
+  --card:#ffffff;
+  --line:#ece4d8;
+  --shadow:0 2px 10px rgba(60,40,20,.07);
+  --radius:14px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  line-height:1.6;-webkit-font-smoothing:antialiased;
+}
+.wrap{width:min(960px,92%);margin-inline:auto}
+
+/* header */
+.site-header{
+  background:linear-gradient(135deg,var(--brand),var(--brand-dark));
+  color:#fff;padding:26px 0 22px;
+}
+.logo{margin:0;font-size:1.7rem;letter-spacing:.02em}
+.logo span{font-weight:400;opacity:.95}
+.tagline{margin:.3em 0 0;font-size:.92rem;opacity:.92}
+
+/* sample banner */
+.sample-banner{
+  background:#fff5e6;border:1px solid #f4c98a;color:#8a5a12;
+  border-radius:10px;padding:10px 14px;margin-top:16px;font-size:.88rem;
+}
+
+/* ad slots */
+.ad-slot{
+  margin:20px 0;border:1px dashed #d8cdbb;border-radius:10px;
+  background:#f4eee3;text-align:center;padding:8px;position:relative;
+}
+.ad-label{position:absolute;top:4px;left:8px;font-size:.65rem;color:#a89c88}
+.ad-placeholder{color:#a89c88;font-size:.85rem;padding:24px 10px;min-height:60px;
+  display:flex;align-items:center;justify-content:center}
+
+/* controls */
+.controls{margin:18px 0 6px;display:grid;gap:12px}
+#search{
+  width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:12px;
+  font-size:1rem;background:#fff;box-shadow:var(--shadow)
+}
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.chip{
+  border:1px solid var(--line);background:#fff;color:var(--ink);
+  padding:6px 14px;border-radius:999px;font-size:.86rem;cursor:pointer;transition:.15s
+}
+.chip.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+.toggle{display:flex;gap:16px;font-size:.88rem;color:var(--muted)}
+.toggle label{cursor:pointer}
+
+.result-count{color:var(--muted);font-size:.85rem;margin:14px 0 4px}
+
+/* event cards */
+.event-list{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:620px){.event-list{grid-template-columns:1fr 1fr}}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column
+}
+.card-date{
+  background:var(--accent);color:#fff;padding:8px 14px;font-weight:700;
+  display:flex;align-items:baseline;gap:8px;font-size:.95rem
+}
+.card-date .dow{font-size:.8rem;opacity:.9}
+.card-body{padding:14px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card-title{margin:0;font-size:1.08rem;line-height:1.4}
+.card-meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.82rem;color:var(--muted)}
+.card-summary{font-size:.9rem;margin:0;color:#473f36}
+.card-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+.tag{background:#f1ece2;color:#8a7d6a;border-radius:6px;padding:2px 8px;font-size:.74rem}
+.badge-sample{background:#ffe9cf;color:#a05a12;border-radius:6px;padding:2px 8px;font-size:.72rem}
+.card-cat{
+  display:inline-block;font-size:.74rem;background:#fdeee7;color:var(--brand-dark);
+  border-radius:6px;padding:2px 8px;align-self:flex-start
+}
+.card-links{display:flex;gap:12px;font-size:.84rem;padding-top:4px;border-top:1px solid var(--line);margin-top:4px}
+.card-links a{color:var(--brand-dark);text-decoration:none}
+.card-links a:hover{text-decoration:underline}
+.empty{padding:40px 10px;text-align:center;color:var(--muted)}
+
+/* submit CTA */
+.submit-cta{
+  margin:28px 0;background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px;text-align:center;box-shadow:var(--shadow)
+}
+.submit-cta h2{margin:0 0 8px;font-size:1.15rem}
+.submit-cta p{margin:0 0 14px;font-size:.9rem;color:var(--muted)}
+.btn{
+  display:inline-block;background:var(--brand);color:#fff;text-decoration:none;
+  padding:12px 28px;border-radius:999px;font-weight:700;transition:.15s
+}
+.btn:hover{background:var(--brand-dark)}
+
+/* footer */
+.site-footer{margin-top:30px;background:#2b2620;color:#cabfae;padding:24px 0;font-size:.82rem}
+.site-footer p{margin:.3em 0}
+.site-footer .small{opacity:.7;font-size:.76rem}
