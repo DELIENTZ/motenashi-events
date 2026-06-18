@@ -82,17 +82,39 @@ function renderCalendar() {
     ]
       .filter(Boolean)
       .join(" ");
-    const label = evs.length
-      ? ` aria-label="${d}日：${evs.map((e) => e.title).join("、")}" title="${evs
-          .map((e) => e.title)
-          .join("、")}"`
+    const names = evs.map((e) => e.title).join("、");
+    const label = evs.length ? ` aria-label="${d}日：${names}" title="${names}"` : "";
+    const evName = evs.length
+      ? `<span class="cal-ev">${esc(shortName(evs[0].title))}${
+          evs.length > 1 ? `<span class="cal-more">+${evs.length - 1}</span>` : ""
+        }</span>`
       : "";
     cells += `<button type="button" class="${cls}" data-date="${key}" ${
       evs.length ? "" : "disabled"
-    }${label}><span class="cal-num">${d}</span>${
-      evs.length ? `<span class="cal-dot"></span>` : ""
-    }</button>`;
+    }${label}><span class="cal-num">${d}</span>${evName}</button>`;
   }
+
+  // この月のイベント一覧（名前つき）
+  const firstKey = `${y}-${String(m + 1).padStart(2, "0")}-01`;
+  const lastKey = `${y}-${String(m + 1).padStart(2, "0")}-${String(daysInMonth).padStart(2, "0")}`;
+  const monthEvents = state.events
+    .filter((e) => (e.end || e.start) >= firstKey && e.start <= lastKey)
+    .sort((a, b) => (a.start < b.start ? -1 : 1));
+  const monthList = monthEvents.length
+    ? `<ul class="cal-list">${monthEvents
+        .map((e) => {
+          const ds = new Date(e.start + "T00:00:00");
+          let dlabel = `${ds.getMonth() + 1}/${ds.getDate()}（${DOW[ds.getDay()]}）`;
+          if (e.end && e.end !== e.start) {
+            const de = new Date(e.end + "T00:00:00");
+            dlabel += `〜${de.getMonth() + 1}/${de.getDate()}`;
+          }
+          return `<li class="cal-li" data-date="${e.start}"><span class="cal-li-date">${dlabel}</span><span class="cal-li-name">${esc(
+            e.title
+          )}</span></li>`;
+        })
+        .join("")}</ul>`
+    : `<p class="cal-empty">この月の登録イベントはありません</p>`;
 
   $("#calendar").innerHTML = `
     <div class="cal-head">
@@ -105,13 +127,26 @@ function renderCalendar() {
         `<span class="cal-w ${i === 0 ? "sun" : ""}${i === 6 ? "sat" : ""}">${w}</span>`
     ).join("")}</div>
     <div class="cal-grid cal-days">${cells}</div>
-    <p class="cal-hint">📅 色付きの日付をタップすると、そのイベントへ移動します</p>`;
+    <p class="cal-hint">📅 色付きの日付、または下の一覧をタップするとイベントへ移動します</p>
+    <div class="cal-month-events">
+      <h3 class="cal-list-title">🗓 ${m + 1}月のイベント</h3>
+      ${monthList}
+    </div>`;
 
   $("#cal-prev").onclick = () => shiftMonth(-1);
   $("#cal-next").onclick = () => shiftMonth(1);
   $("#calendar")
     .querySelectorAll(".cal-cell.has-event")
     .forEach((b) => (b.onclick = () => jumpToDate(b.dataset.date)));
+  $("#calendar")
+    .querySelectorAll(".cal-li")
+    .forEach((li) => (li.onclick = () => jumpToDate(li.dataset.date)));
+}
+
+// カレンダーのマスに収まるよう名前を短縮
+function shortName(title = "") {
+  const t = title.replace(/（.*?）/g, "").trim(); // 括弧書きを除去
+  return t.length > 6 ? t.slice(0, 6) + "…" : t;
 }
 
 function shiftMonth(delta) {

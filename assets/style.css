@@ -60,8 +60,8 @@ body{
 .cal-w.sun{color:#d2542f}.cal-w.sat{color:#2f6bd2}
 .cal-cell{
   position:relative;border:none;background:transparent;border-radius:8px;
-  min-height:46px;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  font-size:.9rem;color:var(--ink);cursor:default;padding:4px 0
+  min-height:54px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+  font-size:.9rem;color:var(--ink);cursor:default;padding:5px 2px;gap:2px;overflow:hidden
 }
 .cal-cell.empty{visibility:hidden}
 .cal-cell.sun .cal-num{color:#d2542f}
@@ -72,8 +72,31 @@ body{
 }
 .cal-cell.has-event .cal-num{color:#fff}
 .cal-cell.has-event:hover{background:var(--brand-dark);transform:translateY(-1px)}
-.cal-dot{width:5px;height:5px;border-radius:50%;background:#fff;margin-top:2px}
-.cal-hint{font-size:.78rem;color:var(--muted);text-align:center;margin:10px 0 0}
+.cal-ev{
+  font-size:.6rem;line-height:1.15;font-weight:600;max-width:100%;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block
+}
+.cal-more{font-size:.55rem;opacity:.85;margin-left:1px}
+.cal-hint{font-size:.78rem;color:var(--muted);text-align:center;margin:12px 0 0}
+
+/* 今月のイベント一覧 */
+.cal-month-events{margin-top:10px;border-top:1px solid var(--line);padding-top:10px}
+.cal-list-title{font-size:.92rem;margin:0 0 8px}
+.cal-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.cal-li{
+  display:flex;align-items:baseline;gap:10px;padding:8px 10px;border-radius:8px;
+  background:var(--bg);cursor:pointer;transition:.12s
+}
+.cal-li:hover{background:#f4ece0}
+.cal-li-date{font-size:.8rem;color:var(--brand-dark);font-weight:700;white-space:nowrap;min-width:84px}
+.cal-li-name{font-size:.9rem}
+.cal-empty{font-size:.85rem;color:var(--muted);margin:4px 0}
+
+@media(max-width:480px){
+  .cal-ev{font-size:.52rem}
+  .cal-cell{min-height:50px}
+  .cal-li-date{min-width:72px;font-size:.76rem}
+}
 
 /* ジャンプ時のハイライト */
 .card.flash{animation:flash 2s ease}
