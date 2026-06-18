@@ -1,13 +1,19 @@
 // もてなし広場 イベントナビ — データ駆動レンダラー
-// data/events.json を読み込んで一覧を描画する。データを足すだけで更新できる。
+// data/events.json を読み込んで一覧＋カレンダーを描画する。データを足すだけで更新できる。
 
 const SUBMIT_FORM_URL = ""; // ← Googleフォームの公開URLを入れると「情報を提供する」ボタンが有効化
 
 const DOW = ["日", "月", "火", "水", "木", "金", "土"];
 const state = { events: [], category: "all", period: "upcoming", query: "" };
+let calYM = null; // カレンダー表示中の {y, m}（mは0始まり）
+let dateMap = {}; // "YYYY-MM-DD" => [event, ...]
 
 const $ = (s) => document.querySelector(s);
 const todayStr = () => new Date().toISOString().slice(0, 10);
+const ymd = (d) =>
+  `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(
+    d.getDate()
+  ).padStart(2, "0")}`;
 
 async function init() {
   try {
@@ -20,11 +26,129 @@ async function init() {
     $("#event-list").innerHTML = `<p class="empty">データの読み込みに失敗しました。</p>`;
     return;
   }
+  buildDateMap();
   buildCategoryFilters();
   bindControls();
   injectJsonLd();
+  initCalendarMonth();
+  renderCalendar();
   render();
   if (SUBMIT_FORM_URL) $("#submit-form-link").href = SUBMIT_FORM_URL;
+}
+
+// 各イベントを開催日（複数日にまたがる場合は全日）でマップ化
+function buildDateMap() {
+  dateMap = {};
+  for (const ev of state.events) {
+    const start = new Date(ev.start + "T00:00:00");
+    const end = new Date((ev.end || ev.start) + "T00:00:00");
+    for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+      const key = ymd(d);
+      (dateMap[key] = dateMap[key] || []).push(ev);
+    }
+  }
+}
+
+// カレンダーの初期表示月：今日以降で一番近いイベントの月（無ければ今月）
+function initCalendarMonth() {
+  const t = todayStr();
+  const upcoming = state.events
+    .map((e) => e.start)
+    .filter((s) => s >= t)
+    .sort();
+  const base = upcoming[0] ? new Date(upcoming[0] + "T00:00:00") : new Date();
+  calYM = { y: base.getFullYear(), m: base.getMonth() };
+}
+
+function renderCalendar() {
+  const { y, m } = calYM;
+  const first = new Date(y, m, 1);
+  const startDow = first.getDay();
+  const daysInMonth = new Date(y, m + 1, 0).getDate();
+  const t = todayStr();
+
+  let cells = "";
+  for (let i = 0; i < startDow; i++) cells += `<span class="cal-cell empty"></span>`;
+  for (let d = 1; d <= daysInMonth; d++) {
+    const key = `${y}-${String(m + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+    const evs = dateMap[key] || [];
+    const dow = new Date(y, m, d).getDay();
+    const cls = [
+      "cal-cell",
+      evs.length ? "has-event" : "",
+      key === t ? "today" : "",
+      dow === 0 ? "sun" : "",
+      dow === 6 ? "sat" : "",
+    ]
+      .filter(Boolean)
+      .join(" ");
+    const label = evs.length
+      ? ` aria-label="${d}日：${evs.map((e) => e.title).join("、")}" title="${evs
+          .map((e) => e.title)
+          .join("、")}"`
+      : "";
+    cells += `<button type="button" class="${cls}" data-date="${key}" ${
+      evs.length ? "" : "disabled"
+    }${label}><span class="cal-num">${d}</span>${
+      evs.length ? `<span class="cal-dot"></span>` : ""
+    }</button>`;
+  }
+
+  $("#calendar").innerHTML = `
+    <div class="cal-head">
+      <button type="button" class="cal-nav" id="cal-prev" aria-label="前の月">‹</button>
+      <strong class="cal-title">${y}年${m + 1}月</strong>
+      <button type="button" class="cal-nav" id="cal-next" aria-label="次の月">›</button>
+    </div>
+    <div class="cal-grid cal-dow">${DOW.map(
+      (w, i) =>
+        `<span class="cal-w ${i === 0 ? "sun" : ""}${i === 6 ? "sat" : ""}">${w}</span>`
+    ).join("")}</div>
+    <div class="cal-grid cal-days">${cells}</div>
+    <p class="cal-hint">📅 色付きの日付をタップすると、そのイベントへ移動します</p>`;
+
+  $("#cal-prev").onclick = () => shiftMonth(-1);
+  $("#cal-next").onclick = () => shiftMonth(1);
+  $("#calendar")
+    .querySelectorAll(".cal-cell.has-event")
+    .forEach((b) => (b.onclick = () => jumpToDate(b.dataset.date)));
+}
+
+function shiftMonth(delta) {
+  let m = calYM.m + delta,
+    y = calYM.y;
+  if (m < 0) { m = 11; y--; }
+  if (m > 11) { m = 0; y++; }
+  calYM = { y, m };
+  renderCalendar();
+}
+
+// カレンダーの日付タップ → その日のイベントを必ず表示してスクロール＆ハイライト
+function jumpToDate(key) {
+  const evs = dateMap[key];
+  if (!evs || !evs.length) return;
+  // フィルタを解除して、過去・今後に関わらず確実に表示
+  state.period = "all";
+  state.category = "all";
+  state.query = "";
+  $("#search").value = "";
+  document.querySelector('input[name="period"][value="all"]').checked = true;
+  document.querySelectorAll(".chip").forEach((c) =>
+    c.classList.toggle("active", c.dataset.cat === "all")
+  );
+  render();
+
+  const target = document.getElementById("ev-" + evs[0].id);
+  if (target) {
+    target.scrollIntoView({ behavior: "smooth", block: "center" });
+    evs.forEach((ev) => {
+      const el = document.getElementById("ev-" + ev.id);
+      if (el) {
+        el.classList.add("flash");
+        setTimeout(() => el.classList.remove("flash"), 2000);
+      }
+    });
+  }
 }
 
 function buildCategoryFilters() {
@@ -98,7 +222,7 @@ function render() {
   $("#event-list").innerHTML = list
     .map(
       (ev) => `
-    <article class="card">
+    <article class="card" id="ev-${ev.id}">
       <div class="card-date">${fmtDate(ev)}${ev.time ? `<span class="dow">${ev.time}</span>` : ""}</div>
       <div class="card-body">
         <span class="card-cat">${ev.category || "イベント"}</span>
