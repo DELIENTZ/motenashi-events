@@ -1,7 +1,7 @@
 // もてなし広場 イベントナビ — データ駆動レンダラー
 // data/events.json を読み込んで一覧＋カレンダーを描画する。データを足すだけで更新できる。
 
-const SUBMIT_FORM_URL = ""; // ← Googleフォームの公開URLを入れると「情報を提供する」ボタンが有効化
+const SUBMIT_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSclMeV7NcGh3jhUsSzC49t_H1GViY7PVhjLpSHf92X_gN2HsQ/viewform"; // 投稿フォーム
 const CONTACT_EMAIL = "takasaki.event.navi@gmail.com"; // 連絡用メール。問い合わせ・運営参加の受付
 
 const DOW = ["日", "月", "火", "水", "木", "金", "土"];
