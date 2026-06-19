@@ -2,7 +2,7 @@
   "site": {
     "name": "もてなし広場 イベントナビ",
     "tagline": "高崎・もてなし広場のイベントをまるごとまとめ",
-    "updated": "2026-06-18"
+    "updated": "2026-06-19"
   },
   "events": [
     {
@@ -27,6 +27,24 @@
       "title": "高崎人情市（7月）",
       "start": "2026-07-26",
       "end": "2026-07-26",
+      "time": "10:00〜15:00",
+      "venue": "もてなし広場",
+      "category": "マルシェ・市",
+      "summary": "毎月第4日曜開催の定例市。地場野菜や手づくり品の露店が並びます。最新の開催日・会場は主催の最新情報でご確認ください。",
+      "image": "",
+      "fee": "入場無料",
+      "official_url": "https://ninjou.gunmablog.net/",
+      "source": "高崎人情市 公式",
+      "source_url": "https://ninjou.gunmablog.net/",
+      "tags": ["市", "ファミリー", "毎月開催"],
+      "status": "published",
+      "tentative": true
+    },
+    {
+      "id": "ninjyoichi-2026-08",
+      "title": "高崎人情市（8月）",
+      "start": "2026-08-23",
+      "end": "2026-08-23",
       "time": "10:00〜15:00",
       "venue": "もてなし広場",
       "category": "マルシェ・市",
@@ -66,6 +84,24 @@
       "venue": "もてなし広場",
       "category": "マルシェ・市",
       "summary": "毎月第4日曜開催の定例市。最新の開催日・会場は主催の最新情報でご確認ください。",
+      "image": "",
+      "fee": "入場無料",
+      "official_url": "https://ninjou.gunmablog.net/",
+      "source": "高崎人情市 公式",
+      "source_url": "https://ninjou.gunmablog.net/",
+      "tags": ["市", "ファミリー", "毎月開催"],
+      "status": "published",
+      "tentative": true
+    },
+    {
+      "id": "ninjyoichi-2026-10",
+      "title": "高崎人情市（10月）",
+      "start": "2026-10-25",
+      "end": "2026-10-25",
+      "time": "10:00〜15:00",
+      "venue": "もてなし広場",
+      "category": "マルシェ・市",
+      "summary": "毎月第4日曜開催の定例市。地場野菜や手づくり品の露店が並びます。最新の開催日・会場は主催の最新情報でご確認ください。",
       "image": "",
       "fee": "入場無料",
       "official_url": "https://ninjou.gunmablog.net/",

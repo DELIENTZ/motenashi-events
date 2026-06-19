@@ -45,7 +45,8 @@
 | Facebook | 高崎観光協会 | https://www.facebook.com/takasaki.kankoukyoukai/ |
 | Instagram | 高崎やる気堂（人情市） | 高崎やる気堂で検索 |
 | Instagram | ハッシュタグ #高崎イベント | https://www.instagram.com/explore/tags/高崎イベント/ |
-| Instagram | ハッシュタグ #もてなし広場 #高崎マルシェ | 目視チェック用 |
+| Instagram | たかさき車楽祭（キッチンカー・マルシェ） | https://www.instagram.com/sharakusai_takasaki/ |
+| Instagram | ハッシュタグ #もてなし広場 #高崎マルシェ #高崎人情市 | 目視チェック用 |
 
 ---
 
