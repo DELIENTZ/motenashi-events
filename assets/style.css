@@ -176,6 +176,23 @@ body{
 .join-cta h2{margin:0 0 8px;font-size:1.15rem}
 .join-cta p{margin:0 0 14px;font-size:.9rem;color:var(--muted)}
 .site-footer .credit{font-weight:700;color:#e6d9c4}
+.footer-nav{margin-bottom:8px}
+.footer-nav a{color:#f0e6d6;text-decoration:none;font-weight:600}
+.footer-nav a:hover{text-decoration:underline}
+
+/* content pages (about / privacy) */
+.page{padding:8px 0 10px}
+.breadcrumb{font-size:.82rem;color:var(--muted);margin:16px 0}
+.breadcrumb a{color:var(--brand-dark);text-decoration:none}
+.page-content{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:24px;margin-bottom:24px
+}
+.page-content h2{margin:0 0 16px;font-size:1.4rem;border-bottom:2px solid var(--brand);padding-bottom:8px}
+.page-content h3{margin:22px 0 6px;font-size:1.05rem;color:var(--brand-dark)}
+.page-content p{margin:.4em 0;font-size:.93rem;line-height:1.8}
+.page-content a{color:var(--brand-dark)}
+.page-content .back{margin-top:24px;padding-top:16px;border-top:1px solid var(--line)}
 
 /* footer */
 .site-footer{margin-top:30px;background:#2b2620;color:#cabfae;padding:24px 0;font-size:.82rem}
