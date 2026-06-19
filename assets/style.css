@@ -164,6 +164,18 @@ body{
 }
 .btn:hover{background:var(--brand-dark)}
 .btn.disabled{background:#c8bca9;cursor:default;pointer-events:none}
+.btn-outline{background:#fff;color:var(--brand-dark);border:2px solid var(--brand)}
+.btn-outline:hover{background:var(--brand);color:#fff}
+.btn-outline.disabled{background:#fff;color:#b3a994;border-color:#ddd1bf}
+
+/* 運営メンバー募集 */
+.join-cta{
+  margin:0 0 28px;background:linear-gradient(135deg,#fff,#fdf3ec);
+  border:1px solid var(--line);border-radius:var(--radius);padding:22px;text-align:center;box-shadow:var(--shadow)
+}
+.join-cta h2{margin:0 0 8px;font-size:1.15rem}
+.join-cta p{margin:0 0 14px;font-size:.9rem;color:var(--muted)}
+.site-footer .credit{font-weight:700;color:#e6d9c4}
 
 /* footer */
 .site-footer{margin-top:30px;background:#2b2620;color:#cabfae;padding:24px 0;font-size:.82rem}

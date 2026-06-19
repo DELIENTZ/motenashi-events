@@ -2,6 +2,7 @@
 // data/events.json を読み込んで一覧＋カレンダーを描画する。データを足すだけで更新できる。
 
 const SUBMIT_FORM_URL = ""; // ← Googleフォームの公開URLを入れると「情報を提供する」ボタンが有効化
+const CONTACT_EMAIL = ""; // ← 連絡用メール（例：takasaki.event.navi@gmail.com）を入れると問い合わせボタンが有効化
 
 const DOW = ["日", "月", "火", "水", "木", "金", "土"];
 const state = { events: [], category: "all", period: "upcoming", query: "" };
@@ -34,6 +35,7 @@ async function init() {
   renderCalendar();
   render();
   setupSubmitButton();
+  setupContactButton();
 }
 
 // 投稿フォームのURLが未設定なら、死リンクにせず「準備中」表示にする
@@ -42,10 +44,26 @@ function setupSubmitButton() {
   if (!b) return;
   if (SUBMIT_FORM_URL) {
     b.href = SUBMIT_FORM_URL;
+    b.target = "_blank";
   } else {
     b.removeAttribute("href");
     b.classList.add("disabled");
     b.textContent = "投稿フォーム準備中";
+  }
+}
+
+// 連絡用メールが未設定なら「準備中」表示にする
+function setupContactButton() {
+  const b = $("#contact-link");
+  if (!b) return;
+  if (CONTACT_EMAIL) {
+    b.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+      "もてなし広場イベントナビ お問い合わせ"
+    )}`;
+  } else {
+    b.removeAttribute("href");
+    b.classList.add("disabled");
+    b.textContent = "お問い合わせ先 準備中";
   }
 }
 
