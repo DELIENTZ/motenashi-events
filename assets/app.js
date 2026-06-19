@@ -33,7 +33,20 @@ async function init() {
   initCalendarMonth();
   renderCalendar();
   render();
-  if (SUBMIT_FORM_URL) $("#submit-form-link").href = SUBMIT_FORM_URL;
+  setupSubmitButton();
+}
+
+// 投稿フォームのURLが未設定なら、死リンクにせず「準備中」表示にする
+function setupSubmitButton() {
+  const b = $("#submit-form-link");
+  if (!b) return;
+  if (SUBMIT_FORM_URL) {
+    b.href = SUBMIT_FORM_URL;
+  } else {
+    b.removeAttribute("href");
+    b.classList.add("disabled");
+    b.textContent = "投稿フォーム準備中";
+  }
 }
 
 // 各イベントを開催日（複数日にまたがる場合は全日）でマップ化
