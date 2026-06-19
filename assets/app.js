@@ -2,7 +2,7 @@
 // data/events.json を読み込んで一覧＋カレンダーを描画する。データを足すだけで更新できる。
 
 const SUBMIT_FORM_URL = ""; // ← Googleフォームの公開URLを入れると「情報を提供する」ボタンが有効化
-const CONTACT_EMAIL = ""; // ← 連絡用メール（例：takasaki.event.navi@gmail.com）を入れると問い合わせボタンが有効化
+const CONTACT_EMAIL = "takasaki.event.navi@gmail.com"; // 連絡用メール。問い合わせ・運営参加の受付
 
 const DOW = ["日", "月", "火", "水", "木", "金", "土"];
 const state = { events: [], category: "all", period: "upcoming", query: "" };
