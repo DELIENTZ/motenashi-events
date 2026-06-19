@@ -292,7 +292,7 @@ function render() {
       <div class="card-date">${fmtDate(ev)}${ev.time ? `<span class="dow">${ev.time}</span>` : ""}</div>
       <div class="card-body">
         <span class="card-cat">${ev.category || "イベント"}</span>
-        <h3 class="card-title">${esc(ev.title)}${ev.isSample ? ' <span class="badge-sample">サンプル</span>' : ""}</h3>
+        <h3 class="card-title">${esc(ev.title)}${ev.tentative ? ' <span class="badge-tentative">⚠未確定</span>' : ""}${ev.isSample ? ' <span class="badge-sample">サンプル</span>' : ""}</h3>
         <div class="card-meta">
           <span>📍 ${esc(ev.venue || "もてなし広場")}</span>
           ${ev.fee ? `<span>💴 ${esc(ev.fee)}</span>` : ""}

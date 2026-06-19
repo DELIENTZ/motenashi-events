@@ -122,6 +122,7 @@ body{
 .toggle label{cursor:pointer}
 
 .result-count{color:var(--muted);font-size:.85rem;margin:14px 0 4px}
+.legend{font-size:.78rem;color:var(--muted);margin:0 0 8px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 
 /* event cards */
 .event-list{display:grid;gap:14px;grid-template-columns:1fr}
@@ -142,6 +143,7 @@ body{
 .card-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
 .tag{background:#f1ece2;color:#8a7d6a;border-radius:6px;padding:2px 8px;font-size:.74rem}
 .badge-sample{background:#ffe9cf;color:#a05a12;border-radius:6px;padding:2px 8px;font-size:.72rem}
+.badge-tentative{background:#fff3cd;color:#8a6d0b;border:1px solid #f0d98a;border-radius:6px;padding:2px 8px;font-size:.72rem;white-space:nowrap}
 .card-cat{
   display:inline-block;font-size:.74rem;background:#fdeee7;color:var(--brand-dark);
   border-radius:6px;padding:2px 8px;align-self:flex-start
