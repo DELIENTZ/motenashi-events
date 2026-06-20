@@ -141,13 +141,16 @@ body{
 .card-meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.82rem;color:var(--muted)}
 .card-summary{font-size:.9rem;margin:0;color:#473f36}
 .card-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
-.tag{background:#f1ece2;color:#8a7d6a;border-radius:6px;padding:2px 8px;font-size:.74rem}
+.tag{background:#f1ece2;color:#8a7d6a;border:0;border-radius:6px;padding:2px 8px;font-size:.74rem;cursor:pointer;font-family:inherit;transition:.15s}
+.tag:hover{background:#e6ddcc;color:#6b5f4e}
 .badge-sample{background:#ffe9cf;color:#a05a12;border-radius:6px;padding:2px 8px;font-size:.72rem}
 .badge-tentative{background:#fff3cd;color:#8a6d0b;border:1px solid #f0d98a;border-radius:6px;padding:2px 8px;font-size:.72rem;white-space:nowrap}
 .card-cat{
   display:inline-block;font-size:.74rem;background:#fdeee7;color:var(--brand-dark);
-  border-radius:6px;padding:2px 8px;align-self:flex-start
+  border:0;border-radius:6px;padding:2px 8px;align-self:flex-start;
+  cursor:pointer;font-family:inherit;transition:.15s
 }
+.card-cat:hover{background:#f9ddd0}
 .card-links{display:flex;gap:12px;font-size:.84rem;padding-top:4px;border-top:1px solid var(--line);margin-top:4px}
 .card-links a{color:var(--brand-dark);text-decoration:none}
 .card-links a:hover{text-decoration:underline}

@@ -2,7 +2,7 @@
   "site": {
     "name": "もてなし広場 イベントナビ",
     "tagline": "高崎・もてなし広場のイベントをまるごとまとめ",
-    "updated": "2026-06-19"
+    "updated": "2026-06-20"
   },
   "events": [
     {
@@ -179,6 +179,57 @@
       "source": "ぐんラボ！",
       "source_url": "https://www.gunlabo.net/event/event.shtml?id=2119",
       "tags": ["グルメ", "ファミリー", "キッチンカー"],
+      "status": "published"
+    },
+    {
+      "id": "aaa-vintage-market-2026-07",
+      "title": "AAA VINTAGE MARKET KITAKANTO（北関東ヴィンテージマーケット）",
+      "start": "2026-07-18",
+      "end": "2026-07-18",
+      "time": "09:00〜15:00",
+      "venue": "もてなし広場",
+      "category": "マルシェ・市",
+      "summary": "ヴィンテージ古着やインテリア雑貨などが集まる北関東のヴィンテージマーケット。ワッフルやコーヒーなどの飲食出店もあります。",
+      "image": "",
+      "fee": "入場無料",
+      "official_url": "",
+      "source": "Instagram（@mirakuru3096 出店者投稿）",
+      "source_url": "https://www.instagram.com/mirakuru3096/",
+      "tags": ["マルシェ", "ヴィンテージ", "古着", "雑貨"],
+      "status": "published"
+    },
+    {
+      "id": "thai-festival-takasaki-2026",
+      "title": "THAI FESTIVAL TAKASAKI 2026（タイフェスティバル高崎）",
+      "start": "2026-07-19",
+      "end": "2026-07-20",
+      "time": "16:00〜20:45（19日）",
+      "venue": "もてなし広場",
+      "category": "祭り",
+      "summary": "高崎もてなし広場で初開催のタイフェスティバル。本場のタイ料理やリトルバンコクの雰囲気が楽しめる食と文化のイベントです。主催：タイフェスティバル高崎実行委員会。",
+      "image": "",
+      "fee": "入場無料",
+      "official_url": "",
+      "source": "Instagram（@thai.fes.takasaki 公式）",
+      "source_url": "https://www.instagram.com/thai.fes.takasaki/",
+      "tags": ["祭り", "グルメ", "タイ", "国際"],
+      "status": "published"
+    },
+    {
+      "id": "world-night-market-2026",
+      "title": "WORLD NIGHT MARKET（ワールドナイトマーケット）",
+      "start": "2026-07-31",
+      "end": "2026-07-31",
+      "time": "16:00〜20:30",
+      "venue": "もてなし広場",
+      "category": "マルシェ・市",
+      "summary": "世界の食べ物・雑貨・ゲームが大集合する夜のマーケット。キッチンカーや世界のビール、子どもも楽しめるゲーム、ダンスや演舞のステージなどが楽しめます。",
+      "image": "",
+      "fee": "入場無料",
+      "official_url": "",
+      "source": "Instagram（@emzenglish2001 出店者投稿）",
+      "source_url": "https://www.instagram.com/emzenglish2001/",
+      "tags": ["マルシェ", "グルメ", "ファミリー", "夜イベント"],
       "status": "published"
     }
   ]

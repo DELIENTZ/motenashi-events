@@ -5,7 +5,12 @@ const SUBMIT_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSclMeV7NcGh3jh
 const CONTACT_EMAIL = "takasaki.event.navi@gmail.com"; // 連絡用メール。問い合わせ・運営参加の受付
 
 const DOW = ["日", "月", "火", "水", "木", "金", "土"];
-const state = { events: [], category: "all", period: "upcoming", query: "" };
+const state = { events: [], tags: [], period: "upcoming", query: "" };
+
+// イベントの絞り込み対象タグ＝カテゴリ＋tags をまとめた一覧（重複除去）
+function eventTerms(ev) {
+  return [...new Set([ev.category, ...(ev.tags || [])].filter(Boolean))];
+}
 let calYM = null; // カレンダー表示中の {y, m}（mは0始まり）
 let dateMap = {}; // "YYYY-MM-DD" => [event, ...]
 
@@ -28,7 +33,7 @@ async function init() {
     return;
   }
   buildDateMap();
-  buildCategoryFilters();
+  buildTagFilters();
   bindControls();
   injectJsonLd();
   initCalendarMonth();
@@ -195,13 +200,11 @@ function jumpToDate(key) {
   if (!evs || !evs.length) return;
   // フィルタを解除して、過去・今後に関わらず確実に表示
   state.period = "all";
-  state.category = "all";
+  state.tags = [];
   state.query = "";
   $("#search").value = "";
   document.querySelector('input[name="period"][value="all"]').checked = true;
-  document.querySelectorAll(".chip").forEach((c) =>
-    c.classList.toggle("active", c.dataset.cat === "all")
-  );
+  syncChips();
   render();
 
   const target = document.getElementById("ev-" + evs[0].id);
@@ -217,26 +220,58 @@ function jumpToDate(key) {
   }
 }
 
-function buildCategoryFilters() {
-  const cats = ["all", ...new Set(state.events.map((e) => e.category).filter(Boolean))];
-  $("#category-filters").innerHTML = cats
-    .map(
-      (c) =>
-        `<button class="chip ${c === "all" ? "active" : ""}" data-cat="${c}">${
-          c === "all" ? "すべて" : c
-        }</button>`
-    )
-    .join("");
+// カテゴリ＋タグを頻度順にまとめて、複数選択できるチップを作る
+function buildTagFilters() {
+  const freq = {};
+  for (const ev of state.events) {
+    for (const term of eventTerms(ev)) freq[term] = (freq[term] || 0) + 1;
+  }
+  const terms = Object.keys(freq).sort(
+    (a, b) => freq[b] - freq[a] || a.localeCompare(b, "ja")
+  );
+  $("#category-filters").innerHTML =
+    `<button class="chip active" data-tag="all">すべて</button>` +
+    terms
+      .map((t) => `<button class="chip" data-tag="${esc(t)}">${esc(t)}</button>`)
+      .join("");
+}
+
+// 選択中のタグに合わせてチップの active 表示を同期
+function syncChips() {
+  document.querySelectorAll("#category-filters .chip").forEach((c) => {
+    const tag = c.dataset.tag;
+    const active = tag === "all" ? state.tags.length === 0 : state.tags.includes(tag);
+    c.classList.toggle("active", active);
+  });
+}
+
+// タグの選択/解除（all は全解除）
+function toggleTag(tag, { additive = false } = {}) {
+  if (tag === "all") {
+    state.tags = [];
+  } else if (additive) {
+    if (!state.tags.includes(tag)) state.tags.push(tag);
+  } else {
+    const i = state.tags.indexOf(tag);
+    if (i >= 0) state.tags.splice(i, 1);
+    else state.tags.push(tag);
+  }
+  syncChips();
+  render();
 }
 
 function bindControls() {
   $("#category-filters").addEventListener("click", (e) => {
     const b = e.target.closest(".chip");
     if (!b) return;
-    document.querySelectorAll(".chip").forEach((c) => c.classList.remove("active"));
-    b.classList.add("active");
-    state.category = b.dataset.cat;
-    render();
+    toggleTag(b.dataset.tag);
+  });
+  // カード内のカテゴリ／タグをタップしても絞り込めるように（追加方式）
+  $("#event-list").addEventListener("click", (e) => {
+    const b = e.target.closest("[data-tag]");
+    if (!b || !b.dataset.tag) return;
+    toggleTag(b.dataset.tag, { additive: true });
+    $("#category-filters").scrollIntoView({ behavior: "smooth", block: "center" });
   });
   $("#search").addEventListener("input", (e) => {
     state.query = e.target.value.trim().toLowerCase();
@@ -254,7 +289,11 @@ function matches(ev) {
   const t = todayStr();
   if (state.period === "upcoming" && (ev.end || ev.start) < t) return false;
   if (state.period === "past" && (ev.end || ev.start) >= t) return false;
-  if (state.category !== "all" && ev.category !== state.category) return false;
+  // 複数タグ：選択中タグのどれか1つでも当てはまれば表示（OR）
+  if (state.tags.length) {
+    const terms = eventTerms(ev);
+    if (!state.tags.some((t) => terms.includes(t))) return false;
+  }
   if (state.query) {
     const hay = `${ev.title} ${ev.summary} ${(ev.tags || []).join(" ")} ${ev.category}`.toLowerCase();
     if (!hay.includes(state.query)) return false;
@@ -291,7 +330,7 @@ function render() {
     <article class="card" id="ev-${ev.id}">
       <div class="card-date">${fmtDate(ev)}${ev.time ? `<span class="dow">${ev.time}</span>` : ""}</div>
       <div class="card-body">
-        <span class="card-cat">${ev.category || "イベント"}</span>
+        ${ev.category ? `<button type="button" class="card-cat" data-tag="${esc(ev.category)}">${esc(ev.category)}</button>` : `<span class="card-cat">イベント</span>`}
         <h3 class="card-title">${esc(ev.title)}${ev.tentative ? ' <span class="badge-tentative">⚠未確定</span>' : ""}${ev.isSample ? ' <span class="badge-sample">サンプル</span>' : ""}</h3>
         <div class="card-meta">
           <span>📍 ${esc(ev.venue || "もてなし広場")}</span>
@@ -299,7 +338,7 @@ function render() {
         </div>
         ${ev.summary ? `<p class="card-summary">${esc(ev.summary)}</p>` : ""}
         <div class="card-tags">
-          ${(ev.tags || []).map((t) => `<span class="tag">#${esc(t)}</span>`).join("")}
+          ${(ev.tags || []).map((t) => `<button type="button" class="tag" data-tag="${esc(t)}">#${esc(t)}</button>`).join("")}
         </div>
         ${links(ev)}
       </div>

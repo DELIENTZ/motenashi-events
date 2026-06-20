@@ -43,10 +43,21 @@
 | X | 高崎観光協会 | https://x.com/takasakikankou ／ https://twitter.com/kankoutakasaki |
 | Instagram | 高崎観光協会 | https://www.instagram.com/takasaki_tourism_assoc/ |
 | Facebook | 高崎観光協会 | https://www.facebook.com/takasaki.kankoukyoukai/ |
-| Instagram | 高崎やる気堂（人情市） | 高崎やる気堂で検索 |
+| Instagram | 高崎やる気堂（人情市・公式） | https://www.instagram.com/takasakiyarukido/ |
 | Instagram | ハッシュタグ #高崎イベント | https://www.instagram.com/explore/tags/高崎イベント/ |
 | Instagram | たかさき車楽祭（キッチンカー・マルシェ） | https://www.instagram.com/sharakusai_takasaki/ |
 | Instagram | ハッシュタグ #もてなし広場 #高崎マルシェ #高崎人情市 | 目視チェック用 |
+
+### スクショから追加（横山代表が拾ったアカウント・2026-06-20）
+
+| 媒体 | アカウント | リンク | 関連イベント |
+|---|---|---|---|
+| Instagram | タイフェスティバル高崎（公式） | https://www.instagram.com/thai.fes.takasaki/ | THAI FESTIVAL TAKASAKI（7/19-20） |
+| Instagram | ダンビー／琉球の風（dan-b.com） | https://www.instagram.com/wwwdanbcom/ | 琉球の風（日付要確認） |
+| Instagram | みらくる | https://www.instagram.com/mirakuru3096/ | AAA Vintage Market（7/18）出店 |
+| Instagram | エムズ英会話 | https://www.instagram.com/emzenglish2001/ | World Night Market（7/31）出店 |
+| Instagram | paton_ko | https://www.instagram.com/paton_ko/ | 地域イベントのリポスト元 |
+| Instagram | matsumura_takeshi | https://www.instagram.com/matsumura_takeshi/ | 人情市ステージ（雷舞）等 |
 
 ---
 
