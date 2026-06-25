@@ -2,6 +2,7 @@
 // data/events.json を読み込んで一覧＋カレンダーを描画する。データを足すだけで更新できる。
 
 const SUBMIT_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSclMeV7NcGh3jhUsSzC49t_H1GViY7PVhjLpSHf92X_gN2HsQ/viewform"; // 投稿フォーム
+const JOIN_FORM_URL = ""; // 仲間募集フォーム。作成後にURLを入れると、Gmailではなくフォームを開く。
 const CONTACT_EMAIL = "takasaki.event.navi@gmail.com"; // 連絡用メール。問い合わせ・運営参加の受付
 const CONTACT_SUBJECT = "もてなし広場イベントナビ 運営参加の相談";
 
@@ -62,6 +63,12 @@ function setupSubmitButton() {
 function setupContactButton() {
   const b = $("#contact-link");
   if (!b) return;
+  if (JOIN_FORM_URL) {
+    b.href = JOIN_FORM_URL;
+    b.target = "_blank";
+    b.rel = "noopener";
+    return;
+  }
   if (CONTACT_EMAIL) {
     const params = new URLSearchParams({
       view: "cm",

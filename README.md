@@ -98,10 +98,12 @@ python3 -m http.server 8000
 
 ## 6. 自動収集の仕組み
 
-`.github/workflows/scrape.yml` が **毎週月曜6時（日本時間）** に `scraper/scrape.mjs` を実行し、
-各情報源から「もてなし広場」を含むイベントを拾って `data/candidates.json` に書き出します。
+`.github/workflows/scrape.yml` が **毎週月曜6時（日本時間）** に自動収集を実行します。
 
-**重要：自動収集された候補はそのまま公開されません。** `candidates.json` を見て、
+- `scraper/scrape.mjs`: 各情報源から「もてなし広場」を含むイベントを拾い、`data/candidates.json` に書き出す
+- `scraper/import-forms.mjs`: Googleフォーム回答シートを読み、`data/form-candidates.json` と `data/join-candidates.json` に書き出す
+
+**重要：自動収集された候補はそのまま公開されません。** 各候補JSONを見て、
 掲載するものを手で `events.json` に移す運用です（事実確認＋紹介文を自分の言葉で書く）。
 
 手動実行：GitHubの **Actions タブ → イベント自動収集 → Run workflow**。
@@ -119,13 +121,26 @@ python3 -m http.server 8000
 2. 発行された公開URLを2か所に設定：
    - `assets/app.js` の先頭 `const SUBMIT_FORM_URL = "...";`
    - （任意）`index.html` のボタンも同URLに
-3. 投稿はGoogleスプレッドシートに溜まるので、内容を確認して `events.json` に転記
+3. 投稿はGoogleスプレッドシートに溜まり、GitHub Actionsで `data/form-candidates.json` に自動取り込みされます
+4. 内容を確認して、掲載するものだけ `events.json` に転記
 
-> 将来的に、スプレッドシートを自動で読み込んで反映する仕組みにも拡張できます。
+現在のイベント投稿シートは既定で自動取り込みされます。別シートへ変える場合は、GitHub Actionsの変数
+`EVENT_FORM_CSV_URL` にCSV URLを設定します。
+
+## 8. 運営仲間募集フォーム
+
+`gas/create-form.gs` の `createJoinForm` を実行すると、仲間募集フォームと回答スプレッドシートを作成できます。
+
+実行ログに出る値を設定します。
+
+- フォーム公開URL: `assets/app.js` の `JOIN_FORM_URL`
+- 回答CSV URL: GitHub Actionsの変数 `JOIN_FORM_CSV_URL`
+
+`JOIN_FORM_CSV_URL` を設定すると、回答は毎週 `data/join-candidates.json` に自動取り込みされます。
 
 ---
 
-## 8. 収益化（広告）
+## 9. 収益化（広告）
 
 `index.html` に広告枠を2つ用意済み（`.ad-slot`）。準備ができたら差し替えます。
 
@@ -140,7 +155,7 @@ python3 -m http.server 8000
 
 ---
 
-## 9. これからの拡張案
+## 10. これからの拡張案
 
 - イベント詳細ページ（個別URL）でSEO強化
 - 地図表示（もてなし広場へのアクセス）

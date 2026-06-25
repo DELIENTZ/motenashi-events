@@ -120,3 +120,54 @@ function createEventForm() {
   Logger.log(ss.getUrl());
   Logger.log('==============================================');
 }
+
+function createJoinForm() {
+  var form = FormApp.create('もてなし広場 イベントナビ 運営仲間募集');
+  form.setDescription(
+    '高崎・もてなし広場のイベント情報サイトを一緒に育ててくれる方を募集しています。\n' +
+    '情報集め、SNS発信、取材、掲載チェックなど、できる範囲で大丈夫です。'
+  );
+  form.setCollectEmail(false);
+  form.setLimitOneResponsePerUser(false);
+  form.setAllowResponseEdits(false);
+
+  form.addTextItem()
+    .setTitle('お名前')
+    .setHelpText('ニックネームでもOKです')
+    .setRequired(false);
+
+  form.addTextItem()
+    .setTitle('連絡先')
+    .setHelpText('メールアドレス、Instagramアカウント、Xアカウントなど')
+    .setRequired(true);
+
+  form.addCheckboxItem()
+    .setTitle('お手伝いできること')
+    .setChoiceValues(['イベント情報を見つける', 'SNSで発信する', '写真・取材', '掲載内容の確認', 'その他'])
+    .showOtherOption(true)
+    .setRequired(false);
+
+  form.addParagraphTextItem()
+    .setTitle('メッセージ')
+    .setHelpText('興味を持った理由、できそうなこと、活動できる頻度など')
+    .setRequired(false);
+
+  var ss = SpreadsheetApp.create('もてなし広場 仲間募集（回答）');
+  form.setDestination(FormApp.DestinationType.SPREADSHEET, ss.getId());
+
+  var publishedUrl = form.getPublishedUrl();
+  var shortUrl = form.shortenFormUrl(publishedUrl);
+  Logger.log('==============================================');
+  Logger.log('▼ 仲間募集フォーム公開URL（assets/app.js の JOIN_FORM_URL に貼る）');
+  Logger.log(shortUrl);
+  Logger.log('');
+  Logger.log('▼ 仲間募集フォーム編集URL');
+  Logger.log(form.getEditUrl());
+  Logger.log('');
+  Logger.log('▼ 仲間募集 回答スプレッドシート');
+  Logger.log(ss.getUrl());
+  Logger.log('');
+  Logger.log('▼ GitHub Actions変数 JOIN_FORM_CSV_URL に入れるCSV URL');
+  Logger.log('https://docs.google.com/spreadsheets/d/' + ss.getId() + '/gviz/tq?tqx=out:csv&sheet=Form%20Responses%201');
+  Logger.log('==============================================');
+}

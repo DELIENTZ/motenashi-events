@@ -25,13 +25,18 @@ jobs:
 
       - name: 収集実行
         working-directory: scraper
-        run: node scrape.mjs
+        run: |
+          node scrape.mjs
+          node import-forms.mjs
+        env:
+          EVENT_FORM_CSV_URL: ${{ vars.EVENT_FORM_CSV_URL }}
+          JOIN_FORM_CSV_URL: ${{ vars.JOIN_FORM_CSV_URL }}
 
       - name: 候補ファイルをコミット
         run: |
           git config user.name "motenashi-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add data/candidates.json
+          git add data/candidates.json data/form-candidates.json data/join-candidates.json
           if git diff --staged --quiet; then
             echo "変更なし"
           else
