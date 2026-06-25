@@ -3,6 +3,7 @@
 
 const SUBMIT_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSclMeV7NcGh3jhUsSzC49t_H1GViY7PVhjLpSHf92X_gN2HsQ/viewform"; // 投稿フォーム
 const CONTACT_EMAIL = "takasaki.event.navi@gmail.com"; // 連絡用メール。問い合わせ・運営参加の受付
+const CONTACT_SUBJECT = "もてなし広場イベントナビ 運営参加の相談";
 
 const DOW = ["日", "月", "火", "水", "木", "金", "土"];
 const state = { events: [], tags: [], period: "upcoming", query: "" };
@@ -62,9 +63,15 @@ function setupContactButton() {
   const b = $("#contact-link");
   if (!b) return;
   if (CONTACT_EMAIL) {
-    b.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
-      "もてなし広場イベントナビ お問い合わせ"
-    )}`;
+    const params = new URLSearchParams({
+      view: "cm",
+      fs: "1",
+      to: CONTACT_EMAIL,
+      su: CONTACT_SUBJECT,
+    });
+    b.href = `https://mail.google.com/mail/?${params.toString()}`;
+    b.target = "_blank";
+    b.rel = "noopener";
   } else {
     b.removeAttribute("href");
     b.classList.add("disabled");
