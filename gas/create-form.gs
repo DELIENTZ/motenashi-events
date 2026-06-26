@@ -147,10 +147,20 @@ function createJoinForm() {
     .showOtherOption(true)
     .setRequired(false);
 
+  form.addMultipleChoiceItem()
+    .setTitle('活動できる頻度')
+    .setChoiceValues(['月1回くらい', '月2〜3回くらい', '週1回くらい', 'できる時だけ', 'まずは相談したい'])
+    .setRequired(false);
+
   form.addParagraphTextItem()
     .setTitle('メッセージ')
     .setHelpText('興味を持った理由、できそうなこと、活動できる頻度など')
     .setRequired(false);
+
+  form.addCheckboxItem()
+    .setTitle('確認事項')
+    .setChoiceValues(['応募内容・連絡先は運営連絡と権限管理のために使用されることに同意します'])
+    .setRequired(true);
 
   var ss = SpreadsheetApp.create('もてなし広場 仲間募集（回答）');
   form.setDestination(FormApp.DestinationType.SPREADSHEET, ss.getId());

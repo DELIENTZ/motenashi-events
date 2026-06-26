@@ -6,9 +6,11 @@ import { writeFile } from "node:fs/promises";
 
 const DEFAULT_EVENT_FORM_CSV_URL =
   "https://docs.google.com/spreadsheets/d/1r-6a_LR5unrDmN9HNJCS_77TxRgqQfsp3KkSADXTlLY/gviz/tq?tqx=out:csv&sheet=Form%20Responses%201";
+const DEFAULT_JOIN_FORM_CSV_URL =
+  "https://docs.google.com/spreadsheets/d/1r-6a_LR5unrDmN9HNJCS_77TxRgqQfsp3KkSADXTlLY/gviz/tq?tqx=out:csv&sheet=%E4%BB%B2%E9%96%93%E5%8B%9F%E9%9B%86";
 
 const EVENT_FORM_CSV_URL = process.env.EVENT_FORM_CSV_URL || DEFAULT_EVENT_FORM_CSV_URL;
-const JOIN_FORM_CSV_URL = process.env.JOIN_FORM_CSV_URL || "";
+const JOIN_FORM_CSV_URL = process.env.JOIN_FORM_CSV_URL || DEFAULT_JOIN_FORM_CSV_URL;
 
 function parseCsv(text) {
   const rows = [];
@@ -120,7 +122,9 @@ function joinCandidate(row, i) {
     name: row["お名前"] || row["名前"] || "",
     contact: row["連絡先"] || row["メールアドレス"] || row["ご連絡先"] || "",
     interests: row["お手伝いできること"] || row["できること"] || "",
+    frequency: row["活動できる頻度"] || "",
     message: row["メッセージ"] || row["ひとこと"] || "",
+    consent: row["確認事項"] || "",
     source: "仲間募集フォーム",
     status: "unread",
     needsReview: true,
