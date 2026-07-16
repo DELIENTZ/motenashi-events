@@ -2,9 +2,30 @@
   "site": {
     "name": "もてなし広場 イベントナビ",
     "tagline": "高崎・もてなし広場のイベントをまるごとまとめ",
-    "updated": "2026-06-20"
+    "updated": "2026-07-16"
   },
   "events": [
+    {
+      "id": "oniku-saiten-2026",
+      "title": "群馬お肉の祭典2026 in TAKASAKI",
+      "start": "2026-04-11",
+      "end": "2026-04-12",
+      "time": "10:00〜17:00",
+      "venue": "もてなし広場",
+      "category": "グルメ",
+      "summary": "県内外の肉グルメが集結した食の祭典（開催済み）。次回開催の情報が出たら更新します。",
+      "image": "",
+      "fee": "入場無料（飲食は有料）",
+      "official_url": "https://gunma-oniku-saiten.com/",
+      "source": "ぐんラボ！",
+      "source_url": "https://www.gunlabo.net/event/event.shtml?id=2119",
+      "tags": [
+        "グルメ",
+        "ファミリー",
+        "キッチンカー"
+      ],
+      "status": "published"
+    },
     {
       "id": "ninjyoichi-2026-06",
       "title": "高崎人情市（6月・第273回）",
@@ -19,7 +40,77 @@
       "official_url": "https://ninjou.gunmablog.net/",
       "source": "高崎人情市 公式",
       "source_url": "https://ninjou.gunmablog.net/",
-      "tags": ["市", "ファミリー", "毎月開催"],
+      "tags": [
+        "市",
+        "ファミリー",
+        "毎月開催"
+      ],
+      "status": "published"
+    },
+    {
+      "id": "aaa-vintage-market-2026-07",
+      "title": "AAA VINTAGE MARKET KITAKANTO（北関東ヴィンテージマーケット）",
+      "start": "2026-07-18",
+      "end": "2026-07-18",
+      "time": "09:00〜15:00",
+      "venue": "もてなし広場",
+      "category": "マルシェ・市",
+      "summary": "ヴィンテージ古着やインテリア雑貨などが集まる北関東のヴィンテージマーケット。ワッフルやコーヒーなどの飲食出店もあります。",
+      "image": "",
+      "fee": "入場無料",
+      "official_url": "",
+      "source": "Instagram（@mirakuru3096 出店者投稿）",
+      "source_url": "https://www.instagram.com/mirakuru3096/",
+      "tags": [
+        "マルシェ",
+        "ヴィンテージ",
+        "古着",
+        "雑貨"
+      ],
+      "status": "published"
+    },
+    {
+      "id": "thai-festival-takasaki-2026",
+      "title": "THAI FESTIVAL TAKASAKI 2026（タイフェスティバル高崎）",
+      "start": "2026-07-19",
+      "end": "2026-07-20",
+      "time": "16:00〜20:45（19日）",
+      "venue": "もてなし広場",
+      "category": "祭り",
+      "summary": "高崎もてなし広場で初開催のタイフェスティバル。本場のタイ料理やリトルバンコクの雰囲気が楽しめる食と文化のイベントです。主催：タイフェスティバル高崎実行委員会。",
+      "image": "",
+      "fee": "入場無料",
+      "official_url": "",
+      "source": "Instagram（@thai.fes.takasaki 公式）",
+      "source_url": "https://www.instagram.com/thai.fes.takasaki/",
+      "tags": [
+        "祭り",
+        "グルメ",
+        "タイ",
+        "国際"
+      ],
+      "status": "published"
+    },
+    {
+      "id": "ninjyoichi-night-theater-2026",
+      "title": "高崎人情市 ナイトシアター",
+      "start": "2026-07-25",
+      "end": "2026-07-25",
+      "time": "17:00〜（上映19:00〜）",
+      "venue": "もてなし広場",
+      "category": "映画・上映会",
+      "summary": "高崎人情市関連の夜イベントとして、もてなし広場で屋外映画上映を開催。夏の夕方から出店や会場の雰囲気を楽しみながら、19時から映画『はたらく細胞』を鑑賞できます。",
+      "image": "",
+      "fee": "入場無料",
+      "official_url": "https://www.instagram.com/p/DapiIwqmCXg/",
+      "source": "Instagram投稿",
+      "source_url": "https://www.instagram.com/p/DapiIwqmCXg/",
+      "tags": [
+        "映画",
+        "夜イベント",
+        "ファミリー",
+        "人情市"
+      ],
       "status": "published"
     },
     {
@@ -36,27 +127,35 @@
       "official_url": "https://ninjou.gunmablog.net/",
       "source": "高崎人情市 公式",
       "source_url": "https://ninjou.gunmablog.net/",
-      "tags": ["市", "ファミリー", "毎月開催"],
+      "tags": [
+        "市",
+        "ファミリー",
+        "毎月開催"
+      ],
       "status": "published",
       "tentative": true
     },
     {
-      "id": "ninjyoichi-2026-08",
-      "title": "高崎人情市（8月）",
-      "start": "2026-08-23",
-      "end": "2026-08-23",
-      "time": "10:00〜15:00",
+      "id": "world-night-market-2026",
+      "title": "WORLD NIGHT MARKET（ワールドナイトマーケット）",
+      "start": "2026-07-31",
+      "end": "2026-07-31",
+      "time": "16:00〜20:30",
       "venue": "もてなし広場",
       "category": "マルシェ・市",
-      "summary": "毎月第4日曜開催の定例市。地場野菜や手づくり品の露店が並びます。最新の開催日・会場は主催の最新情報でご確認ください。",
+      "summary": "世界の食べ物・雑貨・ゲームが大集合する夜のマーケット。キッチンカーや世界のビール、子どもも楽しめるゲーム、ダンスや演舞のステージなどが楽しめます。",
       "image": "",
       "fee": "入場無料",
-      "official_url": "https://ninjou.gunmablog.net/",
-      "source": "高崎人情市 公式",
-      "source_url": "https://ninjou.gunmablog.net/",
-      "tags": ["市", "ファミリー", "毎月開催"],
-      "status": "published",
-      "tentative": true
+      "official_url": "",
+      "source": "Instagram（@emzenglish2001 出店者投稿）",
+      "source_url": "https://www.instagram.com/emzenglish2001/",
+      "tags": [
+        "マルシェ",
+        "グルメ",
+        "ファミリー",
+        "夜イベント"
+      ],
+      "status": "published"
     },
     {
       "id": "takasaki-matsuri-2026",
@@ -72,8 +171,35 @@
       "official_url": "https://www.takasaki-matsuri.jp/",
       "source": "高崎まつり 公式",
       "source_url": "https://www.takasaki-matsuri.jp/",
-      "tags": ["祭り", "花火", "グルメ", "ファミリー"],
+      "tags": [
+        "祭り",
+        "花火",
+        "グルメ",
+        "ファミリー"
+      ],
       "status": "published"
+    },
+    {
+      "id": "ninjyoichi-2026-08",
+      "title": "高崎人情市（8月）",
+      "start": "2026-08-23",
+      "end": "2026-08-23",
+      "time": "10:00〜15:00",
+      "venue": "もてなし広場",
+      "category": "マルシェ・市",
+      "summary": "毎月第4日曜開催の定例市。地場野菜や手づくり品の露店が並びます。最新の開催日・会場は主催の最新情報でご確認ください。",
+      "image": "",
+      "fee": "入場無料",
+      "official_url": "https://ninjou.gunmablog.net/",
+      "source": "高崎人情市 公式",
+      "source_url": "https://ninjou.gunmablog.net/",
+      "tags": [
+        "市",
+        "ファミリー",
+        "毎月開催"
+      ],
+      "status": "published",
+      "tentative": true
     },
     {
       "id": "ninjyoichi-2026-09",
@@ -89,25 +215,11 @@
       "official_url": "https://ninjou.gunmablog.net/",
       "source": "高崎人情市 公式",
       "source_url": "https://ninjou.gunmablog.net/",
-      "tags": ["市", "ファミリー", "毎月開催"],
-      "status": "published",
-      "tentative": true
-    },
-    {
-      "id": "ninjyoichi-2026-10",
-      "title": "高崎人情市（10月）",
-      "start": "2026-10-25",
-      "end": "2026-10-25",
-      "time": "10:00〜15:00",
-      "venue": "もてなし広場",
-      "category": "マルシェ・市",
-      "summary": "毎月第4日曜開催の定例市。地場野菜や手づくり品の露店が並びます。最新の開催日・会場は主催の最新情報でご確認ください。",
-      "image": "",
-      "fee": "入場無料",
-      "official_url": "https://ninjou.gunmablog.net/",
-      "source": "高崎人情市 公式",
-      "source_url": "https://ninjou.gunmablog.net/",
-      "tags": ["市", "ファミリー", "毎月開催"],
+      "tags": [
+        "市",
+        "ファミリー",
+        "毎月開催"
+      ],
       "status": "published",
       "tentative": true
     },
@@ -125,7 +237,56 @@
       "official_url": "https://www.okinawastory.jp/event/600018572",
       "source": "ぐんラボ！",
       "source_url": "https://www.gunlabo.net/event/event.shtml?id=5194",
-      "tags": ["祭り", "沖縄", "グルメ", "音楽"],
+      "tags": [
+        "祭り",
+        "沖縄",
+        "グルメ",
+        "音楽"
+      ],
+      "status": "published"
+    },
+    {
+      "id": "ninjyoichi-2026-10",
+      "title": "高崎人情市（10月）",
+      "start": "2026-10-25",
+      "end": "2026-10-25",
+      "time": "10:00〜15:00",
+      "venue": "もてなし広場",
+      "category": "マルシェ・市",
+      "summary": "毎月第4日曜開催の定例市。地場野菜や手づくり品の露店が並びます。最新の開催日・会場は主催の最新情報でご確認ください。",
+      "image": "",
+      "fee": "入場無料",
+      "official_url": "https://ninjou.gunmablog.net/",
+      "source": "高崎人情市 公式",
+      "source_url": "https://ninjou.gunmablog.net/",
+      "tags": [
+        "市",
+        "ファミリー",
+        "毎月開催"
+      ],
+      "status": "published",
+      "tentative": true
+    },
+    {
+      "id": "king-of-pasta-2026",
+      "title": "キングオブパスタ 2026",
+      "start": "2026-11-15",
+      "end": "2026-11-15",
+      "time": "10:00〜15:30",
+      "venue": "もてなし広場",
+      "category": "グルメ",
+      "summary": "高崎市内のパスタ店18店舗ほどが自慢の一皿で頂点を競う、投票制のご当地グルメ大会。5食チケットにつき1票を投じ、その日のうちに“キング”が決まります。高崎の小麦文化と食を味わえる名物イベントです。",
+      "image": "",
+      "fee": "当日券3,000円（5食・投票券1票付き）。事前購入割引・学割・時間制限割引あり",
+      "official_url": "https://www.kingofpasta.jp/aboutus",
+      "source": "Googleフォーム投稿",
+      "source_url": "https://www.kingofpasta.jp/aboutus",
+      "tags": [
+        "グルメ",
+        "パスタ",
+        "ファミリー",
+        "食べ歩き"
+      ],
       "status": "published"
     },
     {
@@ -142,7 +303,11 @@
       "official_url": "https://ninjou.gunmablog.net/",
       "source": "高崎人情市 公式",
       "source_url": "https://ninjou.gunmablog.net/",
-      "tags": ["市", "ファミリー", "毎月開催"],
+      "tags": [
+        "市",
+        "ファミリー",
+        "毎月開催"
+      ],
       "status": "published",
       "tentative": true
     },
@@ -160,77 +325,13 @@
       "official_url": "https://ninjou.gunmablog.net/",
       "source": "高崎人情市 公式",
       "source_url": "https://ninjou.gunmablog.net/",
-      "tags": ["市", "ファミリー", "毎月開催"],
+      "tags": [
+        "市",
+        "ファミリー",
+        "毎月開催"
+      ],
       "status": "published",
       "tentative": true
-    },
-    {
-      "id": "oniku-saiten-2026",
-      "title": "群馬お肉の祭典2026 in TAKASAKI",
-      "start": "2026-04-11",
-      "end": "2026-04-12",
-      "time": "10:00〜17:00",
-      "venue": "もてなし広場",
-      "category": "グルメ",
-      "summary": "県内外の肉グルメが集結した食の祭典（開催済み）。次回開催の情報が出たら更新します。",
-      "image": "",
-      "fee": "入場無料（飲食は有料）",
-      "official_url": "https://gunma-oniku-saiten.com/",
-      "source": "ぐんラボ！",
-      "source_url": "https://www.gunlabo.net/event/event.shtml?id=2119",
-      "tags": ["グルメ", "ファミリー", "キッチンカー"],
-      "status": "published"
-    },
-    {
-      "id": "aaa-vintage-market-2026-07",
-      "title": "AAA VINTAGE MARKET KITAKANTO（北関東ヴィンテージマーケット）",
-      "start": "2026-07-18",
-      "end": "2026-07-18",
-      "time": "09:00〜15:00",
-      "venue": "もてなし広場",
-      "category": "マルシェ・市",
-      "summary": "ヴィンテージ古着やインテリア雑貨などが集まる北関東のヴィンテージマーケット。ワッフルやコーヒーなどの飲食出店もあります。",
-      "image": "",
-      "fee": "入場無料",
-      "official_url": "",
-      "source": "Instagram（@mirakuru3096 出店者投稿）",
-      "source_url": "https://www.instagram.com/mirakuru3096/",
-      "tags": ["マルシェ", "ヴィンテージ", "古着", "雑貨"],
-      "status": "published"
-    },
-    {
-      "id": "thai-festival-takasaki-2026",
-      "title": "THAI FESTIVAL TAKASAKI 2026（タイフェスティバル高崎）",
-      "start": "2026-07-19",
-      "end": "2026-07-20",
-      "time": "16:00〜20:45（19日）",
-      "venue": "もてなし広場",
-      "category": "祭り",
-      "summary": "高崎もてなし広場で初開催のタイフェスティバル。本場のタイ料理やリトルバンコクの雰囲気が楽しめる食と文化のイベントです。主催：タイフェスティバル高崎実行委員会。",
-      "image": "",
-      "fee": "入場無料",
-      "official_url": "",
-      "source": "Instagram（@thai.fes.takasaki 公式）",
-      "source_url": "https://www.instagram.com/thai.fes.takasaki/",
-      "tags": ["祭り", "グルメ", "タイ", "国際"],
-      "status": "published"
-    },
-    {
-      "id": "world-night-market-2026",
-      "title": "WORLD NIGHT MARKET（ワールドナイトマーケット）",
-      "start": "2026-07-31",
-      "end": "2026-07-31",
-      "time": "16:00〜20:30",
-      "venue": "もてなし広場",
-      "category": "マルシェ・市",
-      "summary": "世界の食べ物・雑貨・ゲームが大集合する夜のマーケット。キッチンカーや世界のビール、子どもも楽しめるゲーム、ダンスや演舞のステージなどが楽しめます。",
-      "image": "",
-      "fee": "入場無料",
-      "official_url": "",
-      "source": "Instagram（@emzenglish2001 出店者投稿）",
-      "source_url": "https://www.instagram.com/emzenglish2001/",
-      "tags": ["マルシェ", "グルメ", "ファミリー", "夜イベント"],
-      "status": "published"
     }
   ]
 }
