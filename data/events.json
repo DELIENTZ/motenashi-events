@@ -333,6 +333,49 @@
       "status": "published"
     },
     {
+      "id": "takasaki-agriculture-festival-2026",
+      "title": "高崎市農業まつり",
+      "start": "2026-11-21",
+      "end": "2026-11-22",
+      "time": "10:00〜15:00（出店者公式の案内）",
+      "venue": "もてなし広場",
+      "category": "マルシェ・市",
+      "summary": "出店者の「みるく工房タンポポ」が、もてなし広場で11月21日・22日、午前10時〜午後3時の開催を案内しています。主催者による2026年の正式案内は確認中です。開催内容・料金・雨天対応は、今年の公式発表を確認でき次第更新します。",
+      "image": "",
+      "fee": "",
+      "official_url": "https://www.city.takasaki.gunma.jp/page/5227.html",
+      "source": "出店者公式・みるく工房タンポポ（主催者の2026年案内は確認中）",
+      "source_url": "https://www.tan-popo.co.jp/news-detail/5",
+      "tags": [
+        "農産物",
+        "マルシェ",
+        "ファミリー"
+      ],
+      "status": "published",
+      "tentative": true
+    },
+    {
+      "id": "takasaki-ebisuko-2026",
+      "title": "第98回 高崎えびす講市",
+      "start": "2026-11-21",
+      "end": "2026-11-22",
+      "time": "各催しの時間は公式案内をご確認ください",
+      "venue": "高崎市中心市街地（もてなし広場周辺のイベント）",
+      "category": "祭り",
+      "summary": "高崎商工会議所が、2026年11月21日・22日に中心市街地で開催する第98回高崎えびす講市を案内しています。もてなし広場の開催イベントとは会場を区別して掲載しています。各催しの会場・時間・料金・雨天対応など、詳細は主催者の最新案内をご確認ください。",
+      "image": "",
+      "fee": "",
+      "official_url": "https://www.takasakicci.or.jp/event/",
+      "source": "高崎商工会議所 公式イベント情報",
+      "source_url": "https://www.takasakicci.or.jp/event/",
+      "tags": [
+        "祭り",
+        "商店街",
+        "周辺イベント"
+      ],
+      "status": "published"
+    },
+    {
       "id": "ninjyoichi-2026-11",
       "title": "高崎人情市（11月）",
       "start": "2026-11-22",
