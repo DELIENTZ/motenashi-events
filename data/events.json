@@ -2,7 +2,7 @@
   "site": {
     "name": "もてなし広場 イベントナビ",
     "tagline": "高崎・もてなし広場のイベントをまるごとまとめ",
-    "updated": "2026-10-04"
+    "updated": "2026-10-08"
   },
   "events": [
     {
@@ -222,6 +222,49 @@
       ],
       "status": "published",
       "tentative": true
+    },
+    {
+      "id": "takasaki-taikomatsuri-2026",
+      "title": "たかさき太鼓祭り",
+      "start": "2026-10-10",
+      "end": "2026-10-10",
+      "time": "10:00〜19:00",
+      "venue": "もてなし広場 特設ステージ（雨天時：音楽センター）",
+      "category": "音楽",
+      "summary": "もてなし広場の特設ステージで開催される太鼓のイベント。入場無料で、雨天時は音楽センターで開催されます。出演団体や開催変更の最新情報は公式サイトをご確認ください。主催：高崎太鼓まつり実行委員会。",
+      "image": "",
+      "fee": "入場無料",
+      "official_url": "https://takasaki-taikomatsuri.com/",
+      "source": "たかさき太鼓祭り 公式開催案内",
+      "source_url": "https://takasaki-taikomatsuri.com/news/357/",
+      "tags": [
+        "太鼓",
+        "音楽",
+        "祭り"
+      ],
+      "status": "published"
+    },
+    {
+      "id": "takasaki-raibu-festival-2026",
+      "title": "第23回たかさき雷舞フェスティバル",
+      "start": "2026-10-11",
+      "end": "2026-10-11",
+      "time": "10:00〜17:00（駅前通り10:30〜15:00）",
+      "venue": "もてなし広場・高崎駅西口駅前通り",
+      "category": "祭り",
+      "summary": "県内外22チームによる演舞・太鼓演奏と飲食ブースを楽しむ秋のイベント。事前申込不要、雨天決行。悪天候による中止・変更は公式サイトをご確認ください。10:00〜15:30はあら町交差点〜駅前交差点が全面通行止めとなり、一部バス停も利用できません。",
+      "image": "",
+      "fee": "",
+      "official_url": "https://takasaki-live.com/",
+      "source": "高崎市公式カレンダー・主催者公式",
+      "source_url": "https://www.city.takasaki.gunma.jp/calendar/index.php?d=11&dsp=1&m=10&y=2026",
+      "tags": [
+        "祭り",
+        "よさこい",
+        "太鼓",
+        "グルメ"
+      ],
+      "status": "published"
     },
     {
       "id": "ryukyu-no-kaze-2026",
