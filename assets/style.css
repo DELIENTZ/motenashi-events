@@ -26,6 +26,7 @@ body{
 .logo{margin:0;font-size:1.7rem;letter-spacing:.02em}
 .logo span{font-weight:400;opacity:.95}
 .tagline{margin:.3em 0 0;font-size:.92rem;opacity:.92}
+.instagram-link{color:inherit;text-underline-offset:3px}
 
 /* sample banner */
 .sample-banner{
