@@ -2,7 +2,7 @@
   "site": {
     "name": "もてなし広場 イベントナビ",
     "tagline": "高崎・もてなし広場のイベントをまるごとまとめ",
-    "updated": "2026-10-08"
+    "updated": "2026-10-13"
   },
   "events": [
     {
@@ -271,15 +271,15 @@
       "title": "第3回 琉球の風 〜沖縄祭り in 高崎〜",
       "start": "2026-10-17",
       "end": "2026-10-17",
-      "time": "開場9:00／開演10:00",
+      "time": "開場9:00／開演10:00／終了19:30予定",
       "venue": "もてなし広場",
       "category": "祭り",
-      "summary": "沖縄の音楽・食・文化を楽しむ第3回の沖縄祭り。宮沢和史、島袋優（BEGIN）、玉城千春（Kiroro）らが出演します。エイサーや沖縄グルメ、文化体験も楽しめます。チケットの販売状況や最新情報は公式サイトでご確認ください。",
+      "summary": "沖縄の音楽・食・文化を楽しむ第3回の祭り。宮沢和史、島袋優（BEGIN）、玉城千春（Kiroro）らが出演します。Sエリア前売券は完売ですが、一般前売券を持つ方は当日9:00から差額2,000円・現金払いでランクアップできます。先着200枚、なくなり次第終了、当日券は対象外です。雨天決行。荒天時の中止・変更は公式サイト・SNSをご確認ください。",
       "image": "",
-      "fee": "一般前売1,500円／当日2,000円。小学生以下無料（保護者1名につき2名まで）。Sエリアの販売状況は公式参照",
+      "fee": "一般前売1,500円／当日2,000円。小学生以下無料・チケット必要（保護者1名につき2名まで）。Sエリア前売完売／当日ランクアップは一般前売券＋2,000円（条件は本文・公式参照）",
       "official_url": "https://ryukyunokaze.jp/",
-      "source": "琉球の風 公式・BEGINオフィシャルサイト",
-      "source_url": "https://www.begin1990.com/news_detail.php?c=&id=1225",
+      "source": "琉球の風 公式（10/9チケット新情報・タイムテーブル）",
+      "source_url": "https://ryukyunokaze.jp/pages/ticket.html",
       "tags": [
         "祭り",
         "沖縄",
@@ -296,19 +296,61 @@
       "time": "10:00〜15:00",
       "venue": "もてなし広場",
       "category": "マルシェ・市",
-      "summary": "毎月第4日曜開催の定例市。地場野菜や手づくり品の露店が並びます。最新の開催日・会場は主催の最新情報でご確認ください。",
+      "summary": "主催者の2026〜2027年度事業計画では10月25日は休みです。開催一覧・カレンダーの表示対象から外しています。",
       "image": "",
       "fee": "入場無料",
       "official_url": "https://ninjou.gunmablog.net/",
-      "source": "高崎人情市 公式",
-      "source_url": "https://ninjou.gunmablog.net/",
+      "source": "高崎やる気堂 公式2026〜2027年度事業計画",
+      "source_url": "http://www.itfnet.co.jp/yarukido/pdf_etc/2026schedule.pdf",
       "tags": [
         "市",
         "ファミリー",
         "毎月開催"
       ],
-      "status": "published",
-      "tentative": true
+      "status": "draft"
+    },
+    {
+      "id": "tsk-fes-2026",
+      "title": "TSKフェス2026 with ゴム動力自動車コンテスト",
+      "start": "2026-10-25",
+      "end": "2026-10-25",
+      "time": "10:00〜16:00",
+      "venue": "もてなし広場",
+      "category": "祭り",
+      "summary": "ゴムの力で人を乗せた車が走るコンテストを中心に、働く車の展示や子ども向け体験、ステージ、キッチンカーなどを楽しめるイベント。雨天決行。体験ごとの料金・予約条件や変更情報は公式案内をご確認ください。",
+      "image": "",
+      "fee": "入場無料（各体験・飲食の料金は公式案内を確認）",
+      "official_url": "https://tsk1958.net/gomucar/",
+      "source": "高崎市青年商業者研究会 公式サイト・TSKフェス公式Instagram",
+      "source_url": "https://www.instagram.com/p/DeS7ll0o3mg/",
+      "tags": [
+        "ファミリー",
+        "体験",
+        "車",
+        "キッチンカー"
+      ],
+      "status": "published"
+    },
+    {
+      "id": "haikei-boowy-sama-2026",
+      "title": "拝啓ボウイ様 2026",
+      "start": "2026-10-31",
+      "end": "2026-11-01",
+      "time": "10/31 13:00〜19:00／11/1 10:00〜19:00",
+      "venue": "もてなし広場",
+      "category": "音楽",
+      "summary": "高崎発のBOØWYをリスペクトする2日間のライブイベント。出演バンドがBOØWYやメンバーに関わる楽曲を演奏します。BOØWY本人の出演を案内する催しではありません。雨天決行・荒天中止。出演者・演奏時間の最新発表は主催者公式をご確認ください。",
+      "image": "",
+      "fee": "観覧無料",
+      "official_url": "https://takasaki-otomachi.com/haikeiboowysama/",
+      "source": "高崎おとまちプロジェクト内 拝啓ボウイ様実行委員会",
+      "source_url": "https://takasaki-otomachi.com/haikeiboowysama/",
+      "tags": [
+        "音楽",
+        "ライブ",
+        "BOØWY"
+      ],
+      "status": "published"
     },
     {
       "id": "king-of-pasta-2026",
@@ -377,47 +419,66 @@
     },
     {
       "id": "ninjyoichi-2026-11",
-      "title": "高崎人情市（11月）",
-      "start": "2026-11-22",
-      "end": "2026-11-22",
+      "title": "高崎人情市（11月・第275回）",
+      "start": "2026-11-29",
+      "end": "2026-11-29",
       "time": "10:00〜15:00",
       "venue": "もてなし広場",
       "category": "マルシェ・市",
-      "summary": "毎月第4日曜開催の定例市。最新の開催日・会場は主催の最新情報でご確認ください。",
+      "summary": "主催者の2026〜2027年度事業計画では、第275回は11月29日、もてなし広場で10:00〜15:00の開催予定です。今月は第4日曜ではなく第5日曜です。出店内容・料金・雨天対応などは主催者の最新案内をご確認ください。",
       "image": "",
-      "fee": "入場無料",
+      "fee": "",
       "official_url": "https://ninjou.gunmablog.net/",
-      "source": "高崎人情市 公式",
-      "source_url": "https://ninjou.gunmablog.net/",
+      "source": "高崎やる気堂 公式2026〜2027年度事業計画",
+      "source_url": "http://www.itfnet.co.jp/yarukido/pdf_etc/2026schedule.pdf",
       "tags": [
         "市",
         "ファミリー",
         "毎月開催"
       ],
-      "status": "published",
-      "tentative": true
+      "status": "published"
+    },
+    {
+      "id": "takasaki-christmas-marche-2026",
+      "title": "高崎クリスマスマルシェ 2026",
+      "start": "2026-12-12",
+      "end": "2026-12-13",
+      "time": "12/12 終了19:00／12/13 終了18:30（開始時刻は公式確認）",
+      "venue": "もてなし広場",
+      "category": "マルシェ・市",
+      "summary": "もてなし広場で2日間開催するクリスマスマルシェ。入場無料、犬の同伴可、雨天決行・荒天中止です。開始時刻は主催者の案内に異なる表記があるため、お出かけ前に最新情報をご確認ください。出店者などの詳細も公式Instagramで順次案内されます。",
+      "image": "",
+      "fee": "入場無料（買い物・飲食等は別途）",
+      "official_url": "https://www.instagram.com/takasaki.x.marche/",
+      "source": "Takasaki Christmas Marche実行委員会 公式Instagram",
+      "source_url": "https://www.instagram.com/p/DZcvOvZgHmS/",
+      "tags": [
+        "クリスマス",
+        "マルシェ",
+        "ファミリー"
+      ],
+      "status": "published"
     },
     {
       "id": "ninjyoichi-2026-12",
-      "title": "高崎人情市（12月）",
+      "title": "高崎人情市（12月・第276回）",
       "start": "2026-12-27",
       "end": "2026-12-27",
       "time": "10:00〜15:00",
       "venue": "もてなし広場",
       "category": "マルシェ・市",
-      "summary": "年内最後の定例市（毎月第4日曜開催）。最新の開催日・会場は主催の最新情報でご確認ください。",
+      "summary": "主催者の2026〜2027年度事業計画では、第276回は12月27日、もてなし広場で10:00〜15:00の開催予定です。出店内容・料金・雨天対応などは主催者の最新案内をご確認ください。",
       "image": "",
-      "fee": "入場無料",
+      "fee": "",
       "official_url": "https://ninjou.gunmablog.net/",
-      "source": "高崎人情市 公式",
-      "source_url": "https://ninjou.gunmablog.net/",
+      "source": "高崎やる気堂 公式2026〜2027年度事業計画",
+      "source_url": "http://www.itfnet.co.jp/yarukido/pdf_etc/2026schedule.pdf",
       "tags": [
         "市",
         "ファミリー",
         "毎月開催"
       ],
-      "status": "published",
-      "tentative": true
+      "status": "published"
     }
   ]
 }

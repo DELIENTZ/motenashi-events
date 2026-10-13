@@ -18,9 +18,12 @@
 
 | 名前 | 主な担当イベント | リンク | 区分 | メモ |
 |---|---|---|---|---|
-| NPO法人 高崎やる気堂 | **高崎人情市**（毎月第4日曜）、ナイトシアター 等 | ブログ https://ninjou.gunmablog.net/ ／ Instagram | A（ブログRSS）＋M（IG） | gunmablogはRSS配信あり→自動取得しやすい |
+| NPO法人 高崎やる気堂 | **高崎人情市**、ナイトシアター 等 | ブログ https://ninjou.gunmablog.net/ ／ 2026年度予定表 http://www.itfnet.co.jp/yarukido/pdf_etc/2026schedule.pdf ／ Instagram | A（ブログRSS）＋M（IG・PDF目視） | 第4日曜から日付を生成しない。2026〜2027年度の公式事業計画では10/25休み、11/29第275回、12/27第276回。開催日の変更・詳細は最新告知を優先 |
 | 群馬キッチンカー協同組合 | **車楽祭**、マルシェ／キッチンカー系 | https://gkca.jp/ | A | キッチンカー系イベントの母体 |
-| 琉球の風 実行委員会 | **琉球の風 ～沖縄祭り in 高崎～** | https://ryukyunokaze.jp/ | M（動的表示） | 2026年は第3回・10/17。2025年の観光記事と取り違えない。時間は出演者公式 https://www.begin1990.com/news_detail.php?c=&id=1225 でも確認 |
+| 琉球の風 実行委員会 | **琉球の風 ～沖縄祭り in 高崎～** | https://ryukyunokaze.jp/ | M（動的表示） | 2026年は第3回・10/17。チケット https://ryukyunokaze.jp/pages/ticket.html 、時間 https://ryukyunokaze.jp/pages/schedule.html 。10/9発表の当日Sエリアランクアップと前売Sエリア完売を区別。非表示の終了メッセージを開催状況と誤認しない |
+| 高崎市青年商業者研究会（TSK） | **TSKフェス with ゴム動力自動車コンテスト** | https://tsk1958.net/gomucar/ ／ https://www.instagram.com/tsk_fes_pr/ | A＋M（IG） | 2026年10/25・もてなし広場。公式投稿 https://www.instagram.com/p/DeS7ll0o3mg/ で10:00〜16:00、入場無料・雨天決行を確認。体験ごとの料金・予約条件は別に確認 |
+| 高崎おとまちプロジェクト内 拝啓ボウイ様実行委員会 | **拝啓ボウイ様** | https://takasaki-otomachi.com/haikeiboowysama/ | A | 2026年10/31 13:00〜19:00・11/1 10:00〜19:00、もてなし広場、観覧無料、雨天決行・荒天中止。BOØWY本人の出演と誤認させない |
+| Takasaki Christmas Marche実行委員会 | **高崎クリスマスマルシェ** | https://www.instagram.com/takasaki.x.marche/ | M（IG） | 2026年12/12〜13、もてなし広場、入場無料・雨天決行・荒天中止。終了は土曜19:00／日曜18:30。プロフィールは10:00開始、2026年告知画像は11:00開始のため開始時刻は未確定。投稿本文の旧年表記より告知画像・現プロフィールの2026年表記を照合 |
 | キングオブパスタ実行委員会 | **キングオブパスタ** | https://www.kingofpasta.jp/ | A | 開催概要 /aboutus、チケット /ticket、メニューは公式内リンクから確認。2026年は11/15、前売券は10/16〜11/14 |
 | たかさき雷舞フェスティバル実行委員会（高崎市観光課） | **たかさき雷舞フェスティバル** | https://takasaki-live.com/ | A＋M（IG） | 2026年は第23回・10/11。もてなし広場10:00〜17:00、駅前通り10:30〜15:00。公式トップ画像に雨天決行。中止・変更は公式サイト・Facebookで案内 |
 | 高崎太鼓まつり実行委員会（問い合わせ：高崎市文化課） | **たかさき太鼓祭り** | https://takasaki-taikomatsuri.com/ | A | 2026年は10/10（土）10:00〜19:00、入場無料。もてなし広場特設ステージ、雨天時は音楽センター。開催案内 https://takasaki-taikomatsuri.com/news/357/ |
