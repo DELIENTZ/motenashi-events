@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { todayJst, validDate, eventVenues, eventOnDate, eventInRange, matchesEvent, sortEvents, calendarEventGroup, sortCalendarEvents } from '../assets/event-utils.js';
+import { todayJst, validDate, eventVenues, eventOnDate, eventInRange, matchesEvent, sortEvents, calendarEventGroup, sortCalendarEvents, prioritizeMainVenue } from '../assets/event-utils.js';
 
 const filters = { period: 'upcoming', venue: '', fee: '', category: '', query: '', from: '', to: '', tentative: false, tags: [] };
 const event = { id: 'test', title: '高崎 TEST 2026', start: '2026-11-06', end: '2026-11-08', venue: '高崎芸術劇場 音楽ホール', venues: ['高崎芸術劇場'], fee_type: 'paid', category: '音楽', tags: ['クラシック'], summary: '公開の催し' };
@@ -111,4 +111,26 @@ test('calendar prioritizes single and short events without mutating table order'
   assert.deepEqual(sortCalendarEvents([...items].reverse()).map(e => e.id), ['single-a', 'single-b', 'short', 'long']);
   assert.deepEqual(items.map(e => e.id), ['long', 'short', 'single-b', 'single-a']);
   assert.equal(sortEvents(items)[0].id, 'long');
+});
+
+test('main venue is first while preserving order and other venues', () => {
+  const items = [
+    { id: 'other-a', venue: 'Gメッセ群馬' },
+    { id: 'main-a', venue: 'もてなし広場' },
+    { id: 'other-b', venues: ['高崎アリーナ'] },
+    { id: 'main-b', venues: ['高崎市中心市街地', 'もてなし広場'], venue: '中心市街地の複数会場' }
+  ];
+  assert.deepEqual(prioritizeMainVenue(items).map(e => e.id), ['main-a', 'main-b', 'other-a', 'other-b']);
+  assert.deepEqual(items.map(e => e.id), ['other-a', 'main-a', 'other-b', 'main-b']);
+  assert.equal(prioritizeMainVenue(items).length, items.length);
+});
+test('calendar keeps main venue first, then single-day priority within each venue group', () => {
+  const items = [
+    { id: 'other-single', start: '2026-11-03', venues: ['Gメッセ群馬'] },
+    { id: 'main-short', start: '2026-11-21', end: '2026-11-22', venues: ['もてなし広場'] },
+    { id: 'other-long', start: '2026-10-01', end: '2026-12-31', venues: ['高崎市美術館'] },
+    { id: 'main-single', start: '2026-11-29', venues: ['もてなし広場'] }
+  ];
+  assert.deepEqual(sortCalendarEvents(items).map(e => e.id), ['main-single', 'main-short', 'other-single', 'other-long']);
+  assert.equal(sortEvents(items)[0].id, 'other-long');
 });

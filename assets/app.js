@@ -1,11 +1,11 @@
-import { FEE_LABELS, todayJst, validDate, eventVenues, eventTerms, eventOnDate, matchesEvent, sortEvents, sortCalendarEvents } from "./event-utils.js";
+import { FEE_LABELS, MAIN_VENUE, todayJst, validDate, eventVenues, eventTerms, eventOnDate, matchesEvent, sortEvents, sortCalendarEvents, prioritizeMainVenue } from "./event-utils.js";
 
 const SUBMIT_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSclMeV7NcGh3jhUsSzC49t_H1GViY7PVhjLpSHf92X_gN2HsQ/viewform";
 const JOIN_FORM_URL = "https://forms.gle/qe2dtYBFmhKAG8ys9";
 const DOW = ["日", "月", "火", "水", "木", "金", "土"];
 const PAGE_SIZE = 50;
 const defaults = { venue: "", fee: "", category: "", period: "upcoming", from: "", to: "", query: "", tentative: false, tags: [] };
-const state = { events: [], filters: { ...defaults, tags: [] }, view: "calendar", sort: "date", direction: "asc", limit: PAGE_SIZE, selectedDate: "" };
+const state = { events: [], filters: { ...defaults, tags: [] }, view: "calendar", sort: "featured", direction: "asc", limit: PAGE_SIZE, selectedDate: "" };
 const $ = selector => document.querySelector(selector);
 let calYM;
 
@@ -70,7 +70,7 @@ async function init() {
   buildOptions(); restoreFilters(); bindControls(); injectJsonLd(); render();
 }
 function buildOptions() {
-  const venues = [...new Set(state.events.flatMap(eventVenues))].sort((a, b) => a.localeCompare(b, "ja"));
+  const venues = [...new Set(state.events.flatMap(eventVenues))].sort((a, b) => Number(b === MAIN_VENUE) - Number(a === MAIN_VENUE) || a.localeCompare(b, "ja"));
   const categories = [...new Set(state.events.map(event => event.category).filter(Boolean))].sort((a, b) => a.localeCompare(b, "ja"));
   $("#venue-filter").innerHTML += venues.map(venue => `<option value="${esc(venue)}">${esc(venue)}</option>`).join("");
   $("#category-filter").innerHTML += categories.map(category => `<option value="${esc(category)}">${esc(category)}</option>`).join("");
@@ -159,8 +159,8 @@ function render() {
   $("#calendar").hidden = state.view !== "calendar"; $("#event-table").hidden = state.view !== "table"; $("#event-list").hidden = state.view !== "cards";
   $("#load-more").hidden = true;
   if (state.view === "calendar") renderCalendar(events);
-  if (state.view === "table") renderTable(events);
-  if (state.view === "cards") renderCards(events);
+  if (state.view === "table") renderTable(state.sort === "featured" ? prioritizeMainVenue(events) : events);
+  if (state.view === "cards") renderCards(prioritizeMainVenue(events));
   saveFilters();
 }
 function renderCalendar(events) {

@@ -1,4 +1,5 @@
 export const FEE_LABELS = { free: "無料", paid: "有料", mixed: "一部有料", unknown: "要確認" };
+export const MAIN_VENUE = "もてなし広場";
 const jstDateFormatter = new Intl.DateTimeFormat("sv-SE", { timeZone: "Asia/Tokyo" });
 
 export function todayJst(now = new Date()) {
@@ -16,6 +17,10 @@ export function validDate(key) {
 
 export function eventVenues(event) {
   return [...new Set((event.venues?.length ? event.venues : [event.venue || "会場要確認"]).filter(Boolean))];
+}
+
+export function prioritizeMainVenue(events) {
+  return [...events].sort((a, b) => Number(eventVenues(b).includes(MAIN_VENUE)) - Number(eventVenues(a).includes(MAIN_VENUE)));
 }
 
 export function eventTerms(event) {
@@ -85,5 +90,5 @@ export function calendarEventGroup(event) {
 export function sortCalendarEvents(events) {
   const order = { single: 0, short: 1, long: 2 };
   // Keep chronological order within each group, independently of table sorting.
-  return sortEvents(events).sort((a, b) => order[calendarEventGroup(a)] - order[calendarEventGroup(b)]);
+  return prioritizeMainVenue(sortEvents(events).sort((a, b) => order[calendarEventGroup(a)] - order[calendarEventGroup(b)]));
 }
