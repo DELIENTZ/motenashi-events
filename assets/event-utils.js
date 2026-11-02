@@ -72,3 +72,18 @@ export function sortEvents(events, field = "date", direction = "asc") {
     return (compared || collator.compare(a.start, b.start) || collator.compare(a.id, b.id)) * (direction === "desc" ? -1 : 1);
   });
 }
+
+export function calendarEventGroup(event) {
+  const excluded = new Set(event.excluded_dates || []);
+  const days = event.dates?.length
+    ? new Set(event.dates.filter(key => eventOnDate(event, key))).size
+    : (Date.parse(event.end || event.start) - Date.parse(event.start)) / 86400000 + 1 -
+      [...excluded].filter(key => key >= event.start && key <= (event.end || event.start)).length;
+  return days <= 1 ? "single" : days <= 7 ? "short" : "long";
+}
+
+export function sortCalendarEvents(events) {
+  const order = { single: 0, short: 1, long: 2 };
+  // Keep chronological order within each group, independently of table sorting.
+  return sortEvents(events).sort((a, b) => order[calendarEventGroup(a)] - order[calendarEventGroup(b)]);
+}

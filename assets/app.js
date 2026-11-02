@@ -1,9 +1,10 @@
-import { FEE_LABELS, todayJst, validDate, eventVenues, eventTerms, eventOnDate, matchesEvent, sortEvents } from "./event-utils.js";
+import { FEE_LABELS, todayJst, validDate, eventVenues, eventTerms, eventOnDate, matchesEvent, sortEvents, calendarEventGroup, sortCalendarEvents } from "./event-utils.js";
 
 const SUBMIT_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSclMeV7NcGh3jhUsSzC49t_H1GViY7PVhjLpSHf92X_gN2HsQ/viewform";
 const JOIN_FORM_URL = "https://forms.gle/qe2dtYBFmhKAG8ys9";
 const DOW = ["日", "月", "火", "水", "木", "金", "土"];
 const PAGE_SIZE = 50;
+const CALENDAR_GROUPS = [["single", "1日開催"], ["short", "短期開催（2〜7日）"], ["long", "長期開催（8日以上）"]];
 const defaults = { venue: "", fee: "", category: "", period: "upcoming", from: "", to: "", query: "", tentative: false, tags: [] };
 const state = { events: [], filters: { ...defaults, tags: [] }, view: "calendar", sort: "date", direction: "asc", limit: PAGE_SIZE, selectedDate: "" };
 const $ = selector => document.querySelector(selector);
@@ -170,22 +171,27 @@ function renderCalendar(events) {
   const count = new Date(Date.UTC(y, m + 1, 0)).getUTCDate();
   const last = `${y}-${String(m + 1).padStart(2, "0")}-${count}`;
   const monthFilters = { ...state.filters, from: state.filters.from > first ? state.filters.from : first, to: state.filters.to && state.filters.to < last ? state.filters.to : last };
-  const monthEvents = events.filter(event => matchesEvent(event, monthFilters, today));
+  const monthEvents = sortCalendarEvents(events.filter(event => matchesEvent(event, monthFilters, today)));
   const firstDow = new Date(first + "T00:00:00Z").getUTCDay();
   let cells = '<span class="cal-cell empty" aria-hidden="true"></span>'.repeat(firstDow);
   for (let day = 1; day <= count; day++) {
     const key = `${y}-${String(m + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
     const allowed = key >= monthFilters.from && key <= monthFilters.to && (state.filters.period !== "upcoming" || key >= today);
-    const duration = event => Date.parse(event.end || event.start) - Date.parse(event.start);
-    const onDay = allowed ? monthEvents.filter(event => eventOnDate(event, key)).sort((a, b) => duration(a) - duration(b)) : [];
+    const onDay = allowed ? monthEvents.filter(event => eventOnDate(event, key)) : [];
+    const longCount = onDay.filter(event => calendarEventGroup(event) === "long").length;
     const dow = (firstDow + day - 1) % 7;
     const classes = ["cal-cell", onDay.length ? "has-event" : "", key === today ? "today" : "", dow === 0 ? "sun" : "", dow === 6 ? "sat" : ""].filter(Boolean).join(" ");
-    const names = onDay.slice(0, 2).map(event => `<span class="cal-ev">${esc(event.title)}</span>`).join("");
-    cells += `<button type="button" class="${classes}" data-date="${key}" aria-pressed="${state.selectedDate === key}" aria-label="${esc(fmtDay(key, true))}：${onDay.length}件${onDay.length ? "、" + esc(onDay.map(event => event.title).join("、")) : ""}"><span class="cal-num">${day}</span>${onDay.length ? `<span class="cal-count" aria-hidden="true">${onDay.length}件</span>` : ""}${names}${onDay.length > 2 ? `<span class="cal-more">ほか${onDay.length - 2}件</span>` : ""}</button>`;
+    const names = onDay.slice(0, 2).map(event => `<span class="cal-ev${calendarEventGroup(event) === "long" ? " cal-ev-long" : ""}">${esc(event.title)}</span>`).join("");
+    cells += `<button type="button" class="${classes}" data-date="${key}" aria-pressed="${state.selectedDate === key}" aria-label="${esc(fmtDay(key, true))}：${onDay.length}件${longCount ? "（うち長期開催" + longCount + "件）" : ""}${onDay.length ? "、" + esc(onDay.map(event => event.title).join("、")) : ""}"><span class="cal-num">${day}</span>${onDay.length ? `<span class="cal-count" aria-hidden="true">${onDay.length}件</span>` : ""}${longCount ? `<span class="cal-long-count" aria-hidden="true">長期${longCount}件</span>` : ""}${names}${onDay.length > 2 ? `<span class="cal-more">ほか${onDay.length - 2}件</span>` : ""}</button>`;
   }
   const selectedAllowed = state.selectedDate >= monthFilters.from && state.selectedDate <= monthFilters.to && (state.filters.period !== "upcoming" || state.selectedDate >= today);
   const agenda = state.selectedDate ? selectedAllowed ? monthEvents.filter(event => eventOnDate(event, state.selectedDate)) : [] : monthEvents;
-  $("#calendar").innerHTML = `<div class="cal-head"><button type="button" class="cal-nav" id="cal-prev" title="前の月" aria-label="前の月">‹</button><h2 class="cal-title">${y}年${m + 1}月</h2><button type="button" class="cal-nav" id="cal-next" title="次の月" aria-label="次の月">›</button><button type="button" id="cal-today">今月</button></div><div class="cal-grid cal-dow">${DOW.map((label, index) => `<span class="cal-w ${index === 0 ? "sun" : index === 6 ? "sat" : ""}">${label}</span>`).join("")}</div><div class="cal-grid cal-days">${cells}</div><div class="agenda-head"><h3>${state.selectedDate ? fmtDay(state.selectedDate, true) : m + 1 + "月の予定"} <span>${agenda.length}件</span></h3>${state.selectedDate ? '<button type="button" id="clear-day">月全体</button>' : ""}</div><div class="calendar-agenda">${agenda.length ? `<div class="agenda-events">${agenda.slice(0, state.limit).map(event => cardMarkup(event, true)).join("")}</div>` : '<p class="empty">この条件で確認できた掲載イベントはありません。</p>'}</div>`;
+  const shown = agenda.slice(0, state.limit);
+  const groups = CALENDAR_GROUPS.map(([key, label]) => {
+    const items = shown.filter(event => calendarEventGroup(event) === key);
+    return items.length ? `<section class="agenda-group" data-calendar-group="${key}" aria-labelledby="agenda-${key}"><h4 class="agenda-group-title" id="agenda-${key}">${label} <span>${agenda.filter(event => calendarEventGroup(event) === key).length}件</span></h4><div class="agenda-events">${items.map(event => cardMarkup(event, true)).join("")}</div></section>` : "";
+  }).join("");
+  $("#calendar").innerHTML = `<div class="cal-head"><button type="button" class="cal-nav" id="cal-prev" title="前の月" aria-label="前の月">‹</button><h2 class="cal-title">${y}年${m + 1}月</h2><button type="button" class="cal-nav" id="cal-next" title="次の月" aria-label="次の月">›</button><button type="button" id="cal-today">今月</button></div><div class="cal-grid cal-dow">${DOW.map((label, index) => `<span class="cal-w ${index === 0 ? "sun" : index === 6 ? "sat" : ""}">${label}</span>`).join("")}</div><div class="cal-grid cal-days">${cells}</div><div class="agenda-head"><h3>${state.selectedDate ? fmtDay(state.selectedDate, true) : m + 1 + "月の予定"} <span>${agenda.length}件</span></h3>${state.selectedDate ? '<button type="button" id="clear-day">月全体</button>' : ""}</div><div class="calendar-agenda">${agenda.length ? groups : '<p class="empty">この条件で確認できた掲載イベントはありません。</p>'}</div>`;
   for (const [id, delta] of [["#cal-prev", -1], ["#cal-next", 1]]) $(id).onclick = () => {
     const next = new Date(Date.UTC(y, m + delta, 1));
     calYM = { y: next.getUTCFullYear(), m: next.getUTCMonth() };
@@ -217,7 +223,7 @@ function renderTable(events) {
   $("#load-more").hidden = events.length <= state.limit;
 }
 function cardMarkup(event, calendar = false) {
-  const heading = calendar ? "h4" : "h2";
+  const heading = calendar ? "h5" : "h2";
   return `<article class="card" id="${calendar ? "cal-ev-" : "ev-"}${esc(event.id)}" data-event-id="${esc(event.id)}"><div class="card-date">${esc(fmtDate(event))}</div><div class="card-body"><div class="card-meta">${event.category ? `<button type="button" class="card-cat" data-tag="${esc(event.category)}">${esc(event.category)}</button>` : ""}${feeBadge(event)}</div><${heading} class="card-title">${esc(event.title)} ${statusBadge(event)}</${heading}><div class="venue-tags">${venueTags(event)}</div><p class="card-meta">${esc(event.time || "時刻は公式案内をご確認ください")}</p>${dateNotice(event)}<p class="card-summary">${esc(event.summary || "")}</p><p class="card-meta">${esc(event.fee || "料金は公式案内をご確認ください")}</p><div class="card-tags">${(event.tags || []).map(tag => `<button type="button" class="tag" data-tag="${esc(tag)}">#${esc(tag)}</button>`).join("")}</div><div class="card-links">${eventLinks(event)}</div>${event.checked ? `<p class="checked">確認：${esc(event.checked)}</p>` : ""}</div></article>`;
 }
 function renderCards(events) {

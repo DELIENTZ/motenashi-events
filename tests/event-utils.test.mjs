@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { todayJst, validDate, eventVenues, eventOnDate, eventInRange, matchesEvent, sortEvents } from '../assets/event-utils.js';
+import { todayJst, validDate, eventVenues, eventOnDate, eventInRange, matchesEvent, sortEvents, calendarEventGroup, sortCalendarEvents } from '../assets/event-utils.js';
 
 const filters = { period: 'upcoming', venue: '', fee: '', category: '', query: '', from: '', to: '', tentative: false, tags: [] };
 const event = { id: 'test', title: '高崎 TEST 2026', start: '2026-11-06', end: '2026-11-08', venue: '高崎芸術劇場 音楽ホール', venues: ['高崎芸術劇場'], fee_type: 'paid', category: '音楽', tags: ['クラシック'], summary: '公開の催し' };
@@ -85,4 +85,30 @@ test('published dataset has unique IDs, valid dates, fees, venues and safe links
   assert.equal(eventOnDate(museum, '2026-11-09'), false);
   assert.ok(eventOnDate(museum, '2026-11-23'));
   assert.equal(eventOnDate(museum, '2026-11-24'), false);
+});
+
+test('calendar groups use full event dates, including month and year boundaries', () => {
+  assert.equal(calendarEventGroup({ start: '2026-11-08' }), 'single');
+  assert.equal(calendarEventGroup({ start: '2026-10-31', end: '2026-11-01' }), 'short');
+  assert.equal(calendarEventGroup({ start: '2026-12-29', end: '2027-01-04' }), 'short');
+  assert.equal(calendarEventGroup({ start: '2026-12-29', end: '2027-01-05' }), 'long');
+  assert.equal(calendarEventGroup({ start: '2026-10-01', end: '2026-11-02' }), 'long');
+});
+test('calendar counts actual scheduled days without duplicate dates or closures', () => {
+  assert.equal(calendarEventGroup({ ...event, dates: ['2026-11-08', '2026-11-08'] }), 'single');
+  assert.equal(calendarEventGroup({ start: '2026-11-01', end: '2026-11-30', dates: ['2026-11-01', '2026-11-30'] }), 'short');
+  assert.equal(calendarEventGroup({ start: '2026-11-01', end: '2026-11-08', excluded_dates: ['2026-11-02', '2026-11-02', '2026-10-31'] }), 'short');
+  assert.equal(calendarEventGroup({ ...event, dates: ['2026-11-06', '2026-11-08'], excluded_dates: ['2026-11-06'] }), 'single');
+});
+test('calendar prioritizes single and short events without mutating table order', () => {
+  const items = [
+    { id: 'long', start: '2026-10-01', end: '2026-12-31' },
+    { id: 'short', start: '2026-11-06', end: '2026-11-08' },
+    { id: 'single-b', start: '2026-11-08' },
+    { id: 'single-a', start: '2026-11-03' }
+  ];
+  assert.deepEqual(sortCalendarEvents(items).map(e => e.id), ['single-a', 'single-b', 'short', 'long']);
+  assert.deepEqual(sortCalendarEvents([...items].reverse()).map(e => e.id), ['single-a', 'single-b', 'short', 'long']);
+  assert.deepEqual(items.map(e => e.id), ['long', 'short', 'single-b', 'single-a']);
+  assert.equal(sortEvents(items)[0].id, 'long');
 });
