@@ -1058,6 +1058,168 @@
       ],
       "status": "published",
       "checked": "2026-11-02"
+    },
+    {
+      "id": "gmesse-oktoberfest-takasaki-2026",
+      "title": "オクトーバーフェスト高崎2026",
+      "start": "2026-10-23",
+      "end": "2026-11-03",
+      "time": "平日15:00〜21:00／土日祝11:00〜21:00予定",
+      "venue": "Gメッセ群馬 屋外展示場",
+      "venues": [
+        "Gメッセ群馬"
+      ],
+      "category": "グルメ",
+      "summary": "ドイツの食や飲み物、音楽を楽しむ屋外イベント。子ども向け縁日・遊具やノンアルコールドリンクも紹介されています。入場無料、飲食・遊具等は別途。荒天時の変更は公式案内をご確認ください。",
+      "fee": "入場無料。飲食・買い物・遊具等の個別料金は別途確認。",
+      "fee_type": "free",
+      "official_url": "https://www.g-messe-gunma.jp/visitor-event.html",
+      "source": "Gメッセ群馬公式イベント一覧／群馬県観光公式サイト「心にググっと観光ぐんま」",
+      "source_url": "https://gunma-kanko.jp/events/351",
+      "tags": [
+        "ファミリー",
+        "グルメ",
+        "入場無料",
+        "屋外",
+        "音楽"
+      ],
+      "status": "published",
+      "checked": "2026-11-02"
+    },
+    {
+      "id": "gmesse-higashiyama-hirayama-print-sale-20261106",
+      "title": "東山魁夷と平山郁夫展（版画展示即売会）",
+      "start": "2026-11-06",
+      "end": "2026-11-08",
+      "time": "11/6・7 10:00〜17:00／11/8 10:00〜16:00",
+      "venue": "Gメッセ群馬 3階 中会議室301",
+      "venues": [
+        "Gメッセ群馬"
+      ],
+      "category": "展示・美術",
+      "summary": "ギャラリーWAO!による東山魁夷・平山郁夫の版画展示販売会。入場無料、作品の購入は別途有料です。美術館の所蔵展・原画展ではありません。案内を見た方はチラシを持参せず来場できます。",
+      "fee": "入場無料。展示作品の購入代金は別途。",
+      "fee_type": "free",
+      "official_url": "https://www.art-wao.com/",
+      "source": "ギャラリーWAO!公式2026/10/26告知／Gメッセ群馬公式イベント一覧",
+      "source_url": "https://www.art-wao.com/",
+      "tags": [
+        "版画",
+        "展示販売",
+        "入場無料",
+        "商業展示"
+      ],
+      "status": "published",
+      "checked": "2026-11-02"
+    },
+    {
+      "id": "gmesse-world-animal-festival-20261108",
+      "title": "World Animal Festival! 群馬",
+      "start": "2026-11-08",
+      "end": "2026-11-08",
+      "time": "11:00〜16:00（普通入場13:00〜／券売10:30〜）",
+      "venue": "Gメッセ群馬 展示ホールA",
+      "venues": [
+        "Gメッセ群馬"
+      ],
+      "category": "展示会",
+      "summary": "爬虫類・小動物・昆虫などの展示即売イベント。当日券のみ・現金のみ。小学生以下は無料ですが、子どもだけでの入場はできません。ペット持込は禁止です。入場条件は公式案内をご確認ください。",
+      "fee": "中学生以上は先行入場1,500円、普通入場1,000円。小学生以下無料。障がい者割引なし。当日券のみ・現金のみ。",
+      "fee_type": "paid",
+      "official_url": "https://blackout-bega.com/news/archives/art/00122.html",
+      "source": "World Animal Festival!主催者公式・2026年11月8日群馬開催情報と入場規定",
+      "source_url": "https://blackout-bega.com/news/archives/art/00122.html",
+      "tags": [
+        "ファミリー",
+        "動物",
+        "昆虫",
+        "展示販売",
+        "当日券",
+        "子ども無料条件あり"
+      ],
+      "status": "published",
+      "checked": "2026-11-02"
+    },
+    {
+      "id": "gmesse-stardom-takasaki-20261108",
+      "title": "第16回 ゴッデス・オブ・スターダム タッグリーグ戦 in TAKASAKI",
+      "start": "2026-11-08",
+      "end": "2026-11-08",
+      "time": "13:00試合開始（一般開場12:15）",
+      "venue": "Gメッセ群馬 メインホール",
+      "venues": [
+        "Gメッセ群馬"
+      ],
+      "category": "スポーツ",
+      "summary": "女子プロレス・スターダムの高崎大会。一般観戦可能でチケットが必要です。一部席種は完売。ぴあ・ローチケの掲載販売期間は11/1までのため、購入先・当日券の有無は主催者の最新案内をご確認ください。",
+      "fee": "前売5,000〜18,000円（席種別、一部完売）。通常席の当日券は1,000円加算。小中高校生券2,000円は当日限定・身分証など条件あり。保護者1名につき未就学児1名まで膝上無料。",
+      "fee_type": "paid",
+      "official_url": "https://wwr-stardom.com/schedule/20261108_takasaki/",
+      "source": "スターダム公式大会・チケット詳細／Gメッセ群馬公式イベント一覧",
+      "source_url": "https://wwr-stardom.com/schedule/20261108_takasaki/",
+      "tags": [
+        "プロレス",
+        "スポーツ観戦",
+        "チケット必要",
+        "一部席種完売",
+        "子ども料金あり"
+      ],
+      "status": "published",
+      "checked": "2026-11-02"
+    },
+    {
+      "id": "gmesse-karoshi-prevention-symposium-20261126",
+      "title": "過労死等防止対策推進シンポジウム 群馬会場",
+      "start": "2026-11-26",
+      "end": "2026-11-26",
+      "time": "14:00〜16:00（受付13:30〜）",
+      "venue": "Gメッセ群馬 2階 中会議室201",
+      "venues": [
+        "Gメッセ群馬"
+      ],
+      "category": "体験・講座",
+      "summary": "働く人の健康や過労死防止を考えるシンポジウム。学生・家族を含め、どなたでも無料参加できます。WebまたはFAXで事前申込が必要。定員に達し次第締切となるため、参加可否は公式でご確認ください。",
+      "fee": "参加無料。会場駐車場は別途有料。",
+      "fee_type": "free",
+      "official_url": "https://jsite.mhlw.go.jp/gunma-roudoukyoku/newpage_01081.html",
+      "source": "群馬労働局2026年度案内と2026年群馬会場公式リーフレット",
+      "source_url": "https://jsite.mhlw.go.jp/gunma-roudoukyoku/content/contents/002873661.pdf",
+      "tags": [
+        "参加無料",
+        "事前申込",
+        "働く人の健康",
+        "講演",
+        "学生参加可"
+      ],
+      "status": "published",
+      "checked": "2026-11-02"
+    },
+    {
+      "id": "gmesse-sanrio-character-fes-20261229",
+      "title": "サンリオキャラクターフェス in Gメッセ群馬",
+      "start": "2026-12-29",
+      "end": "2027-01-07",
+      "time": "10:00〜19:00（会場予定表。日別の変更は公式確認）",
+      "venue": "Gメッセ群馬 展示ホールC",
+      "venues": [
+        "Gメッセ群馬"
+      ],
+      "category": "体験・展示",
+      "summary": "サンリオキャラクターをテーマにした家族向けイベント。2026/12/29〜2027/1/7の開催予定です。群馬会場の券価・購入方法・無料対象年齢や日別の営業時間は公式でご確認ください。登場キャラクターや体験内容は会場によって異なります。",
+      "fee": "有料。群馬会場の券価・無料対象年齢・別料金の体験内容は公式案内をご確認ください。",
+      "fee_type": "paid",
+      "official_url": "https://sanrio-character-fes.com/",
+      "source": "サンリオキャラクターフェス公式開催スケジュール／Gメッセ群馬公式イベント一覧",
+      "source_url": "https://www.g-messe-gunma.jp/visitor-event.html",
+      "tags": [
+        "ファミリー",
+        "キャラクター",
+        "年末年始",
+        "有料",
+        "券価未確認"
+      ],
+      "status": "published",
+      "checked": "2026-11-02"
     }
   ]
 }

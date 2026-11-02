@@ -92,6 +92,7 @@ function restoreFilters() {
   state.filters.tentative = params.get("tentative") === "1";
   $("#search").value = state.filters.query;
   $("#tentative-filter").checked = state.filters.tentative;
+  $("#advanced-filters").open = Boolean(state.filters.from || state.filters.to || state.filters.period !== "upcoming" || state.filters.tentative);
   if (["calendar", "table", "cards"].includes(params.get("view"))) state.view = params.get("view");
   if (/^\d{4}-(0[1-9]|1[0-2])$/.test(params.get("month") || "")) {
     calYM = { y: Number(params.get("month").slice(0, 4)), m: Number(params.get("month").slice(5)) - 1 };
@@ -180,11 +181,11 @@ function renderCalendar(events) {
     const dow = (firstDow + day - 1) % 7;
     const classes = ["cal-cell", onDay.length ? "has-event" : "", key === today ? "today" : "", dow === 0 ? "sun" : "", dow === 6 ? "sat" : ""].filter(Boolean).join(" ");
     const names = onDay.slice(0, 2).map(event => `<span class="cal-ev">${esc(event.title)}</span>`).join("");
-    cells += `<button type="button" class="${classes}" data-date="${key}" aria-pressed="${state.selectedDate === key}" aria-label="${esc(fmtDay(key, true))}：${onDay.length}件${onDay.length ? "、" + esc(onDay.map(event => event.title).join("、")) : ""}"><span class="cal-num">${day}</span>${names}${onDay.length > 2 ? `<span class="cal-more">ほか${onDay.length - 2}件</span>` : ""}</button>`;
+    cells += `<button type="button" class="${classes}" data-date="${key}" aria-pressed="${state.selectedDate === key}" aria-label="${esc(fmtDay(key, true))}：${onDay.length}件${onDay.length ? "、" + esc(onDay.map(event => event.title).join("、")) : ""}"><span class="cal-num">${day}</span>${onDay.length ? `<span class="cal-count" aria-hidden="true">${onDay.length}件</span>` : ""}${names}${onDay.length > 2 ? `<span class="cal-more">ほか${onDay.length - 2}件</span>` : ""}</button>`;
   }
   const selectedAllowed = state.selectedDate >= monthFilters.from && state.selectedDate <= monthFilters.to && (state.filters.period !== "upcoming" || state.selectedDate >= today);
   const agenda = state.selectedDate ? selectedAllowed ? monthEvents.filter(event => eventOnDate(event, state.selectedDate)) : [] : monthEvents;
-  $("#calendar").innerHTML = `<div class="cal-head"><button type="button" class="cal-nav" id="cal-prev" title="前の月" aria-label="前の月">‹</button><h2 class="cal-title">${y}年${m + 1}月</h2><button type="button" class="cal-nav" id="cal-next" title="次の月" aria-label="次の月">›</button><button type="button" id="cal-today">今月</button></div><div class="cal-grid cal-dow">${DOW.map((label, index) => `<span class="cal-w ${index === 0 ? "sun" : index === 6 ? "sat" : ""}">${label}</span>`).join("")}</div><div class="cal-grid cal-days">${cells}</div><div class="agenda-head"><h3>${state.selectedDate ? fmtDay(state.selectedDate, true) : m + 1 + "月の予定"} <span>${agenda.length}件</span></h3>${state.selectedDate ? '<button type="button" id="clear-day">月全体</button>' : ""}</div><div class="calendar-agenda">${agenda.length ? tableMarkup(agenda.slice(0, state.limit), false) : '<p class="empty">この条件で確認できた掲載イベントはありません。</p>'}</div>`;
+  $("#calendar").innerHTML = `<div class="cal-head"><button type="button" class="cal-nav" id="cal-prev" title="前の月" aria-label="前の月">‹</button><h2 class="cal-title">${y}年${m + 1}月</h2><button type="button" class="cal-nav" id="cal-next" title="次の月" aria-label="次の月">›</button><button type="button" id="cal-today">今月</button></div><div class="cal-grid cal-dow">${DOW.map((label, index) => `<span class="cal-w ${index === 0 ? "sun" : index === 6 ? "sat" : ""}">${label}</span>`).join("")}</div><div class="cal-grid cal-days">${cells}</div><div class="agenda-head"><h3>${state.selectedDate ? fmtDay(state.selectedDate, true) : m + 1 + "月の予定"} <span>${agenda.length}件</span></h3>${state.selectedDate ? '<button type="button" id="clear-day">月全体</button>' : ""}</div><div class="calendar-agenda">${agenda.length ? `<div class="agenda-events">${agenda.slice(0, state.limit).map(event => cardMarkup(event, true)).join("")}</div>` : '<p class="empty">この条件で確認できた掲載イベントはありません。</p>'}</div>`;
   for (const [id, delta] of [["#cal-prev", -1], ["#cal-next", 1]]) $(id).onclick = () => {
     const next = new Date(Date.UTC(y, m + delta, 1));
     calYM = { y: next.getUTCFullYear(), m: next.getUTCMonth() };
@@ -215,8 +216,12 @@ function renderTable(events) {
   });
   $("#load-more").hidden = events.length <= state.limit;
 }
+function cardMarkup(event, calendar = false) {
+  const heading = calendar ? "h4" : "h2";
+  return `<article class="card" id="${calendar ? "cal-ev-" : "ev-"}${esc(event.id)}" data-event-id="${esc(event.id)}"><div class="card-date">${esc(fmtDate(event))}</div><div class="card-body"><div class="card-meta">${event.category ? `<button type="button" class="card-cat" data-tag="${esc(event.category)}">${esc(event.category)}</button>` : ""}${feeBadge(event)}</div><${heading} class="card-title">${esc(event.title)} ${statusBadge(event)}</${heading}><div class="venue-tags">${venueTags(event)}</div><p class="card-meta">${esc(event.time || "時刻は公式案内をご確認ください")}</p>${dateNotice(event)}<p class="card-summary">${esc(event.summary || "")}</p><p class="card-meta">${esc(event.fee || "料金は公式案内をご確認ください")}</p><div class="card-tags">${(event.tags || []).map(tag => `<button type="button" class="tag" data-tag="${esc(tag)}">#${esc(tag)}</button>`).join("")}</div><div class="card-links">${eventLinks(event)}</div>${event.checked ? `<p class="checked">確認：${esc(event.checked)}</p>` : ""}</div></article>`;
+}
 function renderCards(events) {
-  $("#event-list").innerHTML = events.length ? events.slice(0, state.limit).map(event => `<article class="card" id="ev-${esc(event.id)}" data-event-id="${esc(event.id)}"><div class="card-date">${esc(fmtDate(event))}</div><div class="card-body"><div class="card-meta">${event.category ? `<button type="button" class="card-cat" data-tag="${esc(event.category)}">${esc(event.category)}</button>` : ""}${feeBadge(event)}</div><h2 class="card-title">${esc(event.title)} ${statusBadge(event)}</h2><div class="venue-tags">${venueTags(event)}</div><p class="card-meta">${esc(event.time || "時刻は公式案内をご確認ください")}</p>${dateNotice(event)}<p class="card-summary">${esc(event.summary || "")}</p><p class="card-meta">${esc(event.fee || "料金は公式案内をご確認ください")}</p><div class="card-tags">${(event.tags || []).map(tag => `<button type="button" class="tag" data-tag="${esc(tag)}">#${esc(tag)}</button>`).join("")}</div><div class="card-links">${eventLinks(event)}</div>${event.checked ? `<p class="checked">確認：${esc(event.checked)}</p>` : ""}</div></article>`).join("") : '<p class="empty">条件に合う掲載イベントはありません。</p>';
+  $("#event-list").innerHTML = events.length ? events.slice(0, state.limit).map(event => cardMarkup(event)).join("") : '<p class="empty">条件に合う掲載イベントはありません。</p>';
   $("#load-more").hidden = events.length <= state.limit;
 }
 function injectJsonLd() {

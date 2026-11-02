@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>高崎イベントナビ｜高崎市のイベント・公演・催し</title>
-<meta name="description" content="高崎市内のイベント・公演・展示・地域の催しを紹介。もてなし広場、高崎芸術劇場、高崎アリーナなどの予定を、会場・料金・ジャンル別に探せます。" />
+<meta name="description" content="高崎市内のイベント・公演・展示・地域の催しを紹介。もてなし広場、高崎芸術劇場、高崎アリーナ、Gメッセ群馬などの予定を、会場・料金・ジャンル別に探せます。" />
 <meta property="og:title" content="高崎イベントナビ" />
 <meta property="og:description" content="高崎市のイベント・公演・展示・地域の催し" />
 <meta property="og:type" content="website" />
@@ -43,15 +43,23 @@
 
   <section class="controls" aria-label="イベントの絞り込み">
     <label class="search-label">キーワード<input type="search" id="search" placeholder="イベント名・会場名" /></label>
-    <div class="filter-grid">
+    <div class="filter-grid basic-filters">
       <label>会場<select id="venue-filter"><option value="">すべての会場</option></select></label>
-      <label>料金<select id="fee-filter"><option value="">すべての料金</option><option value="free">無料</option><option value="paid">有料</option><option value="mixed">一部有料</option><option value="unknown">要確認</option></select></label>
-      <label>ジャンル<select id="category-filter"><option value="">すべてのジャンル</option></select></label>
-      <label>開催状況<select id="period-filter"><option value="upcoming">今後の予定</option><option value="all">すべての期間</option><option value="past">過去の予定</option></select></label>
-      <label>開始日<input id="date-from" type="date" /></label>
-      <label>終了日<input id="date-to" type="date" /></label>
+      <label>料金<select id="fee-filter"><option value="">すべて</option><option value="free">無料</option><option value="paid">有料</option><option value="mixed">一部有料</option><option value="unknown">要確認</option></select></label>
+      <label>ジャンル<select id="category-filter"><option value="">すべて</option></select></label>
     </div>
-    <div class="filter-options"><label><input id="tentative-filter" type="checkbox" /> 未確定の情報も含める</label><button id="reset-filters" type="button">条件をクリア</button></div>
+    <div class="filter-options">
+      <details class="advanced-filters" id="advanced-filters">
+        <summary>日付・開催状況</summary>
+        <div class="filter-grid">
+          <label>開催状況<select id="period-filter"><option value="upcoming">今後の予定</option><option value="all">すべての期間</option><option value="past">過去の予定</option></select></label>
+          <label>開始日<input id="date-from" type="date" /></label>
+          <label>終了日<input id="date-to" type="date" /></label>
+        </div>
+        <label class="tentative-option"><input id="tentative-filter" type="checkbox" /> 未確定の情報も含める</label>
+      </details>
+      <button id="reset-filters" type="button">条件をクリア</button>
+    </div>
     <div id="active-tags" class="filters" aria-label="選択中のタグ"></div>
     <p id="filter-error" class="filter-error" role="alert" hidden></p>
   </section>
@@ -59,7 +67,7 @@
     <p id="result-count" class="result-count" role="status" aria-live="polite">読み込み中</p>
     <div class="view-switch" role="group" aria-label="表示形式">
       <button type="button" data-view="calendar" aria-pressed="true">カレンダー</button>
-      <button type="button" data-view="table" aria-pressed="false">表</button>
+      <button type="button" data-view="table" aria-pressed="false">一覧表</button>
       <button type="button" data-view="cards" aria-pressed="false">カード</button>
     </div>
   </div>
