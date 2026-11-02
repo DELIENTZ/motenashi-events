@@ -1,11 +1,19 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { todayJst, validDate, eventVenues, eventOnDate, eventInRange, matchesEvent, sortEvents, calendarEventGroup, sortCalendarEvents, prioritizeMainVenue } from '../assets/event-utils.js';
+import { todayJst, validDate, eventVenues, sortVenues, eventOnDate, eventInRange, matchesEvent, sortEvents, calendarEventGroup, sortCalendarEvents, prioritizeMainVenue } from '../assets/event-utils.js';
 
 const filters = { period: 'upcoming', venue: '', fee: '', category: '', query: '', from: '', to: '', tentative: false, tags: [] };
 const event = { id: 'test', title: '高崎 TEST 2026', start: '2026-11-06', end: '2026-11-08', venue: '高崎芸術劇場 音楽ホール', venues: ['高崎芸術劇場'], fee_type: 'paid', category: '音楽', tags: ['クラシック'], summary: '公開の催し' };
 const match = (overrides = {}, item = event) => matchesEvent(item, { ...filters, ...overrides }, '2026-11-02');
+
+test('venue menu follows requested priority without dropping regional venues', () => {
+  const venues = ['吉井文化会館', '高崎市美術館', 'Gメッセ群馬', '高崎芸術劇場', '高崎アリーナ', '高崎駅西口駅前通り', 'もてなし広場', '榛名文化会館', '吉井郷土資料館', 'ビエント高崎'];
+  const original = [...venues];
+  assert.deepEqual(sortVenues(venues), ['もてなし広場', '高崎駅西口駅前通り', '高崎アリーナ', '高崎芸術劇場', 'Gメッセ群馬', 'ビエント高崎', '高崎市美術館', '吉井郷土資料館', '吉井文化会館', '榛名文化会館']);
+  assert.deepEqual(venues, original);
+  assert.deepEqual(sortVenues(['高崎駅東口', '未登録会場', 'もてなし広場']), ['もてなし広場', '高崎駅東口', '未登録会場']);
+});
 
 test('Japan date crosses midnight independently of host timezone', () => {
   assert.equal(todayJst(new Date('2026-11-01T14:59:59Z')), '2026-11-01');

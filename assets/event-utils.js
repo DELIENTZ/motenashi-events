@@ -19,6 +19,14 @@ export function eventVenues(event) {
   return [...new Set((event.venues?.length ? event.venues : [event.venue || "会場要確認"]).filter(Boolean))];
 }
 
+export function sortVenues(venues) {
+  const preferred = [MAIN_VENUE, "高崎アリーナ", "高崎芸術劇場", "Gメッセ群馬"];
+  const rank = venue => venue === MAIN_VENUE ? 0 : venue.startsWith("高崎駅") ? 1 :
+    preferred.includes(venue) ? preferred.indexOf(venue) + 1 :
+    venue.startsWith("吉井") ? 6 : venue.includes("高崎") ? 5 : 7;
+  return [...venues].sort((a, b) => rank(a) - rank(b) || a.localeCompare(b, "ja"));
+}
+
 export function prioritizeMainVenue(events) {
   return [...events].sort((a, b) => Number(eventVenues(b).includes(MAIN_VENUE)) - Number(eventVenues(a).includes(MAIN_VENUE)));
 }

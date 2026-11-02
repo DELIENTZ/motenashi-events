@@ -1,4 +1,4 @@
-import { FEE_LABELS, MAIN_VENUE, todayJst, validDate, eventVenues, eventTerms, eventOnDate, matchesEvent, sortEvents, sortCalendarEvents, prioritizeMainVenue } from "./event-utils.js";
+import { FEE_LABELS, todayJst, validDate, eventVenues, sortVenues, eventTerms, eventOnDate, matchesEvent, sortEvents, sortCalendarEvents, prioritizeMainVenue } from "./event-utils.js";
 
 const SUBMIT_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSclMeV7NcGh3jhUsSzC49t_H1GViY7PVhjLpSHf92X_gN2HsQ/viewform";
 const JOIN_FORM_URL = "https://forms.gle/qe2dtYBFmhKAG8ys9";
@@ -70,7 +70,7 @@ async function init() {
   buildOptions(); restoreFilters(); bindControls(); injectJsonLd(); render();
 }
 function buildOptions() {
-  const venues = [...new Set(state.events.flatMap(eventVenues))].sort((a, b) => Number(b === MAIN_VENUE) - Number(a === MAIN_VENUE) || a.localeCompare(b, "ja"));
+  const venues = sortVenues([...new Set(state.events.flatMap(eventVenues))]);
   const categories = [...new Set(state.events.map(event => event.category).filter(Boolean))].sort((a, b) => a.localeCompare(b, "ja"));
   $("#venue-filter").innerHTML += venues.map(venue => `<option value="${esc(venue)}">${esc(venue)}</option>`).join("");
   $("#category-filter").innerHTML += categories.map(category => `<option value="${esc(category)}">${esc(category)}</option>`).join("");
