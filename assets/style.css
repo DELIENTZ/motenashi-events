@@ -78,15 +78,10 @@ a{color:var(--brand-dark);text-underline-offset:4px}
 .cal-cell.sun .cal-num{color:#a73d38}.cal-cell.sat .cal-num{color:#29689b}
 .cal-ev{font-size:.875rem;line-height:1.45;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cal-more{font-size:.8125rem;color:#37674f;line-height:1.4}
-.cal-ev-long{color:var(--muted)}
-.cal-count,.cal-long-count{display:none}
 .agenda-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:26px 0 14px}
 .agenda-head h3{font-size:1.125rem;margin:0}
 .agenda-head h3 span{font-size:.9375rem;color:var(--muted);font-weight:400;margin-left:10px}
 .agenda-events,.event-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
-.agenda-group+.agenda-group{margin-top:30px;padding-top:20px;border-top:1px solid var(--line)}
-.agenda-group-title{margin:0 0 14px;font-size:1rem;color:var(--accent)}
-.agenda-group-title span{margin-left:8px;font-size:.9375rem;font-weight:400;color:var(--muted)}
 
 /* Event items use quiet surfaces with explicit text labels, not color alone. */
 .card{background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;min-width:0}
@@ -153,9 +148,9 @@ a{color:var(--brand-dark);text-underline-offset:4px}
   .advanced-filters>.filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.advanced-filters>.filter-grid>label:first-child{grid-column:1/-1}
   .filter-options{gap:10px;flex-wrap:wrap}.advanced-filters{flex-basis:100%}.filter-options>#reset-filters{flex:none;padding:8px 10px;margin-left:auto}
   .results-toolbar{align-items:flex-start}.view-switch{width:100%}.view-switch button{flex:1;padding:8px 6px}
-  .cal-grid{gap:3px}.cal-cell{height:98px;padding:6px 3px;gap:4px;align-items:center;text-align:center}.cal-num{font-size:1.125rem}
-  .cal-ev,.cal-more{display:none}.cal-count{display:block;color:#315b46;font-size:.875rem;font-weight:600;line-height:1.5}
-  .cal-long-count{display:block;color:var(--muted);font-size:.75rem;line-height:1.5;white-space:nowrap}
+  .cal-grid{gap:3px}.cal-cell{height:108px;padding:5px 3px;gap:3px;align-items:stretch;text-align:left}.cal-num{font-size:1.125rem}
+  .cal-ev{font-size:.8125rem;line-height:1.45}
+  .cal-more{font-size:.75rem;white-space:nowrap;line-height:1.45}
   .cal-head{gap:8px}.cal-title{font-size:1.1875rem;min-width:120px}.cal-w{font-size:.875rem}
   .agenda-events,.event-list{grid-template-columns:1fr}.card-body{padding:16px}.card-date{padding:10px 16px}
   .legend{font-size:.875rem}.events-table th,.events-table td{padding:12px 10px}
