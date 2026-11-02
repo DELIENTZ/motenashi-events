@@ -3,17 +3,18 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>もてなし広場 イベントナビ｜高崎のイベントまとめ</title>
-<meta name="description" content="高崎市・もてなし広場で開催されるイベント（マルシェ・グルメ・フリマ・お祭り）をまとめてチェック。日程順・カテゴリ別でかんたんに探せます。" />
-<meta property="og:title" content="もてなし広場 イベントナビ" />
-<meta property="og:description" content="高崎・もてなし広場のイベントをまるごとまとめ" />
+<title>高崎イベントナビ｜高崎市のイベント・公演・催し</title>
+<meta name="description" content="高崎市内のイベント・公演・展示・地域の催しを紹介。もてなし広場、高崎芸術劇場、高崎アリーナなどの予定を、会場・料金・ジャンル別に探せます。" />
+<meta property="og:title" content="高崎イベントナビ" />
+<meta property="og:description" content="高崎市のイベント・公演・展示・地域の催し" />
 <meta property="og:type" content="website" />
 <meta name="author" content="高崎を盛り上げ隊" />
 <meta name="robots" content="index, follow" />
 <meta name="google-site-verification" content="vwJKUMhzh4l4ZR8x0NCDSBatTPW_TvlClZcAo-R5ZV4" />
 <link rel="canonical" href="https://motenashi-events.pages.dev/" />
 <meta property="og:url" content="https://motenashi-events.pages.dev/" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="icon" href="assets/site-icon.png" type="image/png" sizes="any" />
+<link rel="apple-touch-icon" href="assets/site-icon.png" />
 <link rel="stylesheet" href="assets/style.css" />
 <!-- ▼▼ 広告：Google AdSense を使う場合はここに発行コードを貼る ▼▼
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXX" crossorigin="anonymous"></script>
@@ -23,8 +24,8 @@
 <body>
 <header class="site-header">
   <div class="wrap">
-    <h1 class="logo">もてなし広場 <span>イベントナビ</span></h1>
-    <p class="tagline">高崎・もてなし広場のイベントをまるごとまとめ</p>
+    <h1 class="logo"><img src="assets/site-icon.png" alt="" width="44" height="44" />高崎<span>イベントナビ</span></h1>
+    <p class="tagline">高崎市のイベント・公演・展示・地域の催し</p>
     <p class="tagline"><a class="instagram-link" href="https://www.instagram.com/takasaki.event.navi/" target="_blank" rel="noopener noreferrer">Instagram：@takasaki.event.navi</a></p>
   </div>
 </header>
@@ -40,23 +41,34 @@
     <div class="ad-placeholder">ここに広告（AdSense / 楽天 / A8）が入ります</div>
   </aside>
 
-  <!-- カレンダー：日付をタップすると該当イベントへジャンプ -->
-  <section id="calendar" class="calendar" aria-label="イベントカレンダー"></section>
-
-  <section class="controls">
-    <input type="search" id="search" placeholder="🔍 イベント名・キーワードで検索" aria-label="検索" />
-    <div class="filters" id="category-filters"></div>
-    <div class="toggle">
-      <label><input type="radio" name="period" value="upcoming" checked /> 今後の予定</label>
-      <label><input type="radio" name="period" value="all" /> すべて</label>
-      <label><input type="radio" name="period" value="past" /> 過去</label>
+  <section class="controls" aria-label="イベントの絞り込み">
+    <label class="search-label">キーワード<input type="search" id="search" placeholder="イベント名・会場名" /></label>
+    <div class="filter-grid">
+      <label>会場<select id="venue-filter"><option value="">すべての会場</option></select></label>
+      <label>料金<select id="fee-filter"><option value="">すべての料金</option><option value="free">無料</option><option value="paid">有料</option><option value="mixed">一部有料</option><option value="unknown">要確認</option></select></label>
+      <label>ジャンル<select id="category-filter"><option value="">すべてのジャンル</option></select></label>
+      <label>開催状況<select id="period-filter"><option value="upcoming">今後の予定</option><option value="all">すべての期間</option><option value="past">過去の予定</option></select></label>
+      <label>開始日<input id="date-from" type="date" /></label>
+      <label>終了日<input id="date-to" type="date" /></label>
     </div>
+    <div class="filter-options"><label><input id="tentative-filter" type="checkbox" /> 未確定の情報も含める</label><button id="reset-filters" type="button">条件をクリア</button></div>
+    <div id="active-tags" class="filters" aria-label="選択中のタグ"></div>
+    <p id="filter-error" class="filter-error" role="alert" hidden></p>
   </section>
-
-  <p id="result-count" class="result-count"></p>
-  <p class="legend"><span class="badge-tentative">⚠未確定</span> ＝ 主催の正式発表前の予測・暫定情報です。最新は各公式・主催者発表でご確認ください。</p>
-
+  <div class="results-toolbar">
+    <p id="result-count" class="result-count" role="status" aria-live="polite">読み込み中</p>
+    <div class="view-switch" role="group" aria-label="表示形式">
+      <button type="button" data-view="calendar" aria-pressed="true">カレンダー</button>
+      <button type="button" data-view="table" aria-pressed="false">表</button>
+      <button type="button" data-view="cards" aria-pressed="false">カード</button>
+    </div>
+  </div>
+  <p class="legend">非公式の情報紹介サイトです。掲載は確認できた催しから順次追加しています。料金・申込条件・変更・中止は各公式案内をご確認ください。</p>
+  <div id="load-error" class="empty" role="alert" hidden>イベント情報を読み込めませんでした。<button id="reload-events" type="button">再読み込み</button></div>
+  <section id="calendar" class="calendar" aria-label="イベントカレンダー"></section>
+  <section id="event-table" aria-label="イベント一覧表" hidden></section>
   <section id="event-list" class="event-list" aria-live="polite"></section>
+  <div class="load-more"><button id="load-more" type="button" hidden>さらに表示</button></div>
 
   <!-- 広告枠：フッター上 -->
   <aside class="ad-slot ad-bottom" aria-label="広告">
@@ -81,13 +93,13 @@
 <footer class="site-footer">
   <div class="wrap">
     <p class="footer-nav"><a href="about.html">運営者情報</a> ・ <a href="privacy.html">プライバシーポリシー</a> ・ <a href="https://www.instagram.com/takasaki.event.navi/" target="_blank" rel="noopener noreferrer">Instagram</a></p>
-    <p>もてなし広場 イベントナビ ／ 情報は各公式サイト・主催者発表に基づきます。掲載内容の正確性は保証しません。</p>
+    <p>高崎イベントナビ ／ 情報は各公式サイト・主催者発表に基づきます。掲載内容の正確性・網羅性は保証しません。</p>
     <p class="credit">運営：高崎を盛り上げ隊</p>
     <p class="updated">最終更新：<span id="updated"></span></p>
     <p class="small">本サイトはアフィリエイト広告を利用しています。</p>
   </div>
 </footer>
 
-<script src="assets/app.js"></script>
+<script type="module" src="assets/app.js"></script>
 </body>
 </html>

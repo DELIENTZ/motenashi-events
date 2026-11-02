@@ -1,391 +1,231 @@
-// もてなし広場 イベントナビ — データ駆動レンダラー
-// data/events.json を読み込んで一覧＋カレンダーを描画する。データを足すだけで更新できる。
+import { FEE_LABELS, todayJst, validDate, eventVenues, eventTerms, eventOnDate, matchesEvent, sortEvents } from "./event-utils.js";
 
-const SUBMIT_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSclMeV7NcGh3jhUsSzC49t_H1GViY7PVhjLpSHf92X_gN2HsQ/viewform"; // 投稿フォーム
-const JOIN_FORM_URL = "https://forms.gle/qe2dtYBFmhKAG8ys9"; // 仲間募集フォーム
-const CONTACT_EMAIL = "takasaki.event.navi@gmail.com"; // 連絡用メール。問い合わせ・運営参加の受付
-const CONTACT_SUBJECT = "もてなし広場イベントナビ 運営参加の相談";
-
+const SUBMIT_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSclMeV7NcGh3jhUsSzC49t_H1GViY7PVhjLpSHf92X_gN2HsQ/viewform";
+const JOIN_FORM_URL = "https://forms.gle/qe2dtYBFmhKAG8ys9";
 const DOW = ["日", "月", "火", "水", "木", "金", "土"];
-const state = { events: [], tags: [], period: "upcoming", query: "" };
+const PAGE_SIZE = 50;
+const defaults = { venue: "", fee: "", category: "", period: "upcoming", from: "", to: "", query: "", tentative: false, tags: [] };
+const state = { events: [], filters: { ...defaults, tags: [] }, view: "calendar", sort: "date", direction: "asc", limit: PAGE_SIZE, selectedDate: "" };
+const $ = selector => document.querySelector(selector);
+let calYM;
 
-// イベントの絞り込み対象タグ＝カテゴリ＋tags をまとめた一覧（重複除去）
-function eventTerms(ev) {
-  return [...new Set([ev.category, ...(ev.tags || [])].filter(Boolean))];
+function esc(value = "") {
+  return String(value).replace(/[&<>"']/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char]));
 }
-let calYM = null; // カレンダー表示中の {y, m}（mは0始まり）
-let dateMap = {}; // "YYYY-MM-DD" => [event, ...]
-
-const $ = (s) => document.querySelector(s);
-const todayStr = () => new Date().toISOString().slice(0, 10);
-const ymd = (d) =>
-  `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(
-    d.getDate()
-  ).padStart(2, "0")}`;
-
+function safeUrl(value) {
+  try { const url = new URL(value); return ["https:", "http:"].includes(url.protocol) ? esc(url.href) : ""; }
+  catch { return ""; }
+}
+function fmtDay(key, year = false) {
+  const d = new Date(key + "T00:00:00Z");
+  return `${year ? d.getUTCFullYear() + "/" : ""}${d.getUTCMonth() + 1}/${d.getUTCDate()}（${DOW[d.getUTCDay()]}）`;
+}
+function fmtDate(event) {
+  if (event.dates?.length > 1) return event.dates.map(key => fmtDay(key, true)).join("・");
+  return fmtDay(event.start, true) + (event.end && event.end !== event.start ? "〜" + fmtDay(event.end, true) : "");
+}
+function venueTags(event) {
+  const venues = eventVenues(event);
+  const detail = event.venue && !venues.includes(event.venue) ? `<span class="venue-detail">${esc(event.venue)}</span>` : "";
+  return venues.map(venue => `<button type="button" class="venue-tag" data-venue="${esc(venue)}" aria-label="会場で絞り込み：${esc(venue)}">${esc(venue)}</button>`).join("") + detail;
+}
+function feeBadge(event) {
+  const type = event.fee_type || "unknown";
+  return `<span class="fee-badge fee-${esc(type)}">${FEE_LABELS[type] || FEE_LABELS.unknown}</span>`;
+}
+function eventLinks(event) {
+  const official = safeUrl(event.official_url), source = safeUrl(event.source_url), parts = [];
+  if (official) parts.push(`<a href="${official}" target="_blank" rel="noopener noreferrer">公式案内<span class="sr-only">：${esc(event.title)}</span> ↗</a>`);
+  if (source && source !== official) parts.push(`<a href="${source}" target="_blank" rel="noopener noreferrer">${esc(event.source || "出典")} ↗</a>`);
+  return parts.join(" ");
+}
+function statusBadge(event) {
+  return event.cancelled ? '<span class="badge-tentative">中止</span>' : event.tentative ? '<span class="badge-tentative">未確定</span>' : "";
+}
+function dateNotice(event) {
+  return event.excluded_dates?.length ? `<p class="date-notice">休催日：${event.excluded_dates.map(key => fmtDay(key)).join("、")}</p>` : "";
+}
 async function init() {
+  $("#submit-form-link").href = SUBMIT_FORM_URL;
+  $("#contact-link").href = JOIN_FORM_URL;
   try {
-    const res = await fetch("data/events.json", { cache: "no-store" });
-    const data = await res.json();
-    state.events = (data.events || []).filter((e) => e.status !== "draft");
-    $("#updated").textContent = data.site?.updated || "—";
-    if (state.events.some((e) => e.isSample)) $("#sample-banner").hidden = false;
-  } catch (err) {
-    $("#event-list").innerHTML = `<p class="empty">データの読み込みに失敗しました。</p>`;
+    const response = await fetch("data/events.json", { cache: "no-store" });
+    if (!response.ok) throw new Error("HTTP " + response.status);
+    const data = await response.json();
+    if (!Array.isArray(data.events)) throw new Error("Invalid events");
+    state.events = data.events.filter(event => event.status !== "draft" && validDate(event.start) && validDate(event.end || event.start));
+    $("#updated").textContent = data.site?.updated || "要確認";
+    $("#sample-banner").hidden = !state.events.some(event => event.isSample);
+  } catch {
+    $("#load-error").hidden = false;
+    $("#reload-events").onclick = () => location.reload();
+    $("#result-count").textContent = "読み込みエラー";
+    $("#calendar").hidden = true;
+    $(".controls").inert = true;
+    $(".view-switch").inert = true;
     return;
   }
-  buildDateMap();
-  buildTagFilters();
-  bindControls();
-  injectJsonLd();
-  initCalendarMonth();
-  renderCalendar();
-  render();
-  setupSubmitButton();
-  setupContactButton();
+  const today = todayJst();
+  calYM = { y: Number(today.slice(0, 4)), m: Number(today.slice(5, 7)) - 1 };
+  buildOptions(); restoreFilters(); bindControls(); injectJsonLd(); render();
 }
-
-// 投稿フォームのURLが未設定なら、死リンクにせず「準備中」表示にする
-function setupSubmitButton() {
-  const b = $("#submit-form-link");
-  if (!b) return;
-  if (SUBMIT_FORM_URL) {
-    b.href = SUBMIT_FORM_URL;
-    b.target = "_blank";
-  } else {
-    b.removeAttribute("href");
-    b.classList.add("disabled");
-    b.textContent = "投稿フォーム準備中";
+function buildOptions() {
+  const venues = [...new Set(state.events.flatMap(eventVenues))].sort((a, b) => a.localeCompare(b, "ja"));
+  const categories = [...new Set(state.events.map(event => event.category).filter(Boolean))].sort((a, b) => a.localeCompare(b, "ja"));
+  $("#venue-filter").innerHTML += venues.map(venue => `<option value="${esc(venue)}">${esc(venue)}</option>`).join("");
+  $("#category-filter").innerHTML += categories.map(category => `<option value="${esc(category)}">${esc(category)}</option>`).join("");
+}
+function restoreFilters() {
+  const params = new URLSearchParams(location.search);
+  for (const [key, selector] of Object.entries({ venue: "#venue-filter", fee: "#fee-filter", category: "#category-filter", period: "#period-filter" })) {
+    const value = params.get(key);
+    if (value && [...$(selector).options].some(option => option.value === value)) state.filters[key] = value;
+    $(selector).value = state.filters[key];
+  }
+  for (const key of ["from", "to"]) {
+    const value = params.get(key);
+    if (validDate(value)) state.filters[key] = value;
+    $("#date-" + key).value = state.filters[key];
+  }
+  state.filters.query = params.get("q") || "";
+  state.filters.tags = params.getAll("tag").filter(tag => state.events.some(event => eventTerms(event).includes(tag)));
+  state.filters.tentative = params.get("tentative") === "1";
+  $("#search").value = state.filters.query;
+  $("#tentative-filter").checked = state.filters.tentative;
+  if (["calendar", "table", "cards"].includes(params.get("view"))) state.view = params.get("view");
+  if (/^\d{4}-(0[1-9]|1[0-2])$/.test(params.get("month") || "")) {
+    calYM = { y: Number(params.get("month").slice(0, 4)), m: Number(params.get("month").slice(5)) - 1 };
+  }
+  const day = params.get("day");
+  if (state.view === "calendar" && validDate(day)) {
+    state.selectedDate = day;
+    calYM = { y: Number(day.slice(0, 4)), m: Number(day.slice(5, 7)) - 1 };
   }
 }
-
-// 連絡用メールが未設定なら「準備中」表示にする
-function setupContactButton() {
-  const b = $("#contact-link");
-  if (!b) return;
-  if (JOIN_FORM_URL) {
-    b.href = JOIN_FORM_URL;
-    b.target = "_blank";
-    b.rel = "noopener";
-    return;
+function saveFilters() {
+  const params = new URLSearchParams();
+  for (const key of ["venue", "fee", "category", "period", "from", "to"]) {
+    if (state.filters[key] && state.filters[key] !== defaults[key]) params.set(key, state.filters[key]);
   }
-  if (CONTACT_EMAIL) {
-    const params = new URLSearchParams({
-      view: "cm",
-      fs: "1",
-      to: CONTACT_EMAIL,
-      su: CONTACT_SUBJECT,
-    });
-    b.href = `https://mail.google.com/mail/?${params.toString()}`;
-    b.target = "_blank";
-    b.rel = "noopener";
-  } else {
-    b.removeAttribute("href");
-    b.classList.add("disabled");
-    b.textContent = "お問い合わせ先 準備中";
-  }
+  if (state.filters.query) params.set("q", state.filters.query);
+  if (state.filters.tentative) params.set("tentative", "1");
+  for (const tag of state.filters.tags) params.append("tag", tag);
+  if (state.view !== "calendar") params.set("view", state.view);
+  if (state.view === "calendar" && state.selectedDate) params.set("day", state.selectedDate);
+  const month = `${calYM.y}-${String(calYM.m + 1).padStart(2, "0")}`;
+  if (month !== todayJst().slice(0, 7)) params.set("month", month);
+  const search = params.toString();
+  history.replaceState(null, "", location.pathname + (search ? "?" + search : "") + location.hash);
 }
-
-// 各イベントを開催日（複数日にまたがる場合は全日）でマップ化
-function buildDateMap() {
-  dateMap = {};
-  for (const ev of state.events) {
-    const start = new Date(ev.start + "T00:00:00");
-    const end = new Date((ev.end || ev.start) + "T00:00:00");
-    for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
-      const key = ymd(d);
-      (dateMap[key] = dateMap[key] || []).push(ev);
-    }
-  }
-}
-
-// カレンダーの初期表示月：今日以降で一番近いイベントの月（無ければ今月）
-function initCalendarMonth() {
-  const t = todayStr();
-  const upcoming = state.events
-    .map((e) => e.start)
-    .filter((s) => s >= t)
-    .sort();
-  const base = upcoming[0] ? new Date(upcoming[0] + "T00:00:00") : new Date();
-  calYM = { y: base.getFullYear(), m: base.getMonth() };
-}
-
-function renderCalendar() {
-  const { y, m } = calYM;
-  const first = new Date(y, m, 1);
-  const startDow = first.getDay();
-  const daysInMonth = new Date(y, m + 1, 0).getDate();
-  const t = todayStr();
-
-  let cells = "";
-  for (let i = 0; i < startDow; i++) cells += `<span class="cal-cell empty"></span>`;
-  for (let d = 1; d <= daysInMonth; d++) {
-    const key = `${y}-${String(m + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
-    const evs = dateMap[key] || [];
-    const dow = new Date(y, m, d).getDay();
-    const cls = [
-      "cal-cell",
-      evs.length ? "has-event" : "",
-      key === t ? "today" : "",
-      dow === 0 ? "sun" : "",
-      dow === 6 ? "sat" : "",
-    ]
-      .filter(Boolean)
-      .join(" ");
-    const names = evs.map((e) => e.title).join("、");
-    const label = evs.length ? ` aria-label="${d}日：${names}" title="${names}"` : "";
-    const evName = evs.length
-      ? `<span class="cal-ev">${esc(shortName(evs[0].title))}${
-          evs.length > 1 ? `<span class="cal-more">+${evs.length - 1}</span>` : ""
-        }</span>`
-      : "";
-    cells += `<button type="button" class="${cls}" data-date="${key}" ${
-      evs.length ? "" : "disabled"
-    }${label}><span class="cal-num">${d}</span>${evName}</button>`;
-  }
-
-  // この月のイベント一覧（名前つき）
-  const firstKey = `${y}-${String(m + 1).padStart(2, "0")}-01`;
-  const lastKey = `${y}-${String(m + 1).padStart(2, "0")}-${String(daysInMonth).padStart(2, "0")}`;
-  const monthEvents = state.events
-    .filter((e) => (e.end || e.start) >= firstKey && e.start <= lastKey)
-    .sort((a, b) => (a.start < b.start ? -1 : 1));
-  const monthList = monthEvents.length
-    ? `<ul class="cal-list">${monthEvents
-        .map((e) => {
-          const ds = new Date(e.start + "T00:00:00");
-          let dlabel = `${ds.getMonth() + 1}/${ds.getDate()}（${DOW[ds.getDay()]}）`;
-          if (e.end && e.end !== e.start) {
-            const de = new Date(e.end + "T00:00:00");
-            dlabel += `〜${de.getMonth() + 1}/${de.getDate()}`;
-          }
-          return `<li class="cal-li" data-date="${e.start}"><span class="cal-li-date">${dlabel}</span><span class="cal-li-name">${esc(
-            e.title
-          )}</span></li>`;
-        })
-        .join("")}</ul>`
-    : `<p class="cal-empty">この月の登録イベントはありません</p>`;
-
-  $("#calendar").innerHTML = `
-    <div class="cal-head">
-      <button type="button" class="cal-nav" id="cal-prev" aria-label="前の月">‹</button>
-      <strong class="cal-title">${y}年${m + 1}月</strong>
-      <button type="button" class="cal-nav" id="cal-next" aria-label="次の月">›</button>
-    </div>
-    <div class="cal-grid cal-dow">${DOW.map(
-      (w, i) =>
-        `<span class="cal-w ${i === 0 ? "sun" : ""}${i === 6 ? "sat" : ""}">${w}</span>`
-    ).join("")}</div>
-    <div class="cal-grid cal-days">${cells}</div>
-    <p class="cal-hint">📅 色付きの日付、または下の一覧をタップするとイベントへ移動します</p>
-    <div class="cal-month-events">
-      <h3 class="cal-list-title">🗓 ${m + 1}月のイベント</h3>
-      ${monthList}
-    </div>`;
-
-  $("#cal-prev").onclick = () => shiftMonth(-1);
-  $("#cal-next").onclick = () => shiftMonth(1);
-  $("#calendar")
-    .querySelectorAll(".cal-cell.has-event")
-    .forEach((b) => (b.onclick = () => jumpToDate(b.dataset.date)));
-  $("#calendar")
-    .querySelectorAll(".cal-li")
-    .forEach((li) => (li.onclick = () => jumpToDate(li.dataset.date)));
-}
-
-// カレンダーのマスに収まるよう名前を短縮
-function shortName(title = "") {
-  const t = title.replace(/（.*?）/g, "").trim(); // 括弧書きを除去
-  return t.length > 6 ? t.slice(0, 6) + "…" : t;
-}
-
-function shiftMonth(delta) {
-  let m = calYM.m + delta,
-    y = calYM.y;
-  if (m < 0) { m = 11; y--; }
-  if (m > 11) { m = 0; y++; }
-  calYM = { y, m };
-  renderCalendar();
-}
-
-// カレンダーの日付タップ → その日のイベントを必ず表示してスクロール＆ハイライト
-function jumpToDate(key) {
-  const evs = dateMap[key];
-  if (!evs || !evs.length) return;
-  // フィルタを解除して、過去・今後に関わらず確実に表示
-  state.period = "all";
-  state.tags = [];
-  state.query = "";
-  $("#search").value = "";
-  document.querySelector('input[name="period"][value="all"]').checked = true;
-  syncChips();
-  render();
-
-  const target = document.getElementById("ev-" + evs[0].id);
-  if (target) {
-    target.scrollIntoView({ behavior: "smooth", block: "center" });
-    evs.forEach((ev) => {
-      const el = document.getElementById("ev-" + ev.id);
-      if (el) {
-        el.classList.add("flash");
-        setTimeout(() => el.classList.remove("flash"), 2000);
-      }
-    });
-  }
-}
-
-// カテゴリ＋タグを頻度順にまとめて、複数選択できるチップを作る
-function buildTagFilters() {
-  const freq = {};
-  for (const ev of state.events) {
-    for (const term of eventTerms(ev)) freq[term] = (freq[term] || 0) + 1;
-  }
-  const terms = Object.keys(freq).sort(
-    (a, b) => freq[b] - freq[a] || a.localeCompare(b, "ja")
-  );
-  $("#category-filters").innerHTML =
-    `<button class="chip active" data-tag="all">すべて</button>` +
-    terms
-      .map((t) => `<button class="chip" data-tag="${esc(t)}">${esc(t)}</button>`)
-      .join("");
-}
-
-// 選択中のタグに合わせてチップの active 表示を同期
-function syncChips() {
-  document.querySelectorAll("#category-filters .chip").forEach((c) => {
-    const tag = c.dataset.tag;
-    const active = tag === "all" ? state.tags.length === 0 : state.tags.includes(tag);
-    c.classList.toggle("active", active);
-  });
-}
-
-// タグの選択/解除（all は全解除）
-function toggleTag(tag, { additive = false } = {}) {
-  if (tag === "all") {
-    state.tags = [];
-  } else if (additive) {
-    if (!state.tags.includes(tag)) state.tags.push(tag);
-  } else {
-    const i = state.tags.indexOf(tag);
-    if (i >= 0) state.tags.splice(i, 1);
-    else state.tags.push(tag);
-  }
-  syncChips();
+function changeFilter(key, value) {
+  state.filters[key] = value; state.selectedDate = ""; state.limit = PAGE_SIZE;
+  if (key === "from" && validDate(value)) calYM = { y: Number(value.slice(0, 4)), m: Number(value.slice(5, 7)) - 1 };
   render();
 }
-
 function bindControls() {
-  $("#category-filters").addEventListener("click", (e) => {
-    const b = e.target.closest(".chip");
-    if (!b) return;
-    toggleTag(b.dataset.tag);
-  });
-  // カード内のカテゴリ／タグをタップしても絞り込めるように（追加方式）
-  $("#event-list").addEventListener("click", (e) => {
-    const b = e.target.closest("[data-tag]");
-    if (!b || !b.dataset.tag) return;
-    toggleTag(b.dataset.tag, { additive: true });
-    $("#category-filters").scrollIntoView({ behavior: "smooth", block: "center" });
-  });
-  $("#search").addEventListener("input", (e) => {
-    state.query = e.target.value.trim().toLowerCase();
-    render();
-  });
-  document.querySelectorAll('input[name="period"]').forEach((r) =>
-    r.addEventListener("change", (e) => {
-      state.period = e.target.value;
-      render();
-    })
-  );
-}
-
-function matches(ev) {
-  const t = todayStr();
-  if (state.period === "upcoming" && (ev.end || ev.start) < t) return false;
-  if (state.period === "past" && (ev.end || ev.start) >= t) return false;
-  // 複数タグ：選択中タグのどれか1つでも当てはまれば表示（OR）
-  if (state.tags.length) {
-    const terms = eventTerms(ev);
-    if (!state.tags.some((t) => terms.includes(t))) return false;
+  for (const [key, selector] of Object.entries({ venue: "#venue-filter", fee: "#fee-filter", category: "#category-filter", period: "#period-filter", from: "#date-from", to: "#date-to" })) {
+    $(selector).addEventListener("change", event => changeFilter(key, event.target.value));
   }
-  if (state.query) {
-    const hay = `${ev.title} ${ev.summary} ${(ev.tags || []).join(" ")} ${ev.category}`.toLowerCase();
-    if (!hay.includes(state.query)) return false;
-  }
-  return true;
+  $("#search").addEventListener("input", event => changeFilter("query", event.target.value));
+  $("#tentative-filter").addEventListener("change", event => changeFilter("tentative", event.target.checked));
+  $("#reset-filters").onclick = () => {
+    state.filters = { ...defaults, tags: [] };
+    for (const selector of ["#search", "#venue-filter", "#fee-filter", "#category-filter", "#date-from", "#date-to"]) $(selector).value = "";
+    $("#period-filter").value = "upcoming"; $("#tentative-filter").checked = false;
+    state.selectedDate = ""; state.limit = PAGE_SIZE; render();
+  };
+  document.querySelectorAll("[data-view]").forEach(button => button.onclick = () => { state.view = button.dataset.view; state.limit = PAGE_SIZE; render(); });
+  $("#load-more").onclick = () => { state.limit += PAGE_SIZE; render(); };
+  document.querySelector("main").addEventListener("click", event => {
+    const venue = event.target.closest("[data-venue]");
+    if (venue) { $("#venue-filter").value = venue.dataset.venue; changeFilter("venue", venue.dataset.venue); }
+    const tag = event.target.closest("[data-tag]");
+    if (tag) {
+      const value = tag.dataset.tag;
+      changeFilter("tags", state.filters.tags.includes(value) ? state.filters.tags.filter(item => item !== value) : [...state.filters.tags, value]);
+    }
+  });
 }
-
-function fmtDate(ev) {
-  const d = new Date(ev.start + "T00:00:00");
-  const base = `${d.getMonth() + 1}/${d.getDate()}`;
-  const dow = DOW[d.getDay()];
-  if (ev.end && ev.end !== ev.start) {
-    const d2 = new Date(ev.end + "T00:00:00");
-    return `${base}（${dow}）〜 ${d2.getMonth() + 1}/${d2.getDate()}`;
-  }
-  return `${base}<span class="dow">（${dow}）</span>`;
-}
-
 function render() {
-  const list = state.events
-    .filter(matches)
-    .sort((a, b) => (a.start < b.start ? -1 : 1) * (state.period === "past" ? -1 : 1));
-
-  $("#result-count").textContent = `${list.length} 件のイベント`;
-
-  if (!list.length) {
-    $("#event-list").innerHTML = `<p class="empty">条件に合うイベントがありません。</p>`;
-    return;
+  const today = todayJst();
+  const invalid = state.filters.from && state.filters.to && state.filters.from > state.filters.to;
+  $("#filter-error").hidden = !invalid;
+  $("#filter-error").textContent = invalid ? "終了日は開始日以降を指定してください。" : "";
+  const events = invalid ? [] : sortEvents(state.events.filter(event => matchesEvent(event, state.filters, today)), state.sort, state.direction);
+  $("#result-count").textContent = `${events.length} 件のイベント`;
+  $("#active-tags").innerHTML = state.filters.tags.map(tag => `<button type="button" class="chip active" data-tag="${esc(tag)}" aria-label="タグを解除：${esc(tag)}">#${esc(tag)} ×</button>`).join("");
+  document.querySelectorAll("[data-view]").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.view === state.view)));
+  $("#calendar").hidden = state.view !== "calendar"; $("#event-table").hidden = state.view !== "table"; $("#event-list").hidden = state.view !== "cards";
+  $("#load-more").hidden = true;
+  if (state.view === "calendar") renderCalendar(events);
+  if (state.view === "table") renderTable(events);
+  if (state.view === "cards") renderCards(events);
+  saveFilters();
+}
+function renderCalendar(events) {
+  const { y, m } = calYM;
+  const today = todayJst();
+  const first = `${y}-${String(m + 1).padStart(2, "0")}-01`;
+  const count = new Date(Date.UTC(y, m + 1, 0)).getUTCDate();
+  const last = `${y}-${String(m + 1).padStart(2, "0")}-${count}`;
+  const monthFilters = { ...state.filters, from: state.filters.from > first ? state.filters.from : first, to: state.filters.to && state.filters.to < last ? state.filters.to : last };
+  const monthEvents = events.filter(event => matchesEvent(event, monthFilters, today));
+  const firstDow = new Date(first + "T00:00:00Z").getUTCDay();
+  let cells = '<span class="cal-cell empty" aria-hidden="true"></span>'.repeat(firstDow);
+  for (let day = 1; day <= count; day++) {
+    const key = `${y}-${String(m + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+    const allowed = key >= monthFilters.from && key <= monthFilters.to && (state.filters.period !== "upcoming" || key >= today);
+    const duration = event => Date.parse(event.end || event.start) - Date.parse(event.start);
+    const onDay = allowed ? monthEvents.filter(event => eventOnDate(event, key)).sort((a, b) => duration(a) - duration(b)) : [];
+    const dow = (firstDow + day - 1) % 7;
+    const classes = ["cal-cell", onDay.length ? "has-event" : "", key === today ? "today" : "", dow === 0 ? "sun" : "", dow === 6 ? "sat" : ""].filter(Boolean).join(" ");
+    const names = onDay.slice(0, 2).map(event => `<span class="cal-ev">${esc(event.title)}</span>`).join("");
+    cells += `<button type="button" class="${classes}" data-date="${key}" aria-pressed="${state.selectedDate === key}" aria-label="${esc(fmtDay(key, true))}：${onDay.length}件${onDay.length ? "、" + esc(onDay.map(event => event.title).join("、")) : ""}"><span class="cal-num">${day}</span>${names}${onDay.length > 2 ? `<span class="cal-more">ほか${onDay.length - 2}件</span>` : ""}</button>`;
   }
-
-  $("#event-list").innerHTML = list
-    .map(
-      (ev) => `
-    <article class="card" id="ev-${ev.id}">
-      <div class="card-date">${fmtDate(ev)}${ev.time ? `<span class="dow">${ev.time}</span>` : ""}</div>
-      <div class="card-body">
-        ${ev.category ? `<button type="button" class="card-cat" data-tag="${esc(ev.category)}">${esc(ev.category)}</button>` : `<span class="card-cat">イベント</span>`}
-        <h3 class="card-title">${esc(ev.title)}${ev.tentative ? ' <span class="badge-tentative">⚠未確定</span>' : ""}${ev.isSample ? ' <span class="badge-sample">サンプル</span>' : ""}</h3>
-        <div class="card-meta">
-          <span>📍 ${esc(ev.venue || "もてなし広場")}</span>
-          ${ev.fee ? `<span>💴 ${esc(ev.fee)}</span>` : ""}
-        </div>
-        ${ev.summary ? `<p class="card-summary">${esc(ev.summary)}</p>` : ""}
-        <div class="card-tags">
-          ${(ev.tags || []).map((t) => `<button type="button" class="tag" data-tag="${esc(t)}">#${esc(t)}</button>`).join("")}
-        </div>
-        ${links(ev)}
-      </div>
-    </article>`
-    )
-    .join("");
+  const selectedAllowed = state.selectedDate >= monthFilters.from && state.selectedDate <= monthFilters.to && (state.filters.period !== "upcoming" || state.selectedDate >= today);
+  const agenda = state.selectedDate ? selectedAllowed ? monthEvents.filter(event => eventOnDate(event, state.selectedDate)) : [] : monthEvents;
+  $("#calendar").innerHTML = `<div class="cal-head"><button type="button" class="cal-nav" id="cal-prev" title="前の月" aria-label="前の月">‹</button><h2 class="cal-title">${y}年${m + 1}月</h2><button type="button" class="cal-nav" id="cal-next" title="次の月" aria-label="次の月">›</button><button type="button" id="cal-today">今月</button></div><div class="cal-grid cal-dow">${DOW.map((label, index) => `<span class="cal-w ${index === 0 ? "sun" : index === 6 ? "sat" : ""}">${label}</span>`).join("")}</div><div class="cal-grid cal-days">${cells}</div><div class="agenda-head"><h3>${state.selectedDate ? fmtDay(state.selectedDate, true) : m + 1 + "月の予定"} <span>${agenda.length}件</span></h3>${state.selectedDate ? '<button type="button" id="clear-day">月全体</button>' : ""}</div><div class="calendar-agenda">${agenda.length ? tableMarkup(agenda.slice(0, state.limit), false) : '<p class="empty">この条件で確認できた掲載イベントはありません。</p>'}</div>`;
+  for (const [id, delta] of [["#cal-prev", -1], ["#cal-next", 1]]) $(id).onclick = () => {
+    const next = new Date(Date.UTC(y, m + delta, 1));
+    calYM = { y: next.getUTCFullYear(), m: next.getUTCMonth() };
+    state.selectedDate = ""; state.limit = PAGE_SIZE; render(); $(id).focus();
+  };
+  $("#cal-today").onclick = () => {
+    const today = todayJst();
+    calYM = { y: Number(today.slice(0, 4)), m: Number(today.slice(5, 7)) - 1 };
+    state.selectedDate = ""; state.limit = PAGE_SIZE; render(); $("#cal-today").focus();
+  };
+  $("#calendar").querySelectorAll("[data-date]").forEach(button => button.onclick = () => {
+    const date = button.dataset.date;
+    state.selectedDate = state.selectedDate === date ? "" : date; state.limit = PAGE_SIZE; render();
+    $("#calendar").querySelector(`[data-date="${date}"]`).focus();
+  });
+  if ($("#clear-day")) $("#clear-day").onclick = () => { state.selectedDate = ""; render(); };
+  $("#load-more").hidden = agenda.length <= state.limit;
 }
-
-function links(ev) {
-  const parts = [];
-  if (ev.official_url) parts.push(`<a href="${ev.official_url}" target="_blank" rel="noopener">公式サイト →</a>`);
-  if (ev.source_url) parts.push(`<a href="${ev.source_url}" target="_blank" rel="noopener">出典：${esc(ev.source || "リンク")}</a>`);
-  return parts.length ? `<div class="card-links">${parts.join("")}</div>` : "";
+function tableMarkup(events, sortable) {
+  const headings = [["date", "開催日・時間"], ["title", "イベント"], ["venue", "会場"], ["fee", "料金"]];
+  return `<div class="table-scroll"><table class="events-table"><caption class="sr-only">${sortable ? "条件に合うイベント" : "カレンダーのイベント"}</caption><thead><tr>${headings.map(([key, label]) => `<th scope="col"${sortable && key === state.sort ? ` aria-sort="${state.direction === "asc" ? "ascending" : "descending"}"` : ""}>${sortable ? `<button type="button" data-sort="${key}">${label}${key === state.sort ? state.direction === "asc" ? " ↑" : " ↓" : ""}</button>` : label}</th>`).join("")}</tr></thead><tbody>${events.map(event => `<tr data-event-id="${esc(event.id)}"><td class="table-date">${esc(fmtDate(event))}${event.time ? `<span>${esc(event.time)}</span>` : ""}${dateNotice(event)}</td><td class="table-title"><details><summary>${esc(event.title)} ${statusBadge(event)}</summary><div class="event-detail"><p>${esc(event.summary || "詳細は公式案内をご確認ください。")}</p>${event.category ? `<span class="card-cat">${esc(event.category)}</span>` : ""}<p class="card-links">${eventLinks(event)}</p>${event.checked ? `<p class="checked">確認：${esc(event.checked)}</p>` : ""}</div></details></td><td><div class="venue-tags">${venueTags(event)}</div></td><td>${feeBadge(event)}<p class="table-fee">${esc(event.fee || "公式案内をご確認ください")}</p></td></tr>`).join("")}</tbody></table></div>`;
 }
-
-// SEO：Googleのイベント検索に拾われやすいよう構造化データを出力
+function renderTable(events) {
+  $("#event-table").innerHTML = events.length ? tableMarkup(events.slice(0, state.limit), true) : '<p class="empty">条件に合う掲載イベントはありません。</p>';
+  $("#event-table").querySelectorAll("[data-sort]").forEach(button => button.onclick = () => {
+    state.direction = state.sort === button.dataset.sort && state.direction === "asc" ? "desc" : "asc";
+    state.sort = button.dataset.sort; render(); $("#event-table").querySelector(`[data-sort="${state.sort}"]`).focus();
+  });
+  $("#load-more").hidden = events.length <= state.limit;
+}
+function renderCards(events) {
+  $("#event-list").innerHTML = events.length ? events.slice(0, state.limit).map(event => `<article class="card" id="ev-${esc(event.id)}" data-event-id="${esc(event.id)}"><div class="card-date">${esc(fmtDate(event))}</div><div class="card-body"><div class="card-meta">${event.category ? `<button type="button" class="card-cat" data-tag="${esc(event.category)}">${esc(event.category)}</button>` : ""}${feeBadge(event)}</div><h2 class="card-title">${esc(event.title)} ${statusBadge(event)}</h2><div class="venue-tags">${venueTags(event)}</div><p class="card-meta">${esc(event.time || "時刻は公式案内をご確認ください")}</p>${dateNotice(event)}<p class="card-summary">${esc(event.summary || "")}</p><p class="card-meta">${esc(event.fee || "料金は公式案内をご確認ください")}</p><div class="card-tags">${(event.tags || []).map(tag => `<button type="button" class="tag" data-tag="${esc(tag)}">#${esc(tag)}</button>`).join("")}</div><div class="card-links">${eventLinks(event)}</div>${event.checked ? `<p class="checked">確認：${esc(event.checked)}</p>` : ""}</div></article>`).join("") : '<p class="empty">条件に合う掲載イベントはありません。</p>';
+  $("#load-more").hidden = events.length <= state.limit;
+}
 function injectJsonLd() {
-  const items = state.events.map((ev) => ({
-    "@context": "https://schema.org",
-    "@type": "Event",
-    name: ev.title,
-    startDate: ev.start,
-    endDate: ev.end || ev.start,
-    eventStatus: "https://schema.org/EventScheduled",
-    location: { "@type": "Place", name: ev.venue || "もてなし広場", address: "群馬県高崎市" },
-    description: ev.summary || "",
-    ...(ev.official_url ? { url: ev.official_url } : {}),
-  }));
+  const items = state.events.filter(event => !event.tentative && !event.isSample && !event.excluded_dates?.length).flatMap(event => (event.dates?.length ? event.dates : [event.start]).map(start => ({
+    "@context": "https://schema.org", "@type": "Event", name: event.title, startDate: start, endDate: event.dates?.length ? start : event.end || event.start,
+    eventStatus: event.cancelled ? "https://schema.org/EventCancelled" : "https://schema.org/EventScheduled",
+    location: { "@type": "Place", name: event.venue || "会場要確認", address: "群馬県高崎市" },
+    description: event.summary || "", ...(safeUrl(event.official_url) ? { url: event.official_url } : {})
+  })));
   $("#jsonld-events").textContent = JSON.stringify(items);
 }
-
-function esc(s = "") {
-  return s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-}
-
 init();
