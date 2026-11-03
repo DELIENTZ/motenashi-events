@@ -107,10 +107,12 @@ python3 -m http.server 8000
 `.github/workflows/scrape.yml` が **毎週月曜6時（日本時間）** に自動収集を実行します。
 
 - `scraper/scrape.mjs`: 各情報源から「もてなし広場」を含むイベントを拾い、`data/candidates.json` に書き出す
-- `scraper/import-forms.mjs`: Googleフォーム回答シートを読み、`data/form-candidates.json` と `data/join-candidates.json` に書き出す
+- `scraper/import-forms.mjs`: フォーム回答を取得せず、公開JSONを空の案内に保つ（個人情報の公開防止）
 
-**重要：自動収集された候補はそのまま公開されません。** 各候補JSONを見て、
-掲載するものを手で `events.json` に移す運用です（事実確認＋紹介文を自分の言葉で書く）。
+**重要：このリポジトリと候補JSONはインターネット上に公開されます。**
+`status: draft` や `needsReview` はアクセス制限にはなりません。
+自動収集された公開情報は、事実確認と紹介文の書き直しをしたうえで `events.json` に移します。
+フォーム回答・名前・連絡先・未審査の自由記述は候補JSONへ保存しません。
 
 手動実行：GitHubの **Actions タブ → イベント自動収集 → Run workflow**。
 
@@ -127,11 +129,13 @@ python3 -m http.server 8000
 2. 発行された公開URLを2か所に設定：
    - `assets/app.js` の先頭 `const SUBMIT_FORM_URL = "...";`
    - （任意）`index.html` のボタンも同URLに
-3. 投稿はGoogleスプレッドシートに溜まり、GitHub Actionsで `data/form-candidates.json` に自動取り込みされます
-4. 内容を確認して、掲載するものだけ `events.json` に転記
+3. 投稿はアクセス制限した回答スプレッドシートに保存します（フォームの回答受付は継続）
+4. ログイン済みのGoogle Sheetsまたは接続済みツールで回答を確認します
+5. 公式情報で照合し、掲載可能なイベントの事実情報だけを `events.json` に転記します
 
-現在のイベント投稿シートは既定で自動取り込みされます。別シートへ変える場合は、GitHub Actionsの変数
-`EVENT_FORM_CSV_URL` にCSV URLを設定します。
+匿名アクセス可能なCSVで回答を取り込む運用は停止しました。
+`EVENT_FORM_CSV_URL` / `JOIN_FORM_CSV_URL` は公開ジョブで使用しません。
+回答シートは「制限付き」を維持し、ウェブ公開もしないでください。
 
 ## 8. 運営仲間募集フォーム
 
@@ -140,9 +144,10 @@ python3 -m http.server 8000
 実行ログに出る値を設定します。
 
 - フォーム公開URL: `assets/app.js` の `JOIN_FORM_URL`
-- 回答CSV URL: GitHub Actionsの変数 `JOIN_FORM_CSV_URL`
+- 回答確認先: アクセス制限したGoogleスプレッドシート（運営者のみ）
 
-`JOIN_FORM_CSV_URL` を設定すると、回答は毎週 `data/join-candidates.json` に自動取り込みされます。
+仲間募集の回答は非公開のシートで確認・連絡し、公開サイトやGitHubへは転記しません。
+公開取り込みの停止は「回答なし」を意味しません。回答の確認は別の非公開手順で行います。
 
 ---
 

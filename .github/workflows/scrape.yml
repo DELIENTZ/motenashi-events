@@ -28,9 +28,6 @@ jobs:
         run: |
           node scrape.mjs
           node import-forms.mjs
-        env:
-          EVENT_FORM_CSV_URL: ${{ vars.EVENT_FORM_CSV_URL }}
-          JOIN_FORM_CSV_URL: ${{ vars.JOIN_FORM_CSV_URL }}
 
       - name: 候補ファイルをコミット
         run: |
