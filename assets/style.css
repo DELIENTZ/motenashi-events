@@ -31,6 +31,7 @@ a{color:var(--brand-dark);text-underline-offset:4px}
 .affiliate-label{margin:0;color:var(--muted);font-size:.875rem}
 .affiliate-link{margin:0;min-width:0}
 .affiliate-link a{display:inline-block;padding:10px 0;min-height:44px;font-weight:600;overflow-wrap:anywhere}
+.affiliate-note{flex-basis:100%;margin:0;color:var(--muted);font-size:.875rem}
 
 /* Common search controls stay outside the result views. */
 .controls{display:grid;gap:16px;padding:24px 0 18px;border-bottom:1px solid var(--line)}
