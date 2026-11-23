@@ -2,7 +2,7 @@
   "site": {
     "name": "高崎イベントナビ",
     "tagline": "高崎市のイベント・公演・展示・地域の催し",
-    "updated": "2026-11-10"
+    "updated": "2026-11-23"
   },
   "events": [
     {
@@ -504,7 +504,7 @@
       "time": "10:00〜15:00",
       "venue": "もてなし広場",
       "category": "マルシェ・市",
-      "summary": "第275回は11月29日（日）10:00〜15:00、もてなし広場で開催。高崎菓子まつりとの同時開催が主催者から案内されています。各出店の内容・料金・雨天対応は最新の公式案内をご確認ください。",
+      "summary": "第275回は11月29日（日）10:00〜15:00、もてなし広場で高崎菓子まつりと同時開催。13:30から「じぐろ京介 人情市GIG」が予定されています。プログラムは当日変更の場合があります。入場条件・出店ごとの料金・雨天対応は最新の公式案内をご確認ください。",
       "image": "",
       "fee": "",
       "official_url": "https://ninjou.gunmablog.net/e460796.html",
@@ -520,22 +520,22 @@
         "もてなし広場"
       ],
       "fee_type": "unknown",
-      "checked": "2026-11-02"
+      "checked": "2026-11-23"
     },
     {
       "id": "takasaki-christmas-marche-2026",
       "title": "高崎クリスマスマルシェ 2026",
       "start": "2026-12-12",
       "end": "2026-12-13",
-      "time": "12/12 終了19:00／12/13 終了18:30（開始時刻は公式確認）",
+      "time": "12/12 10:00〜19:00／12/13 10:00〜18:30",
       "venue": "もてなし広場",
       "category": "マルシェ・市",
-      "summary": "もてなし広場で2日間開催するクリスマスマルシェ。入場無料、犬の同伴可、雨天決行・荒天中止です。開始時刻は主催者の案内に異なる表記があるため、お出かけ前に最新情報をご確認ください。出店者などの詳細も公式Instagramで順次案内されます。",
+      "summary": "もてなし広場で2日間開催するクリスマスマルシェ。フード、雑貨、ハンドメイドの出店や音楽などを予定しています。主催者の新しい2026年告知で両日10時開始を確認しました。入場無料、買い物・飲食等は別途。出店内容や天候による変更は公式Instagramでご確認ください。",
       "image": "",
       "fee": "入場無料（買い物・飲食等は別途）",
       "official_url": "https://www.instagram.com/takasaki.x.marche/",
-      "source": "Takasaki Christmas Marche実行委員会 公式Instagram",
-      "source_url": "https://www.instagram.com/p/DZcvOvZgHmS/",
+      "source": "Takasaki Christmas Marche実行委員会 11月19日公式投稿・最新プロフィール",
+      "source_url": "https://www.instagram.com/p/Df8N0-vEz4o/",
       "tags": [
         "クリスマス",
         "マルシェ",
@@ -545,7 +545,8 @@
       "venues": [
         "もてなし広場"
       ],
-      "fee_type": "free"
+      "fee_type": "free",
+      "checked": "2026-11-23"
     },
     {
       "id": "gunma-nominoichi-2026-12",
@@ -560,7 +561,7 @@
       "fee": "入場無料（買い物等は別途）",
       "official_url": "https://www.instagram.com/gunma_nominoichi/",
       "source": "群馬蚤の市 主催者公式Instagram",
-      "source_url": "https://www.instagram.com/p/De3fhtqo3ug/",
+      "source_url": "https://www.instagram.com/p/DgEBCrsI4tq/",
       "tags": [
         "蚤の市",
         "古道具",
@@ -572,7 +573,8 @@
       "venues": [
         "もてなし広場"
       ],
-      "fee_type": "free"
+      "fee_type": "free",
+      "checked": "2026-11-23"
     },
     {
       "id": "ninjyoichi-2026-12",
@@ -893,12 +895,12 @@
       "time": "観覧時刻は公式案内をご確認ください",
       "venue": "高崎アリーナ",
       "category": "スポーツ",
-      "summary": "男女個人・男子団体の新体操大会。一般販売は11/18 18:00予定、購入には無料会員登録が必要です。高崎市在住・在勤・在学者向け優待券は、11/9から開催前日までアリーナ受付で販売。1人4枚まで、現金のみ、予定数で終了します。観覧時刻・残券は公式でご確認ください。",
+      "summary": "男女個人・男子団体の新体操大会。主催者は一般販売日を11/16 18:00へ修正しています。購入には無料会員登録が必要です。市内在住・在勤・在学者向け優待券は開催前日までアリーナ受付で販売、1人4枚まで・現金のみ・予定数で終了。観覧時刻・残券は公式でご確認ください。",
       "fee": "全席自由1,500円。高崎市民優待は1,000円（対象者限定・100枚、予定数で終了）。",
       "fee_type": "paid",
       "official_url": "https://jpn-gym.or.jp/event/event-8004/",
       "source": "日本体操協会公式大会ページ／高崎アリーナ公式市民優待案内",
-      "source_url": "https://www.takasaki-foundation.or.jp/arena/news_detail.php?id=540",
+      "source_url": "https://jpn-gym.or.jp/event/event-8004/",
       "tags": [
         "新体操",
         "全国大会",
@@ -907,7 +909,7 @@
         "詳細時刻未確認"
       ],
       "status": "published",
-      "checked": "2026-11-10",
+      "checked": "2026-11-23",
       "venues": [
         "高崎アリーナ"
       ]
@@ -1226,10 +1228,20 @@
       "title": "高崎ラーメン祭2027 スゴウマ！ラーメン大集合 produced by 二代目！ラーメンD 伊達一平",
       "start": "2027-02-05",
       "end": "2027-02-14",
-      "dates": ["2027-02-05", "2027-02-06", "2027-02-07", "2027-02-11", "2027-02-12", "2027-02-13", "2027-02-14"],
+      "dates": [
+        "2027-02-05",
+        "2027-02-06",
+        "2027-02-07",
+        "2027-02-11",
+        "2027-02-12",
+        "2027-02-13",
+        "2027-02-14"
+      ],
       "time": "開催時間は後日公式発表",
       "venue": "もてなし広場（高崎市高松町1）",
-      "venues": ["もてなし広場"],
+      "venues": [
+        "もてなし広場"
+      ],
       "category": "グルメ",
       "summary": "県内外のラーメン店が週替わりで出店する第2回の食イベント。開催日は2/5〜7と2/11〜14の計7日間で、2/8〜10は開催日ではありません。各期間10店、延べ20店を予定。出店店名・開催時間・変更や中止の案内は主催者の最新発表をご確認ください。",
       "fee": "入場無料。ラーメンは1杯1,100円（税込）。購入方法は今後の公式案内を確認。",
@@ -1237,7 +1249,12 @@
       "official_url": "https://x.com/sugouma_ramen",
       "source": "株式会社CS日本による主催者発表（2026年10月19日）",
       "source_url": "https://prtimes.jp/main/html/rd/p/000001290.000009198.html",
-      "tags": ["ラーメン", "グルメ", "入場無料", "開催日限定"],
+      "tags": [
+        "ラーメン",
+        "グルメ",
+        "入場無料",
+        "開催日限定"
+      ],
       "status": "published",
       "checked": "2026-11-10"
     },
@@ -1248,7 +1265,9 @@
       "end": "2026-12-06",
       "time": "両日13:05試合開始（開場時刻は公式確認）",
       "venue": "高崎アリーナ メインアリーナ",
-      "venues": ["高崎アリーナ"],
+      "venues": [
+        "高崎アリーナ"
+      ],
       "category": "スポーツ",
       "summary": "女子バレーボールのホームゲーム2試合。一般発売は11/19正午、有料会員先行は11/12正午予定。購入にはVメンバーIDが必要です。前橋市や太田市で行われる別節とは会場が異なります。残席・開場時刻・変更情報は公式案内をご確認ください。",
       "fee": "有料・席種別。2階自由席は一般前売2,000円／当日2,500円、小中高生前売500円／当日1,000円。原則330円/枚の手数料（当日窓口販売は除く）。未就学児は大人1人につき1人まで膝上無料。",
@@ -1256,7 +1275,11 @@
       "official_url": "https://gunmagreenwings.jp/tickets/",
       "source": "群馬グリーンウイングス公式チケット案内／高崎アリーナ公式イベント情報",
       "source_url": "https://www.takasaki-foundation.or.jp/arena/event_index.php",
-      "tags": ["バレーボール", "スポーツ観戦", "チケット必要"],
+      "tags": [
+        "バレーボール",
+        "スポーツ観戦",
+        "チケット必要"
+      ],
       "status": "published",
       "checked": "2026-11-10"
     },
@@ -1267,7 +1290,9 @@
       "end": "2027-01-07",
       "time": "18:30開演（17:30開場）",
       "venue": "高崎芸術劇場 大劇場",
-      "venues": ["高崎芸術劇場"],
+      "venues": [
+        "高崎芸術劇場"
+      ],
       "category": "音楽・舞台",
       "summary": "オーケストラと歌、バレエで新年を祝うコンサート。未就学児入場不可。U-25は当日25歳以下で年齢確認証が必要です。残席や出演・曲目の変更は公式案内をご確認ください。",
       "fee": "S席8,000円／A席6,000円／B席4,000円。U-25各半額。シャンパン付きS席9,000円（U-25 4,500円、20歳未満はノンアルコールに交換）。",
@@ -1275,7 +1300,12 @@
       "official_url": "https://www.takasaki-foundation.or.jp/theatre/concert_detail.php?key=2168",
       "source": "高崎芸術劇場 主催公演公式詳細",
       "source_url": "https://www.takasaki-foundation.or.jp/theatre/concert_detail.php?key=2168",
-      "tags": ["クラシック", "新年", "未就学児不可", "U-25"],
+      "tags": [
+        "クラシック",
+        "新年",
+        "未就学児不可",
+        "U-25"
+      ],
       "status": "published",
       "checked": "2026-11-10"
     },
@@ -1286,7 +1316,9 @@
       "end": "2027-01-11",
       "time": "17:00開演（16:15開場）",
       "venue": "高崎芸術劇場 スタジオシアター",
-      "venues": ["高崎芸術劇場"],
+      "venues": [
+        "高崎芸術劇場"
+      ],
       "category": "音楽・舞台",
       "summary": "ホセ・ジェイムズがロン・ブレイクを迎え、ジョン・コルトレーンの音楽を取り上げるライブ。未就学児入場不可。U-25は当日25歳以下で年齢確認証が必要です。残席・出演者の変更は公式案内をご確認ください。",
       "fee": "全席指定6,800円、U-25 3,000円（税込）。",
@@ -1294,7 +1326,12 @@
       "official_url": "https://www.takasaki-foundation.or.jp/theatre/concert_detail.php?key=2449",
       "source": "高崎芸術劇場 主催公演公式詳細",
       "source_url": "https://www.takasaki-foundation.or.jp/theatre/concert_detail.php?key=2449",
-      "tags": ["ジャズ", "ライブ", "未就学児不可", "U-25"],
+      "tags": [
+        "ジャズ",
+        "ライブ",
+        "未就学児不可",
+        "U-25"
+      ],
       "status": "published",
       "checked": "2026-11-10"
     },
@@ -1305,7 +1342,9 @@
       "end": "2026-11-14",
       "time": "10:00〜16:00",
       "venue": "けやき広場（吉井文化会館前）",
-      "venues": ["けやき広場（吉井文化会館前）"],
+      "venues": [
+        "けやき広場（吉井文化会館前）"
+      ],
       "category": "祭り",
       "summary": "吉井文化会館前の広場で開かれる秋まつり。荒天中止・延期なし。内容や時間が変更になる場合があるため、来場前に市の公式案内をご確認ください。",
       "fee": "料金は公式案内をご確認ください。",
@@ -1313,7 +1352,11 @@
       "official_url": "https://www.city.takasaki.gunma.jp/page/98307.html",
       "source": "高崎市吉井支所 2026年開催案内",
       "source_url": "https://www.city.takasaki.gunma.jp/page/98307.html",
-      "tags": ["吉井", "秋まつり", "荒天中止"],
+      "tags": [
+        "吉井",
+        "秋まつり",
+        "荒天中止"
+      ],
       "status": "published",
       "checked": "2026-11-10"
     },
@@ -1324,7 +1367,9 @@
       "end": "2026-11-29",
       "time": "10:00〜15:00／雨天中止",
       "venue": "箕郷支所・旧下田邸庭園（高崎市箕郷町西明屋702-4）",
-      "venues": ["箕郷支所・旧下田邸庭園"],
+      "venues": [
+        "箕郷支所・旧下田邸庭園"
+      ],
       "category": "祭り",
       "summary": "音楽ステージ、キッチンカー、子ども向けの縁日を楽しむ催し。昼の祭りは11/29のみで、夜の紅葉ライトアップとは日程・時間が異なります。雨天中止。出店内容や最新の変更情報は市の案内をご確認ください。",
       "fee": "料金は公式案内をご確認ください。飲食等の個別料金も要確認。",
@@ -1332,7 +1377,12 @@
       "official_url": "https://www.city.takasaki.gunma.jp/page/76818.html",
       "source": "高崎市箕郷支所 令和8年開催案内",
       "source_url": "https://www.city.takasaki.gunma.jp/page/76818.html",
-      "tags": ["箕郷", "紅葉", "音楽", "キッチンカー"],
+      "tags": [
+        "箕郷",
+        "紅葉",
+        "音楽",
+        "キッチンカー"
+      ],
       "status": "published",
       "checked": "2026-11-10"
     },
@@ -1343,7 +1393,9 @@
       "end": "2026-11-29",
       "time": "17:00〜20:00",
       "venue": "旧下田邸庭園（高崎市箕郷町西明屋702-4）",
-      "venues": ["箕郷支所・旧下田邸庭園"],
+      "venues": [
+        "箕郷支所・旧下田邸庭園"
+      ],
       "category": "季節・ライトアップ",
       "summary": "旧下田邸の庭園を夜に彩る紅葉ライトアップ。11/29昼の紅葉まつりとは別の催しです。色づきや天候による実施変更は、市の最新案内をご確認ください。",
       "fee": "料金は公式案内をご確認ください。",
@@ -1351,7 +1403,12 @@
       "official_url": "https://www.city.takasaki.gunma.jp/page/50686.html",
       "source": "高崎市箕郷支所 令和8年実施案内",
       "source_url": "https://www.city.takasaki.gunma.jp/page/50686.html",
-      "tags": ["箕郷", "紅葉", "ライトアップ", "夜イベント"],
+      "tags": [
+        "箕郷",
+        "紅葉",
+        "ライトアップ",
+        "夜イベント"
+      ],
       "status": "published",
       "checked": "2026-11-10"
     },
@@ -1362,7 +1419,9 @@
       "end": "2027-01-02",
       "time": "開催時刻は今後の公式案内をご確認ください",
       "venue": "高崎駅西口駅前通り",
-      "venues": ["高崎駅西口駅前通り"],
+      "venues": [
+        "高崎駅西口駅前通り"
+      ],
       "category": "祭り",
       "summary": "高崎だるまの販売や開運たかさき食堂などを予定する新年の催し。2027年は1/1・2の2日間、高崎駅西口駅前通りで開催予定です。もてなし広場とは会場が異なります。開催時刻・料金・天候による変更は最新の公式案内をご確認ください。",
       "fee": "入場条件や買い物・飲食の料金は公式案内をご確認ください。",
@@ -1370,7 +1429,12 @@
       "official_url": "https://takasaki-darumaichi.com/",
       "source": "高崎だるま市実行委員会 2026年11月1日開催発表",
       "source_url": "https://takasaki-darumaichi.com/news/185/",
-      "tags": ["だるま", "正月", "駅前", "グルメ"],
+      "tags": [
+        "だるま",
+        "正月",
+        "駅前",
+        "グルメ"
+      ],
       "status": "published",
       "checked": "2026-11-10"
     },
@@ -1381,7 +1445,9 @@
       "end": "2026-11-29",
       "time": "12:30開演（12:00開場）",
       "venue": "高崎市文化会館",
-      "venues": ["高崎市文化会館"],
+      "venues": [
+        "高崎市文化会館"
+      ],
       "category": "伝統芸能",
       "summary": "市内の神楽・獅子舞・お囃子・八木節・木遣などの団体が集まる公演。普段は地域の祭りで受け継がれる芸能を鑑賞できます。観覧条件や変更情報は市の公式案内をご確認ください。",
       "fee": "無料。",
@@ -1389,7 +1455,12 @@
       "official_url": "https://www.city.takasaki.gunma.jp/page/3521.html",
       "source": "高崎市文化課 令和8年開催案内",
       "source_url": "https://www.city.takasaki.gunma.jp/page/3521.html",
-      "tags": ["伝統芸能", "獅子舞", "神楽", "無料"],
+      "tags": [
+        "伝統芸能",
+        "獅子舞",
+        "神楽",
+        "無料"
+      ],
       "status": "published",
       "checked": "2026-11-10"
     },
@@ -1400,7 +1471,9 @@
       "end": "2027-01-10",
       "time": "16:50開始（16:00開場・20:00終演予定）",
       "venue": "群馬音楽センター（高崎市高松町28-2）",
-      "venues": ["群馬音楽センター"],
+      "venues": [
+        "群馬音楽センター"
+      ],
       "category": "映画・上映会",
       "summary": "小栗上野介忠順を描く大河ドラマの初回上映と出演者トークを予定する催し。事前申込が必要で、応募多数は抽選。Web申込は12/4 23:59締切、往復はがきは同日必着です。当選を保証するものではありません。申込条件・出演者・変更情報は主催者案内をご確認ください。",
       "fee": "料金・入場整理券の条件は公式案内をご確認ください。",
@@ -1408,9 +1481,565 @@
       "official_url": "https://www.city.takasaki.gunma.jp/site/sightseeing/98852.html",
       "source": "高崎市・NHK前橋放送局等による公式開催案内",
       "source_url": "https://www.city.takasaki.gunma.jp/site/sightseeing/98852.html",
-      "tags": ["大河ドラマ", "トークショー", "事前申込", "抽選"],
+      "tags": [
+        "大河ドラマ",
+        "トークショー",
+        "事前申込",
+        "抽選"
+      ],
       "status": "published",
       "checked": "2026-11-10"
+    },
+    {
+      "id": "ninjyoichi-2027-01",
+      "title": "高崎人情市（1月・第277回）",
+      "start": "2027-01-24",
+      "end": "2027-01-24",
+      "time": "10:00〜15:00",
+      "venue": "もてなし広場",
+      "venues": [
+        "もてなし広場"
+      ],
+      "category": "マルシェ・市",
+      "summary": "主催者の2026〜2027年度事業計画で、第277回は1月24日、もてなし広場で開催予定。出店内容・料金・天候による変更は最新の個別告知をご確認ください。年度予定表では2月28日は休みです。",
+      "fee": "一般入場料・個別企画の料金は公式案内をご確認ください。",
+      "fee_type": "unknown",
+      "official_url": "https://ninjou.gunmablog.net/",
+      "source": "高崎やる気堂 公式2026〜2027年度事業計画（実ブラウザでPDF確認）",
+      "source_url": "http://www.itfnet.co.jp/yarukido/pdf_etc/2026schedule.pdf",
+      "tags": [
+        "市",
+        "ファミリー",
+        "開催予定"
+      ],
+      "image": "",
+      "status": "published",
+      "checked": "2026-11-23"
+    },
+    {
+      "id": "haruna-machinaka-music-20261205",
+      "title": "榛名まちなか音楽祭",
+      "start": "2026-12-05",
+      "end": "2026-12-05",
+      "time": "9:20〜14:30",
+      "venue": "高崎市榛名福祉会館 1階エントランスホール",
+      "venues": [
+        "榛名福祉会館"
+      ],
+      "category": "音楽・舞台",
+      "summary": "アマチュアミュージシャンや文化協会会員など9組のステージ。前庭では野菜販売や飲食店・キッチンカーの出店を予定しています。実施内容の変更は市の案内をご確認ください。",
+      "fee": "入場無料。飲食・買い物は別途。",
+      "fee_type": "free",
+      "official_url": "https://www.city.takasaki.gunma.jp/page/1800.html",
+      "tags": [
+        "榛名",
+        "音楽",
+        "キッチンカー"
+      ],
+      "source": "高崎市公式・当該年開催案内",
+      "source_url": "https://www.city.takasaki.gunma.jp/page/1800.html",
+      "image": "",
+      "status": "published",
+      "checked": "2026-11-23"
+    },
+    {
+      "id": "socius-lifelong-learning-festival-20261212",
+      "title": "生涯学習フェスティバル",
+      "start": "2026-12-12",
+      "end": "2026-12-12",
+      "time": "10:00〜13:00",
+      "venue": "高崎市市民活動センター・ソシアス",
+      "venues": [
+        "高崎市市民活動センター・ソシアス"
+      ],
+      "category": "体験・講座",
+      "summary": "地域での学びや活動に出会う催し。令和8年度のテーマは「あふれる笑顔、学びのバトン～みんなで創ろう、元気な地域（まち）～」。参加方法・個別企画や料金は公式案内をご確認ください。",
+      "fee": "料金は公式案内をご確認ください。",
+      "fee_type": "unknown",
+      "official_url": "https://www.city.takasaki.gunma.jp/page/4806.html",
+      "tags": [
+        "生涯学習",
+        "地域",
+        "体験"
+      ],
+      "source": "高崎市公式・当該年開催案内",
+      "source_url": "https://www.city.takasaki.gunma.jp/page/4806.html",
+      "image": "",
+      "status": "published",
+      "checked": "2026-11-23"
+    },
+    {
+      "id": "misato-yose-20261220",
+      "title": "高崎寄席in箕郷",
+      "start": "2026-12-20",
+      "end": "2026-12-20",
+      "time": "14:00開演（13:30開場）",
+      "venue": "箕郷文化会館（高崎市箕郷町生原922-1）",
+      "venues": [
+        "箕郷文化会館"
+      ],
+      "category": "伝統芸能",
+      "summary": "立川志の彦、江戸家猫八、立川志の太郎、立川志の麿が出演する寄席。未就学児入場不可。電話予約は箕郷文化会館のみ12/11まで。残席・公演変更は公式でご確認ください。",
+      "fee": "全席指定1,000円。",
+      "fee_type": "paid",
+      "official_url": "https://www.city.takasaki.gunma.jp/page/93770.html",
+      "tags": [
+        "箕郷",
+        "落語",
+        "未就学児不可"
+      ],
+      "source": "高崎市公式・当該年開催案内",
+      "source_url": "https://www.city.takasaki.gunma.jp/page/93770.html",
+      "image": "",
+      "status": "published",
+      "checked": "2026-11-23"
+    },
+    {
+      "id": "shinmachi-cinema-talk-20261220",
+      "title": "第5回 シネマ＆トークin新町",
+      "start": "2026-12-20",
+      "end": "2026-12-20",
+      "time": "14:00開演（13:30開場）",
+      "venue": "新町文化ホール（高崎市新町3190-1）",
+      "venues": [
+        "新町文化ホール"
+      ],
+      "category": "映画・上映会",
+      "summary": "映画『ラプソディ・ラプソディ』の上映と、監督・利重剛のトーク。未就学児入場不可。電話予約は新町文化ホールのみ12/11まで。チケットの残数や変更は公式でご確認ください。",
+      "fee": "全席指定1,000円。",
+      "fee_type": "paid",
+      "official_url": "https://www.city.takasaki.gunma.jp/page/97085.html",
+      "tags": [
+        "新町",
+        "映画",
+        "トーク",
+        "未就学児不可"
+      ],
+      "source": "高崎市公式・当該年開催案内",
+      "source_url": "https://www.city.takasaki.gunma.jp/page/97085.html",
+      "image": "",
+      "status": "published",
+      "checked": "2026-11-23"
+    },
+    {
+      "id": "haruna-local-artist-20270124",
+      "title": "地元アーティストコンサート 篠原郁哉ヴァイオリンリサイタル",
+      "start": "2027-01-24",
+      "end": "2027-01-24",
+      "time": "14:00開演（13:30開場）",
+      "venue": "榛名文化会館（高崎市上里見町1072-1）",
+      "venues": [
+        "榛名文化会館"
+      ],
+      "category": "音楽・舞台",
+      "summary": "篠原郁哉のヴァイオリンと種井悠太のピアノによる公演。無料ですが事前申込とチケットが必要です。申込は12/9まで、1回2名まで、定員超過は抽選。未就学児入場不可。当選は保証しません。",
+      "fee": "入場無料（要申込・チケット必須）。",
+      "fee_type": "free",
+      "official_url": "https://www.city.takasaki.gunma.jp/page/73291.html",
+      "tags": [
+        "榛名",
+        "クラシック",
+        "抽選",
+        "事前申込"
+      ],
+      "source": "高崎市公式・当該年開催案内",
+      "source_url": "https://www.city.takasaki.gunma.jp/page/73291.html",
+      "image": "",
+      "status": "published",
+      "checked": "2026-11-23"
+    },
+    {
+      "id": "haruna-easy-classical-20270213",
+      "title": "やさしいクラシック音楽会（2027）",
+      "start": "2027-02-13",
+      "end": "2027-02-13",
+      "time": "14:00開演（13:15開場）",
+      "venue": "榛名文化会館 大ホール（高崎市上里見町1072-1）",
+      "venues": [
+        "榛名文化会館"
+      ],
+      "category": "音楽・舞台",
+      "summary": "和田一樹の指揮・おはなしと群馬交響楽団の演奏で名曲を楽しむ公演。未就学児入場不可。インターネット販売はありません。窓口・電話予約の条件、残席は市の案内をご確認ください。",
+      "fee": "全席指定 一般1,500円、学生1,000円。",
+      "fee_type": "paid",
+      "official_url": "https://www.city.takasaki.gunma.jp/page/74017.html",
+      "tags": [
+        "榛名",
+        "群馬交響楽団",
+        "クラシック"
+      ],
+      "source": "高崎市公式・当該年開催案内",
+      "source_url": "https://www.city.takasaki.gunma.jp/page/74017.html",
+      "image": "",
+      "status": "published",
+      "checked": "2026-11-23"
+    },
+    {
+      "id": "yoshii-tagohi-marathon-20270214",
+      "title": "第22回多胡碑マラソン大会",
+      "start": "2027-02-14",
+      "end": "2027-02-14",
+      "time": "受付7:40〜8:30／開会式8:30／種目別発走9:10〜",
+      "venue": "高崎市吉井運動公園 陸上競技場及びその周辺",
+      "venues": [
+        "吉井運動公園"
+      ],
+      "category": "スポーツ",
+      "summary": "吉井の鏑川沿いを中心に走る大会。参加は小学生以上、事前申込は12/1〜22。小・中学生は保護者の承諾が必要です。荒天中止。種目・距離・発走時刻は実施要項を確認し、参加料と観覧条件を混同しないでください。",
+      "fee": "競技参加費無料。観覧条件・その他の費用は公式確認。",
+      "fee_type": "free",
+      "official_url": "https://www.city.takasaki.gunma.jp/page/7091.html",
+      "tags": [
+        "吉井",
+        "マラソン",
+        "事前申込",
+        "荒天中止"
+      ],
+      "source": "高崎市公式・当該年開催案内",
+      "source_url": "https://www.city.takasaki.gunma.jp/page/7091.html",
+      "image": "",
+      "status": "published",
+      "checked": "2026-11-23"
+    },
+    {
+      "id": "takasaki-dance-festival-20270221",
+      "title": "タカサキダンスフェスティバル2027 本選・タカサキステージ",
+      "start": "2027-02-21",
+      "end": "2027-02-21",
+      "time": "12:30開場／13:00タカサキステージ／15:00本選（予定）",
+      "venue": "群馬音楽センター（高崎市高松町28-2）",
+      "venues": [
+        "群馬音楽センター"
+      ],
+      "category": "音楽・舞台",
+      "summary": "市民を中心とするチームの発表と、予選を通過したチームのコンテスト本選を行います。一般来場向けの本番日だけを掲載しています。1月30・31日の予選は非公開です。観覧料金・変更は公式でご確認ください。",
+      "fee": "一般観覧料金は公式案内をご確認ください。出場者の参加費とは別です。",
+      "fee_type": "unknown",
+      "official_url": "https://www.city.takasaki.gunma.jp/page/99237.html",
+      "tags": [
+        "ダンス",
+        "一般向け本番",
+        "予選非公開"
+      ],
+      "source": "高崎市公式・当該年開催案内",
+      "source_url": "https://www.city.takasaki.gunma.jp/page/99237.html",
+      "image": "",
+      "status": "published",
+      "checked": "2026-11-23"
+    },
+    {
+      "id": "viento-little-mama-20261128",
+      "title": "リトル・ママフェスタ高崎2026Nov.",
+      "start": "2026-11-28",
+      "end": "2026-11-28",
+      "time": "10:00〜16:00",
+      "venue": "ビエント高崎 ビッグキューブ（高崎市問屋町2-7）",
+      "venues": [
+        "ビエント高崎"
+      ],
+      "category": "体験・講座",
+      "summary": "子育て世帯向けのステージやキッズレース、親子講座、マルシェなど。入場には無料のLINEチケット予約が必須です。レース・講座等は別の予約枠、撮影会などは有料の場合があります。予約可否は公式で確認してください。",
+      "fee": "入場無料・完全予約制。撮影会など一部企画・飲食・物販は別途。",
+      "fee_type": "free",
+      "official_url": "https://event.l-ma.co.jp/festas/kanto/takasaki2026nov/",
+      "source_url": "https://www.viento-takasaki.or.jp/event/event-12643/",
+      "tags": [
+        "ファミリー",
+        "事前予約",
+        "子育て"
+      ],
+      "source": "ビエント高崎公式イベント詳細／主催者案内",
+      "image": "",
+      "status": "published",
+      "checked": "2026-11-23"
+    },
+    {
+      "id": "viento-hyakkajikan-20261226",
+      "title": "ぐんまハンドメイドフェスタinビエント 百風時間vol.3",
+      "start": "2026-12-26",
+      "end": "2026-12-27",
+      "time": "10:00〜16:00",
+      "venue": "ビエント高崎 ビッグキューブ（高崎市問屋町2-7）",
+      "venues": [
+        "ビエント高崎"
+      ],
+      "category": "マルシェ・市",
+      "summary": "布小物、アクセサリー、陶器など作り手の作品に出会う展示販売会。土日で出店者が入れ替わる予定です。出店者情報・内容変更は主催者の最新案内をご確認ください。",
+      "fee": "入場無料。購入・体験等の料金は個別に確認。",
+      "fee_type": "free",
+      "official_url": "https://www.gunmahandmadefesta.com/",
+      "source_url": "https://www.viento-takasaki.or.jp/event/event-12622/",
+      "tags": [
+        "ハンドメイド",
+        "雑貨",
+        "入場無料"
+      ],
+      "source": "ビエント高崎公式イベント詳細／主催者案内",
+      "image": "",
+      "status": "published",
+      "checked": "2026-11-23"
+    },
+    {
+      "id": "viento-kids-gourmet-20270123",
+      "title": "群馬こどもグルメ博2027",
+      "start": "2027-01-23",
+      "end": "2027-01-24",
+      "time": "10:00〜16:00",
+      "venue": "ビエント高崎 ビッグキューブ（高崎市問屋町2-7）",
+      "venues": [
+        "ビエント高崎"
+      ],
+      "category": "グルメ",
+      "summary": "会場の公式予定表で一般来場向けとして案内されているグルメイベント。出店・体験の内容、個別料金、開催変更は公式案内をご確認ください。",
+      "fee": "入場無料。飲食・買い物・体験などは別途公式確認。",
+      "fee_type": "free",
+      "official_url": "https://www.viento-takasaki.or.jp/event/event-12549/",
+      "tags": [
+        "ファミリー",
+        "グルメ",
+        "入場無料"
+      ],
+      "source": "ビエント高崎公式イベント詳細／主催者案内",
+      "source_url": "https://www.viento-takasaki.or.jp/event/event-12549/",
+      "image": "",
+      "status": "published",
+      "checked": "2026-11-23"
+    },
+    {
+      "id": "viento-ietate-fair-20270123",
+      "title": "くふうイエタテフェア in 高崎",
+      "start": "2027-01-23",
+      "end": "2027-01-24",
+      "time": "10:00〜17:00",
+      "venue": "ビエント高崎 エクセルホール（高崎市問屋町2-7）",
+      "venues": [
+        "ビエント高崎"
+      ],
+      "category": "体験・展示",
+      "summary": "一般来場向けの住宅相談会。会場はビッグキューブではなくエクセルホールです。相談予約の要否や企画内容・変更は会場の公式案内からご確認ください。",
+      "fee": "入場無料。個別サービス等の条件は公式確認。",
+      "fee_type": "free",
+      "official_url": "https://www.viento-takasaki.or.jp/event/event-11817/",
+      "tags": [
+        "住宅",
+        "相談会",
+        "入場無料"
+      ],
+      "source": "ビエント高崎公式イベント詳細／主催者案内",
+      "source_url": "https://www.viento-takasaki.or.jp/event/event-11817/",
+      "image": "",
+      "status": "published",
+      "checked": "2026-11-23"
+    },
+    {
+      "id": "viento-keicar-fair-20270206",
+      "title": "第43回ぐんま軽自動車フェア",
+      "start": "2027-02-06",
+      "end": "2027-02-07",
+      "time": "10:00〜16:00",
+      "venue": "ビエント高崎 ビッグキューブ（高崎市問屋町2-7）",
+      "venues": [
+        "ビエント高崎"
+      ],
+      "category": "体験・展示",
+      "summary": "上毛新聞社と群馬県軽自動車協会による一般来場向けの催し。展示・企画の詳細や変更情報は会場の公式案内をご確認ください。",
+      "fee": "入場無料。購入等は別途。",
+      "fee_type": "free",
+      "official_url": "https://www.viento-takasaki.or.jp/event/event-10563/",
+      "tags": [
+        "車",
+        "展示",
+        "入場無料"
+      ],
+      "source": "ビエント高崎公式イベント詳細／主催者案内",
+      "source_url": "https://www.viento-takasaki.or.jp/event/event-10563/",
+      "image": "",
+      "status": "published",
+      "checked": "2026-11-23"
+    },
+    {
+      "id": "viento-carotaka-fes-20270213",
+      "title": "カロ高フェス in ビエント高崎ビッグキューブ",
+      "start": "2027-02-13",
+      "end": "2027-02-14",
+      "time": "10:00〜17:00",
+      "venue": "ビエント高崎 ビッグキューブ（高崎市問屋町2-7）",
+      "venues": [
+        "ビエント高崎"
+      ],
+      "category": "体験・展示",
+      "summary": "トヨタカローラ高崎による一般来場向けイベント。会場公式の開催予定に基づく案内です。企画の詳細・参加条件・開催変更は公式でご確認ください。",
+      "fee": "入場無料。個別企画・購入等の条件は公式確認。",
+      "fee_type": "free",
+      "official_url": "https://www.viento-takasaki.or.jp/event/event-12115/",
+      "tags": [
+        "車",
+        "ファミリー",
+        "入場無料"
+      ],
+      "source": "ビエント高崎公式イベント詳細／主催者案内",
+      "source_url": "https://www.viento-takasaki.or.jp/event/event-12115/",
+      "image": "",
+      "status": "published",
+      "checked": "2026-11-23"
+    },
+    {
+      "id": "theatre-pahud-20261205",
+      "title": "エマニュエル・パユ 無伴奏フルート・リサイタル",
+      "start": "2026-12-05",
+      "end": "2026-12-05",
+      "time": "14:00開演（13:30開場）",
+      "venue": "高崎芸術劇場 音楽ホール",
+      "venues": [
+        "高崎芸術劇場"
+      ],
+      "category": "音楽・舞台",
+      "summary": "エマニュエル・パユによる無伴奏フルート公演。未就学児入場不可。11/23確認時点の公式表示は「予定枚数終了」です。追加販売・変更の有無は公式窓口でご確認ください。",
+      "fee": "全席指定6,000円、U-25 2,000円。U-25は当日25歳以下・年齢確認証必須。",
+      "fee_type": "paid",
+      "official_url": "https://www.takasaki-foundation.or.jp/theatre/concert_detail.php?key=2148",
+      "tags": [
+        "クラシック",
+        "フルート",
+        "予定枚数終了"
+      ],
+      "source": "高崎芸術劇場 公式公演詳細",
+      "source_url": "https://www.takasaki-foundation.or.jp/theatre/concert_detail.php?key=2148",
+      "image": "",
+      "status": "published",
+      "checked": "2026-11-23"
+    },
+    {
+      "id": "theatre-bcj-christmas-20261206",
+      "title": "バッハ・コレギウム・ジャパン クリスマス・カンタータ",
+      "start": "2026-12-06",
+      "end": "2026-12-06",
+      "time": "15:00開演（14:30開場）",
+      "venue": "高崎芸術劇場 音楽ホール",
+      "venues": [
+        "高崎芸術劇場"
+      ],
+      "category": "音楽・舞台",
+      "summary": "鈴木雅明の指揮によるバッハの合唱・管弦楽公演。未就学児入場不可。曲目変更の告知があります。11/23確認時点は予定枚数終了のため、追加販売や変更は公式でご確認ください。",
+      "fee": "全席指定12,000円、U-25 4,000円（税込）。U-25は当日25歳以下・年齢確認証必須。",
+      "fee_type": "paid",
+      "official_url": "https://www.takasaki-foundation.or.jp/theatre/concert_detail.php?key=2167",
+      "tags": [
+        "クラシック",
+        "クリスマス",
+        "予定枚数終了"
+      ],
+      "source": "高崎芸術劇場 公式公演詳細",
+      "source_url": "https://www.takasaki-foundation.or.jp/theatre/concert_detail.php?key=2167",
+      "image": "",
+      "status": "published",
+      "checked": "2026-11-23"
+    },
+    {
+      "id": "theatre-minyo-crusaders-20261219",
+      "title": "民謡クルセイダーズ feat. 元ちとせ MINYO IS BACK IN TOWN 2026",
+      "start": "2026-12-19",
+      "end": "2026-12-19",
+      "time": "17:00開演（16:15開場）",
+      "venue": "高崎芸術劇場 スタジオシアター",
+      "venues": [
+        "高崎芸術劇場"
+      ],
+      "category": "音楽・舞台",
+      "summary": "新作『日本民謡より愛をこめて』のリリース公演に元ちとせが参加。未就学児入場不可。11/23確認時点は予定枚数終了です。出演や販売状況の変更は公式案内をご確認ください。",
+      "fee": "全席指定5,800円、U-25 2,500円（税込）。U-25は当日25歳以下・年齢確認証必須。",
+      "fee_type": "paid",
+      "official_url": "https://www.takasaki-foundation.or.jp/theatre/concert_detail.php?key=2403",
+      "tags": [
+        "ライブ",
+        "民謡",
+        "予定枚数終了"
+      ],
+      "source": "高崎芸術劇場 公式公演詳細",
+      "source_url": "https://www.takasaki-foundation.or.jp/theatre/concert_detail.php?key=2403",
+      "image": "",
+      "status": "published",
+      "checked": "2026-11-23"
+    },
+    {
+      "id": "theatre-junko-onishi-20261227",
+      "title": "大西順子 ジャズ・ピアノ・ソロ リサイタル American Classics",
+      "start": "2026-12-27",
+      "end": "2026-12-27",
+      "time": "14:00開演（13:30開場）",
+      "venue": "高崎芸術劇場 音楽ホール",
+      "venues": [
+        "高崎芸術劇場"
+      ],
+      "category": "音楽・舞台",
+      "summary": "ソロ・アルバム『American Classics』を携えた大西順子のピアノ公演。未就学児入場不可。残席・販売方法・公演変更は公式でご確認ください。",
+      "fee": "全席指定6,000円、当日7,000円（税込）。",
+      "fee_type": "paid",
+      "official_url": "https://www.takasaki-foundation.or.jp/theatre/concert_detail.php?key=2452",
+      "tags": [
+        "ジャズ",
+        "ピアノ",
+        "未就学児不可"
+      ],
+      "source": "高崎芸術劇場 公式公演詳細",
+      "source_url": "https://www.takasaki-foundation.or.jp/theatre/concert_detail.php?key=2452",
+      "image": "",
+      "status": "published",
+      "checked": "2026-11-23"
+    },
+    {
+      "id": "takasaki-hikari-pageant-2026",
+      "title": "高崎光のページェント2026",
+      "start": "2026-10-30",
+      "end": "2027-02-28",
+      "time": "17:00〜23:00（12月中は16:00〜24:00）",
+      "venue": "高崎駅西口ペデストリアンデッキ、シンフォニーロード、東二条通り、慈光通り・大手前通り、柳通り、南銀座通り、お堀周辺",
+      "venues": [
+        "高崎駅西口",
+        "高崎市中心市街地"
+      ],
+      "category": "季節・ライトアップ",
+      "summary": "駅前やまちなかの通り、お堀周辺を光で彩る冬のイルミネーション。12月は点灯時間が異なります。「光のキャンバス」は1/11まで。もてなし広場開催のイベントとは区別し、天候・実施変更は公式案内をご確認ください。",
+      "fee": "観覧・個別企画の料金条件は公式案内をご確認ください。",
+      "fee_type": "unknown",
+      "official_url": "https://www.takasaki.fm/hikari/",
+      "source_url": "https://www.takasaki.fm/hikari/images/2026.pdf",
+      "tags": [
+        "イルミネーション",
+        "駅前",
+        "まちなか",
+        "夜イベント"
+      ],
+      "source": "主催者・会場の公式案内",
+      "image": "",
+      "status": "published",
+      "checked": "2026-11-23"
+    },
+    {
+      "id": "arena-cheerleading-japan-open-20261212",
+      "title": "第38回全日本学生チアリーディング選手権大会 Cheerleading Japan Open Championships 2026",
+      "start": "2026-12-12",
+      "end": "2026-12-13",
+      "time": "観覧時刻は公式案内をご確認ください",
+      "venue": "高崎アリーナ メインアリーナ",
+      "venues": [
+        "高崎アリーナ"
+      ],
+      "category": "スポーツ",
+      "summary": "高崎アリーナの公式イベント一覧で12/12・13の開催が案内されています。観覧は有料。開場・競技時刻、券価、販売条件や変更は会場と大会公式サイトでご確認ください。",
+      "fee": "観覧有料。券価・購入方法は公式確認。",
+      "fee_type": "paid",
+      "official_url": "https://www.takasaki-foundation.or.jp/arena/event_detail.php?id=79&ord=1&site=0&ym=",
+      "source_url": "https://www.takasaki-foundation.or.jp/arena/event_index.php",
+      "tags": [
+        "チアリーディング",
+        "大会",
+        "観覧有料"
+      ],
+      "source": "主催者・会場の公式案内",
+      "image": "",
+      "status": "published",
+      "checked": "2026-11-23"
     }
   ]
 }

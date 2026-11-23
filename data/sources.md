@@ -56,7 +56,7 @@
 | 琉球の風 実行委員会 | **琉球の風 ～沖縄祭り in 高崎～** | https://ryukyunokaze.jp/ | M（動的表示） | 2026年は第3回・10/17。チケット https://ryukyunokaze.jp/pages/ticket.html 、時間 https://ryukyunokaze.jp/pages/schedule.html 。10/9発表の当日Sエリアランクアップと前売Sエリア完売を区別。非表示の終了メッセージを開催状況と誤認しない |
 | 高崎市青年商業者研究会（TSK） | **TSKフェス with ゴム動力自動車コンテスト** | https://tsk1958.net/gomucar/ ／ https://www.instagram.com/tsk_fes_pr/ | A＋M（IG） | 2026年10/25・もてなし広場。公式投稿 https://www.instagram.com/p/DeS7ll0o3mg/ で10:00〜16:00、入場無料・雨天決行を確認。体験ごとの料金・予約条件は別に確認 |
 | 高崎おとまちプロジェクト内 拝啓ボウイ様実行委員会 | **拝啓ボウイ様** | https://takasaki-otomachi.com/haikeiboowysama/ | A | 2026-10-26再確認：10/31 12:30〜19:00・11/1 10:00〜19:00、もてなし広場、観覧無料、雨天決行・荒天中止。土曜13:00の旧表記は使わない。雨天は内容変更の場合あり。BOØWY本人の出演と誤認させない |
-| Takasaki Christmas Marche実行委員会 | **高崎クリスマスマルシェ** | https://www.instagram.com/takasaki.x.marche/ | M（IG） | 2026年12/12〜13、もてなし広場、入場無料・雨天決行・荒天中止。終了は土曜19:00／日曜18:30。プロフィールは10:00開始、2026年告知画像は11:00開始のため開始時刻は未確定。投稿本文の旧年表記より告知画像・現プロフィールの2026年表記を照合 |
+| Takasaki Christmas Marche実行委員会 | **高崎クリスマスマルシェ** | https://www.instagram.com/takasaki.x.marche/ | M（IG） | 2026-11-23再確認：2026年12/12は10:00〜19:00、12/13は10:00〜18:30、もてなし広場、入場無料。新しい11/19公式投稿 https://www.instagram.com/p/Df8N0-vEz4o/ と最新プロフィールで両日10時開始が一致。旧ポスターの11時開始より新しい年指定告知を優先。天候変更は最新の主催者案内を確認 |
 | 群馬蚤の市 主催者 | **群馬蚤の市** | https://www.instagram.com/gunma_nominoichi/ | M（IG） | 2026-10-26発見・公式本文確認。第1回は2026年12/19（土）9:00〜15:00、もてなし広場、入場無料、雨天開催・荒天中止。最新告知 https://www.instagram.com/p/De3fhtqo3ug/ 、初回告知 https://www.instagram.com/p/Dc-ys4nI-rL/ 。古道具・アンティーク等の市。出店募集の条件と一般入場の条件を混同しない |
 | キングオブパスタ実行委員会 | **キングオブパスタ** | https://www.kingofpasta.jp/ | A | 開催概要 https://www.kingofpasta.jp/aboutus 、チケット https://www.kingofpasta.jp/ticket 、Q&A https://www.kingofpasta.jp/qanda 、新着 https://www.kingofpasta.jp/newslist 。2026-10-26再確認：11/15、前売10/16〜11/14。JTBコンビニ・楽天チケットMINI・JRE MALLチケットの案内あり。JTB窓口のネット申込不可を全購入方法へ一般化しない。入場無料、パスタはチケット制。当日全日券は10:30〜。販売窓口の残券は別途確認 |
 | たかさき雷舞フェスティバル実行委員会（高崎市観光課） | **たかさき雷舞フェスティバル** | https://takasaki-live.com/ | A＋M（IG） | 2026年は第23回・10/11。もてなし広場10:00〜17:00、駅前通り10:30〜15:00。公式トップ画像に雨天決行。中止・変更は公式サイト・Facebookで案内 |
@@ -122,3 +122,20 @@
 - **手動（M/SNS）**：週1回まとめて目視 → 良い情報を直接 `events.json` に登録。
 - 主催団体（やる気堂・キッチンカー組合）とは将来「情報を直接もらう」関係を作れると最強。投稿フォームの案内をDMで送るのも手。
 - 著作権配慮：日付・会場・名称などの事実＋自分の言葉の紹介＋出典リンクで運用。本文・写真の転載はしない。
+
+## 2026-11-23の追加確認先
+
+- 高崎人情市：年度事業計画PDFを実ブラウザで再確認。2027/1/24は第277回・10〜15時・もてなし広場、2/28は休み。曜日から日付を生成しない。11月の個別告知では13:30のGIGを確認、ビンゴ参加費や出店料を一般入場料へ転用しない。
+- 高崎クリスマスマルシェ：11/19公式投稿 https://www.instagram.com/p/Df8N0-vEz4o/ が両日10時開始と明記。群馬蚤の市は最新の出店者紹介 https://www.instagram.com/p/DgEBCrsI4tq/ でも2026/12/19・9〜15時・入場無料・雨天開催／荒天中止を確認。
+- 榛名まちなか音楽祭：https://www.city.takasaki.gunma.jp/page/1800.html 。2026/12/5・榛名福祉会館、9:20〜14:30・入場無料。前庭の販売や飲食代は別。
+- 生涯学習フェスティバル：https://www.city.takasaki.gunma.jp/page/4806.html 。2026/12/12・ソシアス、10〜13時。個別企画と料金は公式確認。
+- 高崎寄席in箕郷：https://www.city.takasaki.gunma.jp/page/93770.html 、シネマ＆トークin新町：https://www.city.takasaki.gunma.jp/page/97085.html 。いずれも2026/12/20・14時開演、13:30開場・1,000円。会場を混同しない。
+- 榛名の公演：地元アーティストコンサート https://www.city.takasaki.gunma.jp/page/73291.html （2027/1/24、無料・要申込・定員超過抽選）、やさしいクラシック音楽会 https://www.city.takasaki.gunma.jp/page/74017.html （2027/2/13、有料・未就学児不可）。
+- 吉井の冬大会：https://www.city.takasaki.gunma.jp/page/7091.html 。第22回多胡碑マラソンは2027/2/14・吉井運動公園。競技参加申込12/1〜22、参加費無料、荒天中止。受付・開会式・種目別発走を区別。
+- ダンス本番：https://www.city.takasaki.gunma.jp/page/99237.html 。2027/2/21・群馬音楽センター、12:30開場。1/30〜31の予選は非公開で掲載対象外。出場者の参加費を観覧料にしない。
+- ビエント高崎の一般催事：リトル・ママ https://www.viento-takasaki.or.jp/event/event-12643/ と主催者 https://event.l-ma.co.jp/festas/kanto/takasaki2026nov/ 、百風時間 https://www.viento-takasaki.or.jp/event/event-12622/ と主催者 https://www.gunmahandmadefesta.com/ 、こどもグルメ https://www.viento-takasaki.or.jp/event/event-12549/ 、住宅相談会 https://www.viento-takasaki.or.jp/event/event-11817/ 、軽自動車フェア https://www.viento-takasaki.or.jp/event/event-10563/ 、カロ高フェス https://www.viento-takasaki.or.jp/event/event-12115/ 。入場料と買い物・体験代を区別し、招待・関係者限定の別催事は含めない。
+- 高崎芸術劇場：12/5フルート key=2148、12/6カンタータ key=2167、12/19民謡 key=2403、12/27ジャズピアノ key=2452。公式詳細は https://www.takasaki-foundation.or.jp/theatre/concert_detail.php?key=2148 など。最初の3公演は確認時点「予定枚数終了」、カンタータは曲目変更の案内あり。未就学児・U-25条件も詳細で確認。
+- 高崎光のページェント：https://www.takasaki.fm/hikari/ 、公式パンフレット https://www.takasaki.fm/hikari/images/2026.pdf 。2026/10/30〜2027/2/28、17〜23時、12月のみ16〜24時。「光のキャンバス」は1/11まで。駅前・市街地の催しで、もてなし広場開催とはしない。
+- 高崎アリーナ：チアリーディング選手権は2026/12/12〜13、観覧有料。大会詳細 https://www.takasaki-foundation.or.jp/arena/event_detail.php?id=79&ord=1&site=0&ym= と会場一覧で確認。新体操チャレンジカップ https://jpn-gym.or.jp/event/event-8004/ の一般発売日は11/18から11/16 18時へ修正済み。
+- 街中検索：ヤナガワ村2026秋の個別公式告知 https://www.yanagawa.one/event/1734 と市 https://www.city.takasaki.gunma.jp/site/digital/99904.html を発見。11/21〜22の催しは調査日の前であり、今後の予定に追加しない。主催者一覧に新着が出ない場合も個別の当該年記事を照合する。中居店の過去の販売・マルシェ期間を将来へ延ばさない。商工会議所の12/5〜6物産展は太田市開催のため高崎市対象には含めない。
+- 市の11〜翌2月カレンダー、文化新着、会場公式、年・月・地域別の新規検索を確認。採否・未確認候補・調査の範囲と限界は非公開の運用記録へ保存。検索で見つからないことをイベント不存在と断定しない。
