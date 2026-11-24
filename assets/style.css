@@ -45,6 +45,12 @@ a{color:var(--brand-dark);text-underline-offset:4px}
 .outing-arrow{color:#647b70;flex:none}
 .affiliate-pixel{position:absolute;width:0;height:1px}
 .outings-note{margin:10px 0 0;font-size:.875rem;line-height:1.75;color:var(--muted)}
+.outings-campaign{margin-top:14px;padding-left:12px;border-left:3px solid #86aa93;font-size:.875rem;overflow-wrap:anywhere}
+.outings-campaign p{margin:3px 0}
+.outings-campaign .campaign-title{font-weight:600}
+.campaign-title span{display:inline-block;margin-left:8px;color:var(--brand-dark)}
+.campaign-terms{color:var(--muted);font-size:.8125rem}
+.outings-campaign a{display:inline-flex;align-items:center;gap:4px;margin-top:4px}
 
 /* Common search controls stay outside the result views. */
 .controls{display:grid;gap:16px;padding:24px 0 18px;border-bottom:1px solid var(--line)}
